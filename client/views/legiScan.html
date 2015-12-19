@@ -1,0 +1,22 @@
+<template name="legiScan">
+  <p>Find Local Laws:</p>
+<form id="search">
+    <input id="query" name="query" type="text" />
+    <button class="button">Go!</button>
+</form>
+  <!-- set the data context -->
+  {{#with query}}
+    <!-- if location has an error property, display it -->
+    {{#if error}}
+      <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
+    {{else}}
+      <div>{{#each queryList}}
+          <li>{{this.value.title}}</li>
+          <li>{{this.value.bill_number}}</li>
+          <li>{{this.value.state}}</li>
+          <li><a href="{{this.value.url}}">{{this.value.text_url}}</a></li>
+        {{/each}}
+      </div>
+    {{/if}} 
+  {{/with}}
+</template>

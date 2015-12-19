@@ -1,0 +1,17 @@
+<template name="freegeo">
+  <p>Find me via my IP address</p>
+<form id="ipfield">
+    <input id="ipv4" name="ipv4" type="text" />
+    <button class="button">Look Me Up</button>
+</form>
+  <!-- set the data context -->
+  {{#with location}}
+    <!-- if location has an error property, display it -->
+    {{#if error}}
+      <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
+    {{else}}
+      <p>Located in {{location.city}}, {{location.region_code}}
+         ({{location.country_code}}).</p>
+    {{/if}} 
+  {{/with}}
+</template>
