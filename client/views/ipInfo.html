@@ -1,0 +1,11 @@
+<template name="ipInfo">
+	{{#if locating}}
+		<p>Locating...</p>
+	{{/if}}
+	<p> If your not located in {{location.region}}, {{location.postal}}--search here: 
+		<form id="zip-field">
+	    <input id="zip" name="zip-field" type="text" />
+	    <button class="button">Look Me Up</button>
+		</form>
+	</p>
+</template>

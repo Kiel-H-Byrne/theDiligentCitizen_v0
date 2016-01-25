@@ -23,20 +23,20 @@ var apiCall = function (apiUrl, callback) {
 };
 
 Meteor.methods({
-	'geoJsonForIp': function (ip) {
-		this.unblock();
-		console.log('*** running Method.geoJsonForIp for', ip); 
-		var apiUrl = 'https://freegeoip.net/json/' + ip;
-		var response = Meteor.wrapAsync(apiCall)(apiUrl);
-		return response;
-	}, 
-	'legiScan': function(op, param) {
-		this.unblock();
-		console.log ( 'running Method.legiScan for', op, param);
-		var apiUrl = 'http://api.legiscan.com/?key=5e92d12f203ca365fbdcdad88418e626&op='+ op + '&' + param;
-		var response = Meteor.wrapAsync(apiCall)(apiUrl);
-		console.log(apiUrl);
-		return response;
-	}
+  geoJsonForIp: function (ip) {
+    this.unblock();
+    console.log('*** running Method.geoJsonForIp for', ip); 
+    var apiUrl = 'https://freegeoip.net/json/' + ip;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    return response;
+  }, 
+  legiScan: function(op, param) {
+    this.unblock();
+    console.log ( 'running Method.legiScan with '+ op +' param: '+ param);
+    var apiUrl = 'http://api.legiscan.com/?key=5e92d12f203ca365fbdcdad88418e626&op='+ op + '&' + param;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    console.log(apiUrl);
+    return response;
+  }
 });
 
