@@ -10,11 +10,14 @@
     {{#if error}}
       <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
     {{else}}
-      <div>{{#each queryList}}
-          <li>{{this.value.title}}</li>
-          <li>{{this.value.bill_number}}</li>
-          <li>{{this.value.state}}</li>
-          <li><a href="{{this.value.url}}">{{this.value.text_url}}</a></li>
+      <div>
+        {{#each queryList}}
+          {{#if this.value.title}}
+            <li>{{this.value.title}}</li>
+            <li>{{this.value.bill_number}}</li>
+            <li>{{this.value.state}}</li>
+            <li><a href="{{this.value.url}}">{{this.value.text_url}}</a></li>
+          {{/if}}
         {{/each}}
       </div>
     {{/if}} 

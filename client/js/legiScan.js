@@ -12,13 +12,15 @@ Template.legiScan.helpers({
   location: function() {
     var ipInfo = Session.get('ipInfo');
     var newState = Session.get('newState');
-    if (newState) {
-     var region = abbr_State(newState,"name");
-     return region;
-    } else {
-      return ipInfo.region;
+    if (ipInfo) {
+      if (newState) {
+       var region = abbr_State(newState,"name");
+       return region;
+      } else {
+        return ipInfo.region;
+      }
     }
-  },
+    },
   query: function () {
     return Session.get('query');
   },
