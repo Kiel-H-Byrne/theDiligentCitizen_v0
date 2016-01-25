@@ -6,6 +6,7 @@
 </form>
   <!-- set the data context -->
   {{#with query}}
+  <h3> Bills related to '{{query.query}}' ... </h3>
     <!-- if location has an error property, display it -->
     {{#if error}}
       <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
@@ -13,10 +14,11 @@
       <div>
         {{#each queryList}}
           {{#if this.value.title}}
-            <li>{{this.value.title}}</li>
-            <li>{{this.value.bill_number}}</li>
-            <li>{{this.value.state}}</li>
-            <li><a href="{{this.value.url}}">{{this.value.text_url}}</a></li>
+            <li class="li-title">{{this.value.title}}</li>
+            <li class="li-billno">{{this.value.state}} - {{this.value.bill_number}}</li>
+            <li class="li-action">{{this.value.last_action_date}} - {{this.value.last_action}}</li>
+            <li class="li-url"><a href="{{this.value.research_url}}">...research this</a></li>
+            <li class="li-url"><a href="{{this.value.text_url}}">{{this.value.text_url}}</a></li>
           {{/if}}
         {{/each}}
       </div>

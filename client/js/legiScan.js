@@ -22,7 +22,9 @@ Template.legiScan.helpers({
     }
     },
   query: function () {
-    return Session.get('query');
+    query = Session.get('query');
+    console.log(query);
+    return query;
   },
   queryList: function() {
     queryArr = [];
@@ -60,6 +62,7 @@ Template.legiScan.events({
         Session.set('query', {error: err});
       } else {
         res = res.searchresult;
+        res.query = params.query;
         Session.set('query', res);
         return res;
       }
