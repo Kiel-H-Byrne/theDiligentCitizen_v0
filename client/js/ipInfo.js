@@ -19,9 +19,22 @@ Template.ipInfo.helpers({
 	},
 	location: function() {
 		var ipInfo = Session.get('ipInfo');
-		if (ipInfo) {
-			var state = ipInfo.region;
-		}
+	  if (ipInfo) {
+	    var state = ipInfo.region;
+	    var abState = abbr_State(state, 'abbrev');
+      console.log("Sesh-abState: "+abState);
+      Session.set('abState', abState);
+      ipInfo.abState = abState;
+	  }
 		return ipInfo;
+	}
+});
+
+Template.ipInfo.events({
+	'submit form': function (evt, tpl) {
+		event.preventDefault();
+    newState = tpl.find('input#self-state').value;
+    Session.set('newState', newState);
+    console.log("they put "+newState);
 	}
 });
