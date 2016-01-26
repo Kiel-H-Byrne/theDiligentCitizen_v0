@@ -23,7 +23,7 @@ Template.legiScan.helpers({
     },
   query: function () {
     query = Session.get('query');
-    console.log(query);
+    //console.log(query);
     return query;
   },
   queryList: function() {

@@ -1,0 +1,28 @@
+{
+  "definitions": {
+    "accordion" : true,
+    "ad"        : true,
+    "api"       : true,
+    "site"      : true,
+    "list"      : true,
+    "button"    : true,
+    "input"     : true,
+    "form"      : true,
+    "card"      : true,
+    "header"    : true,
+    "label"     : true,
+    "state"     : true
+  },
+  "themes": {
+    "amazon"     : false,
+    "basic"      : true,
+    "bookish"    : false,
+    "bootstrap3" : false,
+    "chubby"     : false,
+    "classic"    : true,
+    "default"    : true,
+    "flat"       : true,
+    "resetcss"   : false,
+    "material"   : true
+  }
+}

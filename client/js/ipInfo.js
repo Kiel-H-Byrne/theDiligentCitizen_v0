@@ -15,7 +15,9 @@ $.getJSON("http://ipinfo.io", function(data){
 
 Template.ipInfo.helpers({
 	locating: function() {
-		if (!Session.get('ipInfo')) {return true}
+		if (!Session.get('ipInfo')) {
+			return "loading"
+		}
 	},
 	location: function() {
 		var ipInfo = Session.get('ipInfo');

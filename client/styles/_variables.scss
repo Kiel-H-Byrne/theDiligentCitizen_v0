@@ -1,0 +1,44 @@
+/*
+9px = 1rem
+10px =1.11rem:  
+11px = 1.22rem
+12px = 1.33rem
+18px= 2rem
+375px=41.67rem
+667px=74.11rem
+900px=100rem
+1200px=133.3rem
+
+
+*/
+// ---------------------->>>  SIZES  <<<<--------------------------------- //
+$scrn-xxl: 160rem; //1440px
+$scrn-xl: 142.2rem; //1280px
+$scrn-lg: 100rem; //900px
+$scrn-md: 74.11rem; //667px
+$scrn-sm: 41.67rem; //375px
+
+// ---------------------->>>  COLORS  <<<<--------------------------------- //
+
+$clr-primary: #079 !default;
+$clr-dark: #003 !default;
+$clr-light: #eef !default;
+$clr-light-trans: rgba(238, 238, 255, 0.8) !default;
+$clr-pwblue: rgba(0, 152, 255, 1);
+$clr-up: rgba(0, 220, 50, 1);
+$clr-down: rgba(255, 0, 0, 1);
+$clr-info: rgba(220, 200, 0, 1);
+
+// ---------------------->>>  LAYOUT  <<<<--------------------------------- //
+$BASEFONTSIZE: 14px;
+$padding: 1rem;
+$font-body: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-headline: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$sm-font-size: $BASEFONTSIZE;
+$md-font-size: 1.111rem;
+$lg-font-size: 1.222rem;
+$xl-font-size: 1.333rem;
+
+// ---------------------->>>  MUI   <<<<--------------------------------- //
+
+//===================================================================
