@@ -50,7 +50,7 @@ Template.legiScan.events({
       state = Session.get('newState');
     }
     console.log("Searching in "+state);
-    var params = {}
+    var params = {};
     params.query = tpl.find('input#query').value;
     params.year = 2015;
     params.state = state;

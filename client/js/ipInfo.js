@@ -1,4 +1,3 @@
-
 $.getJSON("http://ipinfo.io", function(data){
 	Session.set('ipInfo', data);
 });

@@ -32,11 +32,39 @@ Meteor.methods({
   }, 
   legiScan: function(op, param) {
     this.unblock();
-    console.log ( 'running Method.legiScan with '+ op +' param: '+ param);
-    var apiUrl = 'http://api.legiscan.com/?key=5e92d12f203ca365fbdcdad88418e626&op='+ op + '&' + param;
+    console.log ( '*** running Method.legiScan with '+ op +' param: '+ param);
+    var key = '5e92d12f203ca365fbdcdad88418e626';
+    var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
     console.log(apiUrl);
+    return response;
+  },
+  sunLight: function(method, params) {
+    this.unblock();
+    console.log ( '*** running Method.sunLight with '+ method +' param: '+ params);  
+    var key = '345a8f0b36114bde89222326b8b1e1af';
+    var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);  
+    console.log(apiUrl);
+    console.log(response);
     return response;
   }
 });
 
+/* Methods 
+/legislators
+/legislators/locate 
+/districts/locate 
+/committees 
+/bills  
+/bills/search
+/amendments 
+/nominations
+/votes  
+/floor_updates
+/hearings 
+/upcoming_bills
+/congressional_documents/search
+/documents/search
+
+*/
