@@ -24,11 +24,12 @@ Template.myDistrict.helpers ({
 		    	res = res.results;
 		    	//console.log("Sesh-district: " + res.district);
 					Session.set('legislators', res);
-					console.log(res);
+					console.log(res[0]);
 		      return res;
 		    }
 		  });
-    //return legislators	
+		var legislators = Session.get('legislators');
+    return legislators	
 		}	
 	},
 	legislators2: function() {
