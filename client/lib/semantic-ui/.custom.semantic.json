@@ -11,7 +11,9 @@
     "card"      : true,
     "header"    : true,
     "label"     : true,
-    "state"     : true
+    "state"     : true,
+    "icon"      : true,
+    "image"     : true
   },
   "themes": {
     "amazon"     : false,
@@ -22,7 +24,7 @@
     "classic"    : true,
     "default"    : true,
     "flat"       : true,
-    "resetcss"   : false,
+    "resetcss"   : true,
     "material"   : true
   }
 }
