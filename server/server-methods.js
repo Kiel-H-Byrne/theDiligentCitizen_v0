@@ -1,4 +1,3 @@
-
 var apiCall = function (apiUrl, callback) {
   // try…catch allows you to handle errors 
   try {
@@ -21,6 +20,7 @@ var apiCall = function (apiUrl, callback) {
     callback(myError, null);
   }
 };
+
 
 Meteor.methods({
   geoJsonForIp: function (ip) {
@@ -46,7 +46,7 @@ Meteor.methods({
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
     console.log(apiUrl);
-    console.log(response);
+    //console.log(response);
     return response;
   }
 });

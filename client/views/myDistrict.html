@@ -1,15 +1,38 @@
 <template name="myDistrict">
-	<div style="border: 1px solid red" class="ui segment cards" >
+	<div id="legislators" class="ui cards" >
 		{{#each legislators}}
-		<ul class="ui card">
-			<li>{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</li>
-			<li>{{this.oc_email}}</li>
-			<p>{{this.office}} <br />
-				{{this.phone}}</p>
-			<li><a href="{{this.facebook_id}}">Facebook</a></li>
-			<li><a href="{{this.twitter_id}}">Twitter</a></li>
-			<li><a href="{{this.youtube_id}}">Youtube</a></li>
-		</ul>
+		<div class="ui {{party_color}} card">
+			<div class="image">
+				<img class="ui image" src="https://theunitedstates.io/images/congress/225x275/{{this.bioguide_id}}.jpg" />
+			</div>
+			<div class="content">
+				<h3> <a class="header" href="{{this.website}}">{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</a></h3>
+				<div class="meta"> 
+				</div>
+				<ul>
+					<li>Term Started on <span class="date">{{this.term_start}}.</span> </li>
+					<li>Term Ends on <span class="date">{{this.term_end}}. </span> </li>
+					<li>{{this.oc_email}}</li>
+				</ul>
+				<p>{{this.office}} 
+					<br />
+					{{this.phone}}
+				</p>
+				<a href="{{this.facebook_id}}"> 
+					<i class="facebook square icon"></i>
+				</a>
+				<a href="{{this.twitter_id}}">
+					<i class="twitter square icon"></i>
+				</a>
+				<a href="{{this.youtube_id}}">
+					<i class="youtube icon"></i>
+				</a>
+
+			</div>
+			<div >
+				<a class="ui bottom attached button" href="{{this.contact_form}}">Contact</a>
+			</div>
+		</div>
 		{{/each }}
 	</div>
 </template>

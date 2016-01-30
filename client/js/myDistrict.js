@@ -1,6 +1,4 @@
 
-
-
 Template.myDistrict.helpers ({
 	get_district: function() {
 		  //var method = 'districts/locate';		
@@ -29,11 +27,57 @@ Template.myDistrict.helpers ({
 		    }
 		  });
 		var legislators = Session.get('legislators');
-    return legislators	
+    return legislators;
+
+/*
+{ 
+	bioguide_id: 'C000141',
+	birthday: '1943-10-05',
+	chamber: 'senate',
+	contact_form: 'http://www.cardin.senate.gov/contact/',
+	crp_id: 'N00001955',
+	district: null,
+	facebook_id: '120421834675191',
+	fax: '202-224-1651',
+	fec_ids: [Object],
+	first_name: 'Benjamin',
+	gender: 'M',
+	govtrack_id: '400064',
+	icpsr_id: 15408,
+	in_office: true,
+	last_name: 'Cardin',
+	lis_id: 'S308',
+	middle_name: 'L.',
+	name_suffix: null,
+	nickname: null,
+	oc_email: 'Sen.Cardin@opencongress.org',
+	ocd_id: 'ocd-division/country:us/state:md',
+	office: '509 Hart Senate Office Building',
+	party: 'D',
+	phone: '202-224-4524',
+	senate_class: 1,
+	state: 'MD',
+	state_name: 'Maryland',
+	state_rank: 'junior',
+	term_end: '2019-01-03',
+	term_start: '2013-01-03',
+	thomas_id: '00174',
+	title: 'Sen',
+	twitter_id: 'SenatorCardin',
+	votesmart_id: 26888,
+	website: 'http://www.cardin.senate.gov',
+	youtube_id: 'senatorcardin' 
+}
+*/
 		}	
 	},
-	legislators2: function() {
-		return Session.get('legislators');
+	party_color: function() {
+		//var reps = Session.get('legislators');
+		var party = this.party;
+		
+		if (party == "D") {return "blue"}
+			else if (party =="R") {return "red"}
+				else {return "green"}
 	}
 
 });
