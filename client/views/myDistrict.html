@@ -1,45 +1,50 @@
 <template name="myDistrict">
-	<div id="legislators" class="ui cards stackable container" >
-		{{#each legislators}}
-		<div class="ui {{party_color}} card">
+	<div id="legislators" class="ui container" >
 
-			<div class="image">
-				<img class="ui image" src="https://theunitedstates.io/images/congress/225x275/{{this.bioguide_id}}.jpg" />
-			</div>
+		<h2 class="ui header"> Representatives for {{location.postal}}, {{location.region}}.</h2>
 
-			<div class="content">
-				<a class="header" href="{{this.website}}">{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</a>
-				
-				<div class="meta">
+		<div class="ui cards stackable">
+			{{#each legislators}}
+			<div class="ui {{party_color}} card">
 
+				<div class="image">
+					<img class="ui image" src="https://theunitedstates.io/images/congress/225x275/{{this.bioguide_id}}.jpg" />
 				</div>
 
-				<ul>
-					<li>Term Started on <span class="date">{{this.term_start}}.</span> </li>
-					<li>Term Ends on <span class="date">{{this.term_end}}. </span> </li>
-					<li>{{this.oc_email}}</li>
-				</ul>
-				<p>{{this.office}} 
-					<br />
-					{{this.phone}}
-				</p>
+				<div class="content">
+					<a class="header" href="{{this.website}}">{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</a>
+					
+					<div class="meta">
+
+					</div>
+
+					<ul>
+						<li>Term Started on <span class="date">{{this.term_start}}.</span> </li>
+						<li>Term Ends on <span class="date">{{this.term_end}}. </span> </li>
+						<li>{{this.oc_email}}</li>
+					</ul>
+					<p>{{this.office}} 
+						<br />
+						{{this.phone}}
+					</p>
+				</div>
+
+				<div>
+					<a href="http://www.facebook.com/{{this.facebook_id}}"> 
+						<i class="facebook icon"></i>
+					</a>
+					<a href="http://www.twitter.com/{{this.twitter_id}}">
+						<i class="ui twitter square icon"></i>
+					</a>
+					<a href="http://www.youtube.com/{{this.youtube_id}}">
+						<i class="ui youtube icon"></i>
+					</a>
+				</div>
+
+				<a class="ui bottom attached button" href="{{this.contact_form}}">Contact</a>
+
 			</div>
-
-			<div>
-				<a href="http://www.facebook.com/{{this.facebook_id}}"> 
-					<i class="facebook icon"></i>
-				</a>
-				<a href="http://www.twitter.com/{{this.twitter_id}}">
-					<i class="ui twitter square icon"></i>
-				</a>
-				<a href="http://www.youtube.com/{{this.youtube_id}}">
-					<i class="ui youtube icon"></i>
-				</a>
-			</div>
-
-			<a class="ui bottom attached button" href="{{this.contact_form}}">Contact</a>
-
+			{{/each }}
 		</div>
-		{{/each }}
 	</div>
 </template>

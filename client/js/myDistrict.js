@@ -1,22 +1,22 @@
 
 Template.myDistrict.helpers ({
-	get_district: function() {
-		  //var method = 'districts/locate';		
+	location: function() {
+		var ipInfo = Session.get('ipInfo');
+		if (Session.get('newZip')) { 
+			ipInfo.postal = Session.get('newZip');
+		}
+		return ipInfo;
 	},
 	legislators: function() {
 		var ipInfo = Session.get('ipInfo');
-		
-		if (Session.get('newZip')) { 
-			ipInfo.zip = Session.get('newZip');
-		}
 
 	  if (ipInfo) {
 		  	  //using lat/long to find user district (more precise than zip);
 		  //var method = 'districts/locate';
 		  var method = 'legislators/locate';
 		  var params = {};
-		  if (ipInfo.zip) {
-		  	params.zip = ipInfo.zip;
+		  if (Session.get('newZip')) {
+		  	params.zip = Session.get('newZip');
 		  } else { 
 		  	params.latitude = ipInfo.loc.split(",")[0];
 			 	params.longitude = ipInfo.loc.split(",")[1];
