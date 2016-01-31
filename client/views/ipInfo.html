@@ -1,13 +1,13 @@
 <template name="ipInfo">
-	<div id="ipInfo" class="ui container segment">	
+	<div id="ipInfo" class="ui segment">	
 		<form id="state-form" class="ui {{locating}} form">
 			<div class="field">
 				{{#if location.region}}
-					<label> Not in {{location.region}}? Enter another state here: </label>
-			    <input type="text" id="self-state" name="self-state" size="3" placeholder="{{location.abState}}" />
+					<label> Not in {{location.region}}? Enter another state or zipcode here: </label>
+			    <input type="text" id="self-state" name="self-state" size="6" placeholder="{{location.abState}}... " />
 		    {{else}}
-					<label> Enter your state here: </label>
-			    <input type="text" id="self-state" name="self-state" size="3" placeholder="NY" />
+					<label> Enter your state or zipcode here: </label>
+			    <input type="text" id="self-state" name="self-state" size="6" placeholder="NY" />
 		    {{/if}}
 		  </div>
 		</form>

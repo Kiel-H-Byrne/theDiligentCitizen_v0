@@ -19,6 +19,7 @@ Template.ipInfo.helpers({
 		}
 	},
 	location: function() {
+		//if ipInfo object exists, abbreviate the state and add it to the object.
 		var ipInfo = Session.get('ipInfo');
 	  if (ipInfo) {
 	    var state = ipInfo.region;
@@ -32,10 +33,20 @@ Template.ipInfo.helpers({
 });
 
 Template.ipInfo.events({
+	//when form is submitted, change the 'found' state to the one entered.
 	'submit form': function (evt, tpl) {
 		event.preventDefault();
-    newState = tpl.find('input#self-state').value;
-    Session.set('newState', newState);
-    console.log("they put "+newState);
+		//if entered is a string, set value to state
+   var entered = tpl.find('input#self-state').value;
+    if (entered.length === 2 ) {
+	    var newState = entered;
+	    Session.set('newState', newState);
+	    console.log("they put "+newState);
+	  } else if (entered.length === 5 ) {
+	    var newZip = entered;
+	    Session.set('newZip', newZip);
+	    console.log("they put "+newZip);
+	  }
+    //else if entered a number , set value to zipcode
 	}
 });

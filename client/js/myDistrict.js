@@ -5,14 +5,22 @@ Template.myDistrict.helpers ({
 	},
 	legislators: function() {
 		var ipInfo = Session.get('ipInfo');
+		
+		if (Session.get('newZip')) { 
+			ipInfo.zip = Session.get('newZip');
+		}
+
 	  if (ipInfo) {
 		  	  //using lat/long to find user district (more precise than zip);
 		  //var method = 'districts/locate';
 		  var method = 'legislators/locate';
 		  var params = {};
-		  //params.zip = ipInfo.postal;
-		  params.latitude = ipInfo.loc.split(",")[0];
-		 	params.longitude = ipInfo.loc.split(",")[1];
+		  if (ipInfo.zip) {
+		  	params.zip = ipInfo.zip;
+		  } else { 
+		  	params.latitude = ipInfo.loc.split(",")[0];
+			 	params.longitude = ipInfo.loc.split(",")[1];
+			}
 		  urlParams = jQuery.param(params);
 			Meteor.call('sunLight', method, urlParams, function (err, res) {
 		    // The method call sets the Session variable to the callback value
