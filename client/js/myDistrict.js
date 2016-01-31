@@ -2,10 +2,31 @@
 Template.myDistrict.helpers ({
 	location: function() {
 		var ipInfo = Session.get('ipInfo');
-		if (Session.get('newZip')) { 
-			ipInfo.postal = Session.get('newZip');
+
+	  if (Session.get('newZip')) {
+  		ipInfo.postal = Session.get('newZip');
+
+  	  //using zipcode to return user district and state;
+		  var method = 'districts/locate';
+		  var params = {};
+		  params.zip = ipInfo.postal;
+		  urlParams = jQuery.param(params);
+			Meteor.call('sunLight', method, urlParams, function (err, res) {
+		    // The method call sets the Session variable to the callback value
+		    if (err) { 
+		      Session.set('query', {error: err});
+		    } else {
+		    	res = res.results;
+		    	//console.log("Sesh-district: " + res.district);
+					ipInfo.distArray = res;
+		      Session.set('ipInfo', ipInfo);
+		      return ipInfo;
+		    }
+		  });
 		}
-		return ipInfo;
+		//console.log(ipInfo);
+		//return ipInfo;
+
 	},
 	legislators: function() {
 		var ipInfo = Session.get('ipInfo');
@@ -30,7 +51,7 @@ Template.myDistrict.helpers ({
 		    	res = res.results;
 		    	//console.log("Sesh-district: " + res.district);
 					Session.set('legislators', res);
-					console.log(res[0]);
+					//console.log(res[0]);
 		      return res;
 		    }
 		  });
