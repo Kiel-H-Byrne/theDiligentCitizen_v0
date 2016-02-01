@@ -1,11 +1,6 @@
 <template name="myDistrict">
-	<div id="legislators" class="ui container" >
-		<h2 class="ui header"> Representatives for District
-			{{#each location.districts}}
-				<span> {{this.district}}, </span>
-			{{/each}} 
-
-			{{location.postal}}, {{location.state}}.</h2>
+	<div id="legislators" class="ui" >
+		<h2 class="ui centered header segment"> Representatives for {{location.postal}}, {{location.state}}.</h2>
 
 		<div class="ui cards stackable">
 			{{#each legislators}}
@@ -19,7 +14,10 @@
 					<a class="header" href="{{this.website}}">{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</a>
 					
 					<div class="meta">
-
+					{{#if this.district}}
+						<a>District {{this.district}}, </a> 
+					{{/if}}
+					<a>{{this.chamber}}</a> 
 					</div>
 
 					<ul>
@@ -35,13 +33,13 @@
 
 				<div>
 					<a href="http://www.facebook.com/{{this.facebook_id}}"> 
-						<i class="facebook icon"></i>
+						<i class="facebook  large icon"></i>
 					</a>
 					<a href="http://www.twitter.com/{{this.twitter_id}}">
-						<i class="ui twitter square icon"></i>
+						<i class="ui twitter  large icon"></i>
 					</a>
 					<a href="http://www.youtube.com/{{this.youtube_id}}">
-						<i class="ui youtube icon"></i>
+						<i class="ui youtube  large icon"></i>
 					</a>
 				</div>
 
