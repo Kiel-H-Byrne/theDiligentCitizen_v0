@@ -2,7 +2,17 @@
 	<base target="_blank" />
 </head>
 <body>
-	{{> ipInfo}}
-	{{> myDistrict}}
-	{{> legiScan }}
+	<div class="ui grid">
+
+		<div class="four wide column ">
+			{{> ipInfo}}
+			{{> legiScanSearch}}
+		</div>
+
+		<div class="twelve wide column">
+			{{> myDistrict}}
+			{{> legiScanResults }}
+		</div>
+
+	</div>
 </body>

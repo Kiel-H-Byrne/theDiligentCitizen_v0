@@ -1,6 +1,6 @@
 /*
   DO NOT MODIFY - This file has been generated and will be regenerated
-  Semantic UI v2.1.7
+  Semantic UI v2.1.4
 */
 /*!
  * # Semantic UI - Form Validation
@@ -303,9 +303,7 @@ $.fn.form = function(parameters) {
                 module.validate.form.call(module, event, true);
               }
               else if(settings.on == 'blur' || settings.on == 'change') {
-                if(validationRules) {
-                  module.validate.field( validationRules );
-                }
+                module.validate.field( validationRules );
               }
             },
             change: function(event) {
@@ -1054,7 +1052,7 @@ $.fn.form.settings = {
 
   regExp: {
     bracket : /\[(.*)\]/i,
-    decimal : /^\d*(\.)\d+/,
+    decimal : /^\-?\d*(\.\d+)?$/,
     email   : "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
     escape  : /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
     flags   : /^\/(.*)\/(.*)?/,
@@ -1202,7 +1200,7 @@ $.fn.form.settings = {
         max,
         parts
       ;
-      if( !range || ['', '..'].indexOf(range) !== -1) {
+      if(range === undefined || range === '' || range === '..') {
         // do nothing
       }
       else if(range.indexOf('..') == -1) {
@@ -1518,4 +1516,4 @@ $.fn.form.settings = {
 
 };
 
-})( jQuery, window, document );
+})( jQuery, window , document );

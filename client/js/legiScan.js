@@ -8,18 +8,21 @@ page      Result set page number to return [Default: 1]
 
 */
 
-Template.legiScan.helpers({
+Template.legiScanSearch.helpers({
   location: function() {
     var ipInfo = Session.get('ipInfo');
     var state;
     state = ipInfo.state;
-
     if (state) {
       ipInfo.region = abbr_State(state, "name");
     }
     return ipInfo.region;
 
-  },
+  }
+});
+
+Template.legiScanResults.helpers({
+
   query: function () {
     query = Session.get('query');
     //console.log(query);
@@ -41,7 +44,7 @@ Template.legiScan.helpers({
 
 
 
-Template.legiScan.events({
+Template.legiScanSearch.events({
   'submit #legi-search': function (evt, tpl) {
     event.preventDefault();
     var state = Session.get('ipInfo').state;

@@ -1,6 +1,6 @@
 /*
   DO NOT MODIFY - This file has been generated and will be regenerated
-  Semantic UI v2.1.7
+  Semantic UI v2.1.4
 */
 /*!
  * # Semantic UI - Form
@@ -248,6 +248,15 @@
 .ui.form .wide.field .ui.input input {
   flex: 1 0 auto;
   width: 0px;
+}
+
+/*--------------------
+       Dividers
+---------------------*/
+
+.ui.form .divider {
+  clear: both;
+  margin: @dividerMargin;
 }
 
 
@@ -603,6 +612,10 @@
   position: relative;
   cursor: default;
   point-events: none;
+  text-shadow: none !important;
+  color: transparent !important;
+  transition: all 0s linear;
+  z-index: 100;
 }
 .ui.loading.form:before {
   position: absolute;
@@ -842,6 +855,7 @@
 
 
 /* Sizing Combinations */
+
 .ui.form .fields .wide.field {
   width: @oneWide;
   padding-left: (@gutterWidth / 2);
@@ -933,16 +947,6 @@
     padding-left: 0%;
     padding-right: 0%;
   }
-}
-
-/*--------------------
-     Equal Width
----------------------*/
-
-.ui[class*="equal width"].form .fields > .field,
-.ui.form [class*="equal width"].fields > .field {
-  width: 100%;
-  flex: 1 1 auto;
 }
 
 /*--------------------
