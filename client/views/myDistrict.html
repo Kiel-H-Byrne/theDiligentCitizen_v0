@@ -11,27 +11,25 @@
 				</div>
 
 				<div class="content">
-					<a class="header" href="{{this.website}}">{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</a>
+					<a class="ui tiny header" href="{{this.website}}">{{this.first_name}} {{this.last_name}} {{this.name_suffix}} ({{this.party}})</a>
 					
 					<div class="meta">
-					{{#if this.district}}
-						<a>District {{this.district}}, </a> 
-					{{/if}}
-					<a>{{this.chamber}}</a> 
+						{{#if this.district}}
+							<a>District {{this.district}}, </a> 
+						{{/if}}
+						<a>{{this.chamber}}</a> 
+						<a><span class="date">({{this.term_start}}</span></a>-<a><span class="date">{{this.term_end}})</span></a>
+						</div>
+						<p>{{this.office}} 
+							<br />
+							{{this.phone}}
+						</p>
 					</div>
 
-					<ul>
-						<li>Term Started on <span class="date">{{this.term_start}}.</span> </li>
-						<li>Term Ends on <span class="date">{{this.term_end}}. </span> </li>
-						<li>{{this.oc_email}}</li>
-					</ul>
-					<p>{{this.office}} 
-						<br />
-						{{this.phone}}
-					</p>
-				</div>
-
-				<div>
+				<div id="social" class="ui center aligned extra content">
+					<a href="mailto:{{this.oc_email}}"> 
+						<i class="inbox large icon"></i>
+					</a>					
 					<a href="http://www.facebook.com/{{this.facebook_id}}"> 
 						<i class="facebook  large icon"></i>
 					</a>
