@@ -1,8 +1,8 @@
 <template name="myDistrict">
 	<div id="legislators" class="ui" >
-		<h2 class="ui centered header segment"> Representatives for {{location.postal}}, {{location.state}}.</h2>
+		<h3 class="ui center aligned header segment"> Representatives for {{location.postal}}, {{location.state}}.</h3>
 
-		<div class="ui cards stackable">
+		<div class="ui cards centered">
 			{{#each legislators}}
 			<div class="ui {{party_color}} card">
 
