@@ -11,16 +11,15 @@ page      Result set page number to return [Default: 1]
 Template.legiScan.helpers({
   location: function() {
     var ipInfo = Session.get('ipInfo');
-    var newState = Session.get('newState');
-    if (ipInfo) {
-      if (newState) {
-       var region = abbr_State(newState,"name");
-       return region;
-      } else {
-        return ipInfo.region;
-      }
+    var state;
+    state = ipInfo.state;
+
+    if (state) {
+      ipInfo.region = abbr_State(state, "name");
     }
-    },
+    return ipInfo.region;
+
+  },
   query: function () {
     query = Session.get('query');
     //console.log(query);
@@ -45,7 +44,7 @@ Template.legiScan.helpers({
 Template.legiScan.events({
   'submit #legi-search': function (evt, tpl) {
     event.preventDefault();
-    var state = Session.get('abState');
+    var state = Session.get('ipInfo').state;
     if (Session.get('newState')) {
       state = Session.get('newState');
     }

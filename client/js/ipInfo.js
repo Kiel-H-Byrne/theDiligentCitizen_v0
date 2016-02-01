@@ -19,17 +19,10 @@ Template.ipInfo.helpers({
 			return "loading"
 		}
 	},
+		
 	location: function() {
-		//if ipInfo object exists, abbreviate the state and add it to the object.
 		var ipInfo = Session.get('ipInfo');
-	  if (ipInfo) {
-	    var state = ipInfo.region;
-	    var abState = abbr_State(state, 'abbrev');
-      console.log("Sesh-abState: "+abState);
-      Session.set('abState', abState);
-      ipInfo.abState = abState;
-	  }
-		return ipInfo;
+		return ipInfo
 	}
 });
 
@@ -39,11 +32,7 @@ Template.ipInfo.events({
 		event.preventDefault();
 		//if entered is a string, set value to state
    var entered = tpl.find('input#self-state').value;
-    if (entered.length === 2 ) {
-	    var newState = entered;
-	    Session.set('newState', newState);
-	    console.log("they put "+newState);
-	  } else if (entered.length === 5 ) {
+	 if (entered.length === 5 ) {
 	    var newZip = entered;
 	    Session.set('newZip', newZip);
 	    console.log("they put "+newZip);

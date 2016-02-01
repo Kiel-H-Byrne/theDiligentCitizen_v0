@@ -1,47 +1,53 @@
 
 Template.myDistrict.helpers ({
 	location: function() {
+		//if ipInfo object exists, abbreviate the state and add it to the object.
 		var ipInfo = Session.get('ipInfo');
-
+	  //using zipcode to return user district and state;
+	  var method = 'districts/locate';
+	  var params = {};
+	  
 	  if (Session.get('newZip')) {
-  		ipInfo.postal = Session.get('newZip');
-
-  	  //using zipcode to return user district and state;
-		  var method = 'districts/locate';
-		  var params = {};
-		  params.zip = ipInfo.postal;
-		  urlParams = jQuery.param(params);
-			Meteor.call('sunLight', method, urlParams, function (err, res) {
-		    // The method call sets the Session variable to the callback value
-		    if (err) { 
-		      Session.set('query', {error: err});
-		    } else {
-		    	res = res.results;
-		    	//console.log("Sesh-district: " + res.district);
-					ipInfo.distArray = res;
-		      Session.set('ipInfo', ipInfo);
-		      return ipInfo;
-		    }
-		  });
+			ipInfo.postal = Session.get('newZip')
+			params.zip = ipInfo.postal;
+		} else { 
+			params.latitude = ipInfo.loc.split(",")[0];
+		 	params.longitude = ipInfo.loc.split(",")[1];
 		}
+	  urlParams = jQuery.param(params);
+		Meteor.call('sunLight', method, urlParams, function (err, res) {
+	    // The method call sets the Session variable to the callback value
+	    if (err) { 
+	      Session.set('query', {error: err});
+	    } else {
+	    	res = res.results;
+	    	//console.log("Sesh-district: " + res.district);
+				ipInfo.districts = res;
+				ipInfo.params = urlParams;
+				ipInfo.state = ipInfo.districts[0].state;
+	      Session.set('ipInfo', ipInfo);
+	      //return ipInfo;
+	    }
+	  });	  
 		//console.log(ipInfo);
-		//return ipInfo;
+		return ipInfo;
 
 	},
 	legislators: function() {
 		var ipInfo = Session.get('ipInfo');
-
 	  if (ipInfo) {
-		  	  //using lat/long to find user district (more precise than zip);
+  	  //using lat/long to find user district (more precise than zip);
 		  //var method = 'districts/locate';
 		  var method = 'legislators/locate';
 		  var params = {};
-		  if (Session.get('newZip')) {
-		  	params.zip = Session.get('newZip');
+
+		  if (ipInfo.postal = Session.get('newZip')) {
+		  	params.zip = ipInfo.postal;
 		  } else { 
 		  	params.latitude = ipInfo.loc.split(",")[0];
 			 	params.longitude = ipInfo.loc.split(",")[1];
 			}
+		  
 		  urlParams = jQuery.param(params);
 			Meteor.call('sunLight', method, urlParams, function (err, res) {
 		    // The method call sets the Session variable to the callback value
