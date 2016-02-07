@@ -1,7 +1,5 @@
-console.log("--ipInfo.js");
 $.getJSON("http://ipinfo.io", function(data){
-//	console.log("--setting initial ipInfo--");
-//	console.log(data);
+	console.log("--setting initial ipInfo--")
 	Session.set('ipInfo', data);
 });
 			/*
@@ -21,9 +19,10 @@ Template.ipInfo.helpers({
 			return "loading"
 		}
 	},
+		
 	location: function() {
 		var ipInfo = Session.get('ipInfo');
-		console.log(ipInfo);
+		return ipInfo
 	}
 });
 

@@ -19,6 +19,7 @@ Template.myDistrict.helpers ({
 			Meteor.call('sunLight', method, urlParams, function (err, res) {
 		    // The method call sets the Session variable to the callback value
 		    if (err) { 
+		    	console.log("!!! ERROR with sunLight call in myDistrict");
 		      Session.set('query', {error: err});
 		    } else {
 		    	res = res.results;
@@ -26,13 +27,16 @@ Template.myDistrict.helpers ({
 					ipInfo.districts = res;
 					ipInfo.params = urlParams;
 					ipInfo.state = ipInfo.districts[0].state;
+					console.log(ipInfo.state);
 		      Session.set('ipInfo', ipInfo);
 		      //return ipInfo;
 		    }
 		  });	  
 			//console.log(ipInfo);
 			return ipInfo;
-	  }
+	  } else {
+	  	console.log("ipInfo doesn't Exist for myDistrict.helpers.location");
+		}
 	},
 	legislators: function() {
 		var ipInfo = Session.get('ipInfo');

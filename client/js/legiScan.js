@@ -13,13 +13,13 @@ page      Result set page number to return [Default: 1]
 Template.legiScanSearch.helpers({
   location: function() {
     var ipInfo = Session.get('ipInfo');
-    var state;
-    state = ipInfo.state;
-    if (state) {
-      ipInfo.region = abbr_State(state, "name");
-    }
+    if (ipInfo) {
+      var state;
+      state = ipInfo.state;
+      fullName = abbr_State(state, "name");
+      console.log(fullName);
     return ipInfo.region;
-
+    } else {console.log("ipInfo doesn't exist yet for legiScanSearch")}
   }
 });
 

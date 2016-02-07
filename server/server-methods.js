@@ -23,17 +23,6 @@ var apiCall = function (apiUrl, callback) {
 
 
 Meteor.methods({
-  legiScan: function(op, param) {
-    this.unblock();
-    console.log ( '*** running Method.legiScan with '+ op +' param: '+ param);
-//    var key = '5e92d12f203ca365fbdcdad88418e626';
-    var key = Meteor.settings.public.govSettings.legiscan.key;
-    console.log(key);    
-    var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
-    var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    console.log(apiUrl);
-    return response;
-  },
   sunLight: function(method, params) {
     this.unblock();
     console.log ( '*** running Method.sunLight with '+ method +' param: '+ params);  
@@ -43,6 +32,17 @@ Meteor.methods({
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
     console.log(apiUrl);
     //console.log(response);
+    return response;
+  },  
+  legiScan: function(op, param) {
+    this.unblock();
+    console.log ( '*** running Method.legiScan with '+ op +' param: '+ param);
+//    var key = '5e92d12f203ca365fbdcdad88418e626';
+    var key = Meteor.settings.public.govSettings.legiscan.key;
+    console.log(key);    
+    var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    console.log(apiUrl);
     return response;
   },
   openFEC: function(method, params) {
