@@ -1,3 +1,5 @@
+console.log("--legiScan.js");
+
 /*
 params
 state     State abbreviation to search on, or ALL for entire nation
@@ -21,16 +23,20 @@ Template.legiScanSearch.helpers({
   }
 });
 
+Template.legiScanResults.query2 = function() {
+  
+};
+
 Template.legiScanResults.helpers({
 
   query: function () {
-    query = Session.get('query');
+    query = Session.get('results');
     //console.log(query);
     return query;
   },
   queryList: function() {
     queryArr = [];
-    var obj = Session.get('query');
+    var obj = Session.get('results');
     for (var key in obj) {
       queryArr.push({
         name : key,
@@ -54,18 +60,18 @@ Template.legiScanSearch.events({
     console.log("Searching in "+state);
     var params = {};
     params.query = tpl.find('input#query').value;
-    params.year = 2015;
+    params.year = 2016;
     params.state = state;
     var op = 'search';
     var urlParams = jQuery.param(params);
     Meteor.call('legiScan', op, urlParams, function (err, res) {
       // The method call sets the Session variable to the callback value
       if (err) { 
-        Session.set('query', {error: err});
+        Session.set('results', {error: err});
       } else {
         res = res.searchresult;
         res.query = params.query;
-        Session.set('query', res);
+        Session.set('results', res);
         return res;
       }
     });

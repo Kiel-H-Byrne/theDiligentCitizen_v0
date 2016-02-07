@@ -1,3 +1,4 @@
+console.log("--myDistrict.js");
 
 Template.myDistrict.helpers ({
 	location: function() {
