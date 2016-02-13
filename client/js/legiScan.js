@@ -16,16 +16,13 @@ Template.legiScanSearch.helpers({
     if (ipInfo) {
       var state;
       state = ipInfo.state;
-      fullName = abbr_State(state, "name");
-      console.log(fullName);
-    return ipInfo.region;
-    } else {console.log("ipInfo doesn't exist yet for legiScanSearch")}
+      ipInfo.region = abbr_State(state, "name");
+      return ipInfo.region;
+    } else {
+      console.log("ipInfo doesn't exist yet for legiScanSearch")
+    }
   }
 });
-
-Template.legiScanResults.query2 = function() {
-  
-};
 
 Template.legiScanResults.helpers({
 
