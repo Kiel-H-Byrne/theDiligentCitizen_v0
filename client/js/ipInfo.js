@@ -2,6 +2,12 @@ $.getJSON("http://ipinfo.io", function(data){
 	console.log("--setting initial ipInfo--")
 	Session.set('ipInfo', data);
 });
+
+analytics.debug();
+analytics.track( 'Viewed the HomePage', {
+  title: 'ipInfo test'
+});
+
 			/*
 			city: "Silver Spring"
 			country: "US"
@@ -38,5 +44,10 @@ Template.ipInfo.events({
 	    console.log("they put "+newZip);
 	  }
     //else if entered a number , set value to zipcode
+	
+    analytics.track("Locate", {
+      zip: entered
+    });
+
 	}
 });

@@ -18,8 +18,6 @@ Template.legiScanSearch.helpers({
       state = ipInfo.state;
       ipInfo.region = abbr_State(state, "name");
       return ipInfo.region;
-    } else {
-      console.log("ipInfo doesn't exist yet for legiScanSearch")
     }
   }
 });
@@ -72,6 +70,12 @@ Template.legiScanSearch.events({
         return res;
       }
     });
+
+    analytics.track("Legi Search", {
+      query: params.query,
+      state: params.state
+    });
+
   }
 });
 

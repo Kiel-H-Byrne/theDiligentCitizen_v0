@@ -27,16 +27,14 @@ Template.myDistrict.helpers ({
 					ipInfo.districts = res;
 					ipInfo.params = urlParams;
 					ipInfo.state = ipInfo.districts[0].state;
-					console.log(ipInfo.state);
+					//console.log(ipInfo.state);
 		      Session.set('ipInfo', ipInfo);
 		      //return ipInfo;
 		    }
 		  });	  
 			//console.log(ipInfo);
 			return ipInfo;
-	  } else {
-	  	console.log("ipInfo doesn't Exist for myDistrict.helpers.location");
-		}
+	  }
 	},
 	legislators: function() {
 		var ipInfo = Session.get('ipInfo');
