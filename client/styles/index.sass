@@ -1,4 +1,5 @@
-//@import _mixins
+@import _mixins
+@import _meyersReset
 @import _variables
 
 html
@@ -8,7 +9,7 @@ body
   padding: 2rem
 
 // To allow the sidebar to scroll with the rest of the page
-#left-side
+#right-side
   position: fixed
   right: 0
 
@@ -18,4 +19,6 @@ body
 #legislators
   .card
     max-width: 13rem
+    +bp(sm)
+    	max-width: 10rem
 
