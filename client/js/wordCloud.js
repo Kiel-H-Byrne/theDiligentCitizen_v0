@@ -11,7 +11,11 @@ Template.wordCloud.helpers({
   }
 });
 
+Tracker.autorun(function () {
+  
+  list2 = Session.get('list');
 
+});
 
 Template.wordCloud.onRendered( function() {
 
@@ -20,18 +24,24 @@ Template.wordCloud.onRendered( function() {
 //  console.log(zipObj(getList));
   //console.log(getList);
 
+
+this.autorun ;
+
+
   var list = [
   	['foo', 22],
-  	['bar', 46],
+  	['bar', 76],
   	['buzz', 58],
-  	['bang', 32]
+  	['bang', 42]
   ];
 
-if (Session.get('list')) {list = zipObj(Session.get('list'))};
+
+
+if (Session.get('list')) {list2 = zipObj(Session.get('list'))};
 
   var element = $('#wcloud')[0];
   var options = {
-    list : list,
+    list : list2,
     color : 'random-dark',
     classes : 'cloudWords',
     shuffle : true
@@ -40,6 +50,7 @@ if (Session.get('list')) {list = zipObj(Session.get('list'))};
   WordCloud(element, options);
 
 });
+
 
 // where list is an array that look like this: [['foo', 12], ['bar', 6]].
 
