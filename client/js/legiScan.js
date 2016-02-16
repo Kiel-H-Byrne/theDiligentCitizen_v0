@@ -1,5 +1,6 @@
 console.log("--legiScan.js");
 
+
 /*
 params
 state     State abbreviation to search on, or ALL for entire nation
@@ -40,7 +41,7 @@ function compareActionDates(documentA, documentB) {
   var last_action_dateA = new Date(documentA.value.last_action_date);
   var last_action_dateB = new Date(documentB.value.last_action_date);
 
-  console.log("Testing: "+ last_action_dateA +" vs " + last_action_dateB);
+  //console.log("Testing: "+ last_action_dateA +" vs " + last_action_dateB);
 
   /*
    *  Checking for undefined dates
@@ -63,6 +64,54 @@ function compareActionDates(documentA, documentB) {
     return 0;
   }
 }
+
+
+function wordsObj(obj) {
+  var wordsArr = _.pluck(obj, 'title').join(" ");
+//  console.log(wordsArr);
+  var wordCount = wordsArr.length;
+
+  /* Below is a regular expression that finds alphanumeric characters
+     Next is a string that could easily be replaced with a reference to a form control
+     Lastly, we have an array that will hold any words matching our pattern */
+  var pattern = /\w+/g,
+      matchedWords = wordsArr.match( pattern );
+
+  /* The Array.prototype.reduce method assists us in producing a single value from an
+     array. In this case, we're going to use it to output an object with results. */
+  var counts = matchedWords.reduce(function ( stats, word ) {
+
+      /* `stats` is the object that we'll be building up over time.
+         `word` is each individual entry in the `matchedWords` array */
+      if ( stats.hasOwnProperty( word ) ) {
+          /* `stats` already has an entry for the current `word`.
+             As a result, let's increment the count for that `word`. */
+          stats[ word ] = stats[ word ] + 1;
+      } else {
+          /* `stats` does not yet have an entry for the current `word`.
+             As a result, let's add a new entry, and set count to 1. */
+          stats[ word ] = 1;
+      }
+
+      /* Because we are building up `stats` over numerous iterations,
+         we need to return it for the next pass to modify it. */
+      return stats;
+
+    }, {} );
+
+    /* Now that `counts` has our object, we can log it. */
+    //console.log( counts );
+    return counts;
+
+};
+
+
+
+
+
+/*  */
+
+
 
 Template.legiScanSearch.helpers({
   location: function() {
@@ -102,6 +151,7 @@ Template.legiScanResults.helpers({
 
 
 
+
 Template.legiScanSearch.events({
   'submit #legi-search': function (evt, tpl) {
     event.preventDefault();
@@ -124,6 +174,7 @@ Template.legiScanSearch.events({
         res = res.searchresult;
         res.query = params.query;
         Session.set('results', res);
+        Session.set('list', wordsObj(res));
         return res;
       }
     });
@@ -132,6 +183,8 @@ Template.legiScanSearch.events({
       query: params.query,
       state: params.state
     });
+  
+    //wordList();
 
   }
 });

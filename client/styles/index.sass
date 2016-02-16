@@ -6,12 +6,15 @@ html
 	font-size: $BASEFONTSIZE
 
 body
-  padding: 2rem
+  padding: 1.5rem
 
 // To allow the sidebar to scroll with the rest of the page
-#right-side
+#sideBar
   position: fixed
   right: 0
+
+#mainWindow
+	position: relative
 
 .segment
 	padding: 1rem !important
@@ -22,3 +25,6 @@ body
     +bp(sm)
     	max-width: 10rem
 
+#wcloud
+	width: 80%
+	border: 1px solid red
