@@ -1,8 +1,6 @@
 <template name="wordCloud">
-	<div id="word_cloud">
-		{{#with bigList}}
-			<canvas id="wcloud" class="ui {{this}} canvas">
-			</canvas>
-		{{/with}}
+	<div id="wcloud-container" class="ui {{hidden}} segment">
+		<div id="wcloud" class="ui canvas">
+		</div>
 	</div>
 </template>

@@ -15,6 +15,9 @@ page      Result set page number to return [Default: 1]
  * Used as a comparison function to sort the array of bills that come back from a legiscan query.
  * This will sort that array based on the last action date descending.
  */
+
+
+
 function compareActionDates(documentA, documentB) {
   /* excepting the query from borking up the results ordering */
   if(documentA.name === "query") {
@@ -65,8 +68,12 @@ function compareActionDates(documentA, documentB) {
   }
 }
 
+//function creates object of words and their frequencies. 
+// obj = object to pluck 
+// key = key name to pluck
+// i.e 
+function getFreq(obj) {
 
-function wordsObj(obj) {
   var wordsArr = _.pluck(obj, 'title').join(" ");
 //  console.log(wordsArr);
   var wordCount = wordsArr.length;
@@ -79,7 +86,7 @@ function wordsObj(obj) {
 
   /* The Array.prototype.reduce method assists us in producing a single value from an
      array. In this case, we're going to use it to output an object with results. */
-  var counts = matchedWords.reduce(function ( stats, word ) {
+  var freqObj = matchedWords.reduce(function ( stats, word ) {
 
       /* `stats` is the object that we'll be building up over time.
          `word` is each individual entry in the `matchedWords` array */
@@ -99,13 +106,53 @@ function wordsObj(obj) {
 
     }, {} );
 
-    /* Now that `counts` has our object, we can log it. */
-    //console.log( counts );
-    return counts;
+    /* Now that `freqObj` has our object, we can log it. */
+    //console.log( freqObj );
+
+    //return freqObj;
+
+    var keys = _.keys(freqObj);
+    var values = _.map(keys, function(k) { return freqObj[k]; });
+    // Transpose the values matrix
+    
+    var cloudArr = _.zip(keys,values);
+    
+    return cloudArr;
+};
+
+makeCloud = function(arr) {
+  var element = $('#wcloud')[0];
+
+  var options = {
+    list : arr,
+    gridSize : Math.round(10 * $('#wcloud').width() / 1024),
+    weightFactor : function (size) {
+      size = size*5;
+      return Math.pow(size, 1.3) * $('#wcloud').width() / 1024;
+    },
+    fontFamily : 'Garamond, serif',
+    color : 'random-dark',
+    classes : 'cloudWords',
+    rotateRatio : 0.5
+    //shape : 'square'
+    };
+  console.log(arr);
+  WordCloud(element, options);
 
 };
 
 
+
+
+var getList = function() {
+  listDep.depend();
+  return list;
+};
+
+var setList = function(l) {
+  list = l;
+  listDep.changed();
+};
 
 
 
@@ -174,7 +221,8 @@ Template.legiScanSearch.events({
         res = res.searchresult;
         res.query = params.query;
         Session.set('results', res);
-        Session.set('list', wordsObj(res));
+        Session.set('list', getFreq(res));
+        //makeCloud(zipObj(getFreq(res)));
         return res;
       }
     });
@@ -183,8 +231,6 @@ Template.legiScanSearch.events({
       query: params.query,
       state: params.state
     });
-  
-    //wordList();
 
   }
 });
