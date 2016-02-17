@@ -172,14 +172,95 @@ Template.legiScanSearch.helpers({
   }
 });
 
-Template.legiScanResults.helpers({
 
+Template.legiScanSearch.events({
+  'submit #legi-search': function (evt, tpl) {
+    event.preventDefault();
+    
+    var query = tpl.find('input#query').value;
+
+    Session.set('query', query);
+
+/*
+    var state = Session.get('ipInfo').state;
+
+    if (Session.get('newState')) {
+      state = Session.get('newState');
+    }
+
+    var params = {};
+      params.query = tpl.find('input#query').value;
+      params.year = 2016;
+      params.state = state;
+    
+    Session.set('query', params.query);
+
+    var op = 'search';
+    var urlParams = jQuery.param(params);
+
+    Meteor.call('legiScan', op, urlParams, function (err, res) {
+      // The method call sets the Session variable to the callback value
+      if (err) { 
+        Session.set('results', {error: err});
+      } else {
+        res = res.searchresult;
+        res.query = params.query;
+        Session.set('results', res);
+        Session.set('list', getFreq(res));
+        //makeCloud(zipObj(getFreq(res)));
+        return res;
+      }
+    });
+*/
+    analytics.track("Legi Search", {
+      query: query
+    });
+
+  }
+});
+
+
+Template.legiScanResults.helpers({
+  results: function() {
+  
+  },
   query: function () {
-    query = Session.get('results');
+    query = Session.get('query');
     //console.log(query);
     return query;
   },
   queryList: function() {
+
+    var state = Session.get('ipInfo').state;
+
+    if (Session.get('newState')) {
+      state = Session.get('newState');
+    }
+
+    var params = {};
+      params.query = Session.get('query');
+      params.year = 2016;
+      params.state = state;
+  
+    Session.set('query', params.query);
+
+    var op = 'search';
+    var urlParams = jQuery.param(params);
+
+    Meteor.call('legiScan', op, urlParams, function (err, res) {
+      // The method call sets the Session variable to the callback value
+      if (err) { 
+        return err;
+      } else {
+        res = res.searchresult;
+        res.query = params.query;
+        Session.set('results', res);
+        Session.set('list', getFreq(res));
+        //makeCloud(zipObj(getFreq(res)));
+        //return res;
+      }
+    });
+
     queryArr = [];
     var obj = Session.get('results');
     for (var key in obj) {
@@ -195,44 +276,4 @@ Template.legiScanResults.helpers({
     return queryArr;
   }
 });
-
-
-
-
-Template.legiScanSearch.events({
-  'submit #legi-search': function (evt, tpl) {
-    event.preventDefault();
-    var state = Session.get('ipInfo').state;
-    if (Session.get('newState')) {
-      state = Session.get('newState');
-    }
-    console.log("Searching in "+state);
-    var params = {};
-    params.query = tpl.find('input#query').value;
-    params.year = 2016;
-    params.state = state;
-    var op = 'search';
-    var urlParams = jQuery.param(params);
-    Meteor.call('legiScan', op, urlParams, function (err, res) {
-      // The method call sets the Session variable to the callback value
-      if (err) { 
-        Session.set('results', {error: err});
-      } else {
-        res = res.searchresult;
-        res.query = params.query;
-        Session.set('results', res);
-        Session.set('list', getFreq(res));
-        //makeCloud(zipObj(getFreq(res)));
-        return res;
-      }
-    });
-
-    analytics.track("Legi Search", {
-      query: params.query,
-      state: params.state
-    });
-
-  }
-});
-
 

@@ -7,7 +7,7 @@
       {{#if error}}
         <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
       {{else}}
-      <h3 class="ui center aligned header segment"> Bills related to '{{query.query}}' ... </h3>
+      <h3 class="ui center aligned header segment"> Bills related to '{{query}}' ... </h3>
       <div id="legi-results" class="ui cards centered">
         {{#each queryList}}
           {{#if this.value.title}}

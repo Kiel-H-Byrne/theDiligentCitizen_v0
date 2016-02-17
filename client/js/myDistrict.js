@@ -8,6 +8,7 @@ Template.myDistrict.helpers ({
 	  var method = 'districts/locate';
 	  var params = {};
 		if (ipInfo) {  
+			//when 'newZip' changes, this view rerenders and makes a new call for district.
 		  if (Session.get('newZip')) {
 				ipInfo.postal = Session.get('newZip')
 				params.zip = ipInfo.postal;
@@ -24,15 +25,15 @@ Template.myDistrict.helpers ({
 		    } else {
 		    	res = res.results;
 		    	//console.log("Sesh-district: " + res.district);
+
+		    	//adding ipInfo Object: districts, params, state
 					ipInfo.districts = res;
 					ipInfo.params = urlParams;
 					ipInfo.state = ipInfo.districts[0].state;
 					//console.log(ipInfo.state);
 		      Session.set('ipInfo', ipInfo);
-		      //return ipInfo;
 		    }
 		  });	  
-			//console.log(ipInfo);
 			return ipInfo;
 	  }
 	},

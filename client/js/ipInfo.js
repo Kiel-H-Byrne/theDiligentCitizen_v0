@@ -3,7 +3,6 @@ $.getJSON("http://ipinfo.io", function(data){
 	Session.set('ipInfo', data);
 });
 
-analytics.debug();
 analytics.track( 'Viewed the HomePage', {
   title: 'ipInfo test'
 });
