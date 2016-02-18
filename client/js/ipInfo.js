@@ -44,7 +44,7 @@ Template.ipInfo.events({
 	  }
     //else if entered a number , set value to zipcode
 	
-    analytics.track("Locate", {
+    analytics.track("Entered Zipcode", {
       zip: entered
     });
 
