@@ -1,0 +1,12 @@
+{
+  "public": {
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "UA-73304917-1"}
+    },
+    "govSettings": {
+      "legiscan" : {"key" : "5e92d12f203ca365fbdcdad88418e626"},
+      "sunlight" : {"apikey" : "345a8f0b36114bde89222326b8b1e1af"},
+      "openfec" : {"api_key" : "VlzCNbEgjbxSxKTDHgET4DWnZdVuVaOB3SkI2C3I"}
+    }
+  }
+}

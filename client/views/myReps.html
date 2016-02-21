@@ -1,8 +1,8 @@
-<template name="myDistrict">
+<template name="myReps">
 	<div id="legislators" class="ui" >
 		<h3 class="ui center aligned header segment"> Representatives for {{location.postal}}, {{location.state}}.</h3>
 
-		<div class="ui cards centered">
+		<div class="ui cards fluid centered">
 			{{#each legislators}}
 			<div class="ui {{party_color}} card">
 
@@ -19,11 +19,14 @@
 						{{/if}}
 						<a>{{this.chamber}}</a> 
 						<a><span class="date">({{this.term_start}}</span></a>-<a><span class="date">{{this.term_end}})</span></a>
+						{{> committees}}
 						</div>
+						
 						<p>{{this.office}} 
 							<br />
 							{{this.phone}}
 						</p>
+
 					</div>
 
 				<div id="social" class="ui center aligned extra content">

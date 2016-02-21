@@ -1,6 +1,7 @@
-console.log("--myDistrict.js");
 
-Template.myDistrict.helpers ({
+console.log("--myReps.js");
+
+Template.myReps.helpers ({
 	location: function() {
 		//if ipInfo object exists, abbreviate the state and add it to the object.
 		var ipInfo = Session.get('ipInfo');
@@ -20,7 +21,7 @@ Template.myDistrict.helpers ({
 			Meteor.call('sunLight', method, urlParams, function (err, res) {
 		    // The method call sets the Session variable to the callback value
 		    if (err) { 
-		    	console.log("!!! ERROR with sunLight call in myDistrict");
+		    	console.log("!!! ERROR with sunLight call in myReps: "+method);
 		      Session.set('query', {error: err});
 		    } else {
 		    	res = res.results;
@@ -51,12 +52,13 @@ Template.myDistrict.helpers ({
 		  	params.latitude = ipInfo.loc.split(",")[0];
 			 	params.longitude = ipInfo.loc.split(",")[1];
 			}
-		  
 		  urlParams = jQuery.param(params);
 			Meteor.call('sunLight', method, urlParams, function (err, res) {
 		    // The method call sets the Session variable to the callback value
 		    if (err) { 
-		      Session.set('query', {error: err});
+	    	console.log("!!! ERROR with sunLight call in myReps: "+method);
+		    console.log(err);
+		    return err;
 		    } else {
 		    	res = res.results;
 		    	//console.log("Sesh-district: " + res.district);
@@ -66,6 +68,8 @@ Template.myDistrict.helpers ({
 		    }
 		  });
 		var legislators = Session.get('legislators');
+		//also call "committees" call and attach to each legislator
+
     return legislators;
 
 /*
@@ -118,5 +122,4 @@ Template.myDistrict.helpers ({
 			else if (party =="R") {return "red"}
 				else {return "green"}
 	}
-
 });
