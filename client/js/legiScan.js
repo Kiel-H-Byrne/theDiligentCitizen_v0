@@ -136,7 +136,7 @@ makeCloud = function(arr) {
     rotateRatio : 0.5
     //shape : 'square'
     };
-  console.log(arr);
+  console.log(arr.length + " Words in cloud...");
   WordCloud(element, options);
 
 };
@@ -181,37 +181,6 @@ Template.legiScanSearch.events({
 
     Session.set('query', query);
 
-/*
-    var state = Session.get('ipInfo').state;
-
-    if (Session.get('newState')) {
-      state = Session.get('newState');
-    }
-
-    var params = {};
-      params.query = tpl.find('input#query').value;
-      params.year = 2016;
-      params.state = state;
-    
-    Session.set('query', params.query);
-
-    var op = 'search';
-    var urlParams = jQuery.param(params);
-
-    Meteor.call('legiScan', op, urlParams, function (err, res) {
-      // The method call sets the Session variable to the callback value
-      if (err) { 
-        Session.set('results', {error: err});
-      } else {
-        res = res.searchresult;
-        res.query = params.query;
-        Session.set('results', res);
-        Session.set('list', getFreq(res));
-        //makeCloud(zipObj(getFreq(res)));
-        return res;
-      }
-    });
-*/
     analytics.track("Legi Search", {
       query: query
     });
