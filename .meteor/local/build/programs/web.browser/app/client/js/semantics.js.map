@@ -1,1 +1,0 @@
-{"version":3,"sources":["meteor://💻app/client/js/semantics.js"],"names":[],"mappings":";;;;;;;;AAAA,OAAO,CAAC,GAAG,CAAC,gBAAgB,CAAC,CAAC;;;AAG9B,CAAC,CAAC,YAAY,CAAC,CACZ,MAAM,CAAC,EACP,CAAC,CAAC,gD","file":"/client/js/semantics.js","sourcesContent":["console.log(\"--semantics.js\");\n\n/* Semantic UI Modules */\n$('.ui.sticky')\n  .sticky({\n  });"]}
