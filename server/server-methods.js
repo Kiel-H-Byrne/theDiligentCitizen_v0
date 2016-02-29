@@ -52,6 +52,16 @@ Meteor.methods({
     console.log(apiUrl);
     //console.log(response);
     return response;
+  },
+  pollster: function(method, params) {
+    this.unblock();
+    console.log ( '*** running Method.openFEC with '+ method +' param: '+ params);  
+    var key = Meteor.settings.public.govSettings.openfec.api_key;
+    var apiUrl = 'http://elections.huffingtonpost.com/pollster/api/' + method + '?' +params;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);  
+    console.log(apiUrl);
+    //console.log(response);
+    return response;
   }
 });
 
