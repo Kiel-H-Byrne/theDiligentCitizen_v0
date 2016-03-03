@@ -1,37 +1,41 @@
 console.log("--wordcloud.js");
 
-//WordCloud(elements, options);
-//i.e. document.getElementById('my_canvas') or $('#my_canvas')[0] in jQuery.
-//https://github.com/timdream/wordcloud2.js/blob/master/API.md
-/*
-var list = [
-	['foo', 12],
-	['bar', 6],
-	['buzz', 8],
-	['bang', 2]
-];
+/* Utilizing WordCloud2.js
+* API DOCS: https://github.com/timdream/wordcloud2.js/blob/master/API.md
+*
+*
+*
+*   WordCloud(elements, options);
+*   i.e. document.getElementById('my_canvas') or $('#my_canvas')[0] in jQuery.
+*   
+*    var list = [
+*      ['foo', 22],
+*      ['bar', 76],
+*      ['buzz', 58],
+*      ['bang', 42]
+*    ]
+*/
 
-WordCloud(document.getElementById('wcCanvas'), { list: list } );
-
-// where list is an array that look like this: [['foo', 12], ['bar', 6]].
-
-var queryList =  function() {
-    queryArr = [];
-    var obj = Session.get('results');
-    for (var key in obj) {
-      queryArr.push({
-        name : key,
-        value : obj[key]
-      });
+Template.wordCloud.helpers({
+  hidden: function() {
+    if (!Session.get('list')) {
+      var str = "loading active";
+      return str;
+    } else {
+      var list = Session.get('list');
+      makeCloud(list);
     }
-    //console.log(queryArr);
-    return queryArr;
+  },
+  list: function () {
+    return Session.get('list')
   }
-*/
+});
 
-/* 
-get legiScan results;
-make array of all headlines/descriptions
-make array of frequency of words
-join arrays to make "list" array
-*/
+Template.wordCloud.onRendered( function() {
+
+//var list = Session.get('list');
+//makeCloud(list);
+
+});
+
+

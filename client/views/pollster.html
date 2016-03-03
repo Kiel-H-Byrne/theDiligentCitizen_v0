@@ -1,0 +1,14 @@
+<template name="pollster">
+	<div id="charts" class="ui container">
+		<h3 class="ui medium header">Huffington Polls: </h3>
+		<div class="ui cards">
+			{{#each charts}}
+				{{#if estimates}}
+				<div class="chart ui card">
+						{{> highchartsHelper chartId=this.slug chartWidth="100%" charHeight="100%" chartObject=topChart}}
+				</div>
+				{{/if}}
+			{{/each}}
+		</div>
+	</div>
+</template>

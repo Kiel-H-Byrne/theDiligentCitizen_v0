@@ -3,7 +3,6 @@ $.getJSON("http://ipinfo.io", function(data){
 	Session.set('ipInfo', data);
 });
 
-analytics.debug();
 analytics.track( 'Viewed the HomePage', {
   title: 'ipInfo test'
 });
@@ -45,7 +44,7 @@ Template.ipInfo.events({
 	  }
     //else if entered a number , set value to zipcode
 	
-    analytics.track("Locate", {
+    analytics.track("Entered Zipcode", {
       zip: entered
     });
 

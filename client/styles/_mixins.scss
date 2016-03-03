@@ -22,7 +22,7 @@ p {
 
 @mixin bp($point) {
   @if $point == sm {
-    @media (min-width: 1rem) and (max-width: $scrn-sm) {
+    @media (min-width: $BASEFONTSIZE) and (max-width: $scrn-sm) {
       @content;
     }
   }

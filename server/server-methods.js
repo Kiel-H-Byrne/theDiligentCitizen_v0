@@ -25,34 +25,38 @@ var apiCall = function (apiUrl, callback) {
 Meteor.methods({
   sunLight: function(method, params) {
     this.unblock();
-    console.log ( '*** running Method.sunLight with '+ method +' param: '+ params);  
-    var key = '345a8f0b36114bde89222326b8b1e1af';
-    //var key = Meteor.settings.public.govSettings.sunlight.apikey;
+    console.log ( '*** running sunLight() with "'+ method +'" param: '+ params);
+    var key = Meteor.settings.public.govSettings.sunlight.apikey;
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    console.log(apiUrl);
+    //console.log(apiUrl);
     //console.log(response);
     return response;
   },  
   legiScan: function(op, param) {
     this.unblock();
-    console.log ( '*** running Method.legiScan with '+ op +' param: '+ param);
-    var key = '5e92d12f203ca365fbdcdad88418e626';
-    //var key = Meteor.settings.public.govSettings.legiscan.key;
-    console.log(key);    
+    console.log ( '*** running legiScan() with "'+ op +'" param: '+ param);
+    var key = Meteor.settings.public.govSettings.legiscan.key;
     var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    console.log(apiUrl);
-    console.log(response);
+    //console.log(apiUrl);
     return response;
   },
   openFEC: function(method, params) {
     this.unblock();
-    console.log ( '*** running Method.openFEC with '+ method +' param: '+ params);  
-    var key = 'VlzCNbEgjbxSxKTDHgET4DWnZdVuVaOB3SkI2C3I';
-    //var key = Meteor.settings.public.govSettings.openfec.api_key;
+    console.log ( '*** running openFEC() with "'+ method +'" param: '+ params);
+    var key = Meteor.settings.public.govSettings.openfec.api_key;
     var apiUrl = 'https://api.open.fec.gov/v1?api_key=' + key + '&' +params;
-    var response = Meteor.wrapAsync(apiCall)(apiUrl);  
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    //console.log(apiUrl);
+    //console.log(response);
+    return response;
+  },
+  huffPollster: function(method, params) {
+    this.unblock();
+    console.log ( '*** running pollster() with method: "'+ method +'" and params: '+ params);
+    var apiUrl = 'http://elections.huffingtonpost.com/pollster/api/' + method + '?' +params;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
     console.log(apiUrl);
     //console.log(response);
     return response;

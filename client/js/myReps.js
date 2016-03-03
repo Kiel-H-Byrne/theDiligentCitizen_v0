@@ -1,39 +1,41 @@
-console.log("--myDistrict.js");
 
-Template.myDistrict.helpers ({
+console.log("--myReps.js");
+
+Template.myReps.helpers ({
 	location: function() {
 		//if ipInfo object exists, abbreviate the state and add it to the object.
 		var ipInfo = Session.get('ipInfo');
 	  //using zipcode to return user district and state;
-	  var method = 'districts/locate';
-	  var params = {};
-		if (ipInfo) {  
-		  if (Session.get('newZip')) {
-				ipInfo.postal = Session.get('newZip')
-				params.zip = ipInfo.postal;
-			} else { 
-				params.latitude = ipInfo.loc.split(",")[0];
-			 	params.longitude = ipInfo.loc.split(",")[1];
-			}
-		  urlParams = jQuery.param(params);
-			Meteor.call('sunLight', method, urlParams, function (err, res) {
-		    // The method call sets the Session variable to the callback value
-		    if (err) { 
-		    	console.log("!!! ERROR with sunLight call in myDistrict");
-		      Session.set('query', {error: err});
-		    } else {
-		    	res = res.results;
-		    	//console.log("Sesh-district: " + res.district);
-					ipInfo.districts = res;
-					ipInfo.params = urlParams;
-					ipInfo.state = ipInfo.districts[0].state;
-					//console.log(ipInfo.state);
-		      Session.set('ipInfo', ipInfo);
-		      //return ipInfo;
-		    }
-		  });	  
-			//console.log(ipInfo);
-			return ipInfo;
+	var method = 'districts/locate';
+	var params = {};
+	if (ipInfo) {  
+		//when 'newZip' changes, this view rerenders and makes a new call for district.
+	  if (Session.get('newZip')) {
+			ipInfo.postal = Session.get('newZip')
+			params.zip = ipInfo.postal;
+		} else { 
+			params.latitude = ipInfo.loc.split(",")[0];
+		 	params.longitude = ipInfo.loc.split(",")[1];
+		}
+	  urlParams = jQuery.param(params);
+		Meteor.call('sunLight', method, urlParams, function (err, res) {
+	    // The method call sets the Session variable to the callback value
+	    if (err) { 
+	    	console.log("!!! ERROR with sunLight call in myReps: "+method);
+	      Session.set('query', {error: err});
+	    } else {
+	    	res = res.results;
+	    	//console.log("Sesh-district: " + res.district);
+
+	    	//adding ipInfo Object: districts, params, state
+				ipInfo.districts = res;
+				ipInfo.params = urlParams;
+				ipInfo.state = ipInfo.districts[0].state;
+				//console.log(ipInfo.state);
+	      Session.set('ipInfo', ipInfo);
+	    }
+	  });	  
+		return ipInfo;
 	  }
 	},
 	legislators: function() {
@@ -50,12 +52,13 @@ Template.myDistrict.helpers ({
 		  	params.latitude = ipInfo.loc.split(",")[0];
 			 	params.longitude = ipInfo.loc.split(",")[1];
 			}
-		  
 		  urlParams = jQuery.param(params);
 			Meteor.call('sunLight', method, urlParams, function (err, res) {
 		    // The method call sets the Session variable to the callback value
 		    if (err) { 
-		      Session.set('query', {error: err});
+	    	console.log("!!! ERROR with sunLight call in myReps: "+method);
+		    console.log(err);
+		    return err;
 		    } else {
 		    	res = res.results;
 		    	//console.log("Sesh-district: " + res.district);
@@ -65,6 +68,8 @@ Template.myDistrict.helpers ({
 		    }
 		  });
 		var legislators = Session.get('legislators');
+		//also call "committees" call and attach to each legislator
+
     return legislators;
 
 /*
@@ -117,5 +122,4 @@ Template.myDistrict.helpers ({
 			else if (party =="R") {return "red"}
 				else {return "green"}
 	}
-
 });

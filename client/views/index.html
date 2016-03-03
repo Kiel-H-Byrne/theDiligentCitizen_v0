@@ -1,6 +1,12 @@
 <!--<head>-->
 	<!--<base target="_blank" />-->
 	<!--<title>The Diligent Citizen</title>-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--<meta name="description" content="">-->
+    <!--<meta name="author" content="">-->
+
 <!--</head>-->
 <!--<body>-->
 <template name="home">
@@ -17,17 +23,20 @@
 </script>
 	<div class="ui grid">
 
-		<div id="left-side" class="three wide column ">
+		<div id="sideBar" class="ui three wide column">
+
 			{{> ipInfo}}
 			{{> legiScanSearch}}
+
 		</div>
 
-		<div id="right-side" class="thirteen wide column">
-			{{> myDistrict}}
-			{{> wordCloud}}
+		<div id="content" class="ui thirteen wide column">
+			{{> myReps}}
+			{{> pollster}}
 			{{> legiScanResults }}
 
 		</div>
+    </div>
 <!--<div class="fb-comments" data-href="http://localhost:8" data-numposts="5"></div>-->
 	<!--</div>-->
 </template>

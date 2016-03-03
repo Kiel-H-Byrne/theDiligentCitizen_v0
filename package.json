@@ -1,0 +1,17 @@
+{
+  "name": "aware",
+  "version": "1.0.0",
+  "description": "diligent citizen",
+  "main": "index.js",
+  "scripts": {
+    "test": "testing",
+    "start": "meteor run --settings settings.json",
+    "deploy":  "meteor deploy aware.meteor.com --settings settings.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "khb@bitbucket.com/khb/armed-n-aware.git"
+  },
+  "author": "Kiel Hamilton Byrne",
+  "license": "ISC"
+}
