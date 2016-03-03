@@ -43,6 +43,7 @@ Meteor.methods({
     var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
     console.log(apiUrl);
+    console.log(response);
     return response;
   },
   openFEC: function(method, params) {

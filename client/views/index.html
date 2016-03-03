@@ -1,8 +1,20 @@
-<head>
-	<base target="_blank" />
-	<title>The Diligent Citizen</title>
-</head>
-<body>
+<!--<head>-->
+	<!--<base target="_blank" />-->
+	<!--<title>The Diligent Citizen</title>-->
+<!--</head>-->
+<!--<body>-->
+<template name="home">
+<div id="fb-root"></div>
+<script>
+    (function(d,s,id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=968320853209679";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script','facebook-jssdk'));
+</script>
 	<div class="ui grid">
 
 		<div id="left-side" class="three wide column ">
@@ -16,6 +28,7 @@
 			{{> legiScanResults }}
 
 		</div>
-
-	</div>
-</body>
+<!--<div class="fb-comments" data-href="http://localhost:8" data-numposts="5"></div>-->
+	<!--</div>-->
+</template>
+<!--</body>-->

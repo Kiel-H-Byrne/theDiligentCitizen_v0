@@ -40,7 +40,7 @@ function compareActionDates(documentA, documentB) {
   var last_action_dateA = new Date(documentA.value.last_action_date);
   var last_action_dateB = new Date(documentB.value.last_action_date);
 
-  console.log("Testing: "+ last_action_dateA +" vs " + last_action_dateB);
+  //console.log("Testing: "+ last_action_dateA +" vs " + last_action_dateB);
 
   /*
    *  Checking for undefined dates

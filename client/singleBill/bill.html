@@ -1,0 +1,64 @@
+<template name="bill">
+    <div class="ui grid">
+
+        <div id="left-side" class="three wide column ">
+            {{> ipInfo}}
+            {{> legiScanSearch}}
+        </div>
+
+        <div id="right-side" class="thirteen wide column">
+
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="column">
+
+
+                                    <div class="ui huge message page grid center aligned">
+                                        <h1 class="ui large header">{{currentBill.bill.title}}</h1>
+                                        <h1 class="ui small header italics">{{currentBill.bill.state}} - {{currentBill.bill.bill_number}}</h1>
+
+                                        <p>{{currentBill.bill.description}}</p>
+
+                                        <p>
+                                            <a class="ui red button">Change.org</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui hidden divider"></div>
+
+                        <div class="ui grid">
+
+                            <div class="two column row">
+                                <div class="column">
+                                    <p>{{> billSponsorPartisan}}</p>
+                                </div>
+                                <div class="column">
+                                    <h2 class="ui medium header sponsors-header">Sponsors</h2>
+                                    {{#each currentBill.bill.sponsors}}
+                                        <li class="{{getPartyClass this.party}}">{{this.name}} - {{this.party}}</li>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <div class="one column row">
+                                <div class="column">
+                                    <h2 class="ui medium header">Keywords</h2>
+                                    <p class="keyword-list">
+                                        {{#each currentBill.bill.subjects}}
+                                            <span class="ui label keyword-container">{{this.subject_name}}</span>
+                                        {{/each}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="ui divider"></div>
+                                    <span>© Monarch, LLC 2016</span>
+                                </div>
+                            </div>
+                        </div>
+
+        </div>
+    </div>
+</template>

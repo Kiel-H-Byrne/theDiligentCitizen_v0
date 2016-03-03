@@ -1,0 +1,7 @@
+<template name="billSponsorPartisan">
+    <div id="sponsorPieGraphContainer" style="width:210px; height:210px;">{{createSponsorPieGraph}}</div>
+    <div class="{{getSponsorPartisan.cssClass}} centered">{{getSponsorPartisan.partisan}} Bill Based on Sponsors</div>
+    <div class="democratic-text centered">{{getSponsorPartisan.percentage.D}}% Democratic </div>
+    <div class="republican-text centered">{{getSponsorPartisan.percentage.R}}% Republican </div>
+
+</template>
