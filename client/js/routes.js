@@ -88,8 +88,8 @@ Router.route('/bill/:id', function() {
     //}
     console.log("The params are {}", params);
 
-    Meteor.call('legiScan', 'getBill','id='+params.id, function(error, bill){
-        console.log("the bill({}) is {}", params.id, bill);
+    Meteor.call('legiScan', 'getBill','id=' + params.id, function(error, bill){
+        console.log("the bill(#" + params.id + ") is ", bill);
 
 
         var i;
@@ -101,7 +101,7 @@ Router.route('/bill/:id', function() {
             Session.set('currentBill', bill);
             console.log(bill.bill.sponsors.length);
             for (i = 0; i < bill.bill.sponsors.length; i++) {
-                console.log(bill.bill.sponsors[i].party);
+                //console.log(bill.bill.sponsors[i].party);
                 partyCount[bill.bill.sponsors[i].party]++;
             }
 
