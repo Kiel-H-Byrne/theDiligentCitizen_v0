@@ -12,6 +12,9 @@
 <template name="home">
 <div id="fb-root"></div>
 <script>
+
+// HACK: What does this script do?
+
     (function(d,s,id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -21,6 +24,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script','facebook-jssdk'));
 </script>
+
 	<div class="ui grid">
 
 		<div id="sideBar" class="ui three wide column">
@@ -32,6 +36,7 @@
 
 		<div id="content" class="ui thirteen wide column">
 			{{> myReps}}
+            {{> nytbills}}
 			{{> pollster}}
 			{{> legiScanResults }}
 

@@ -9,3 +9,32 @@
 	{{/each}}
 </div>
 </template>
+
+<template name="nytbills">
+<div id="sponbills" class="ui row">
+{{#each reps}}
+<div class="ui cards">
+	{{#each spon_bills}}
+		<h4>Bills sponsored by {{name}}</h4>
+			{{#each bills}}
+				<div class="ui card">
+				  <div class="content">
+				    <div class="header">
+				      <a href="{{bill_uri}}" target="_blank">
+				        {{number}}
+				      </a>
+				    </div>
+				  </div>
+				  <div class="content">
+				    <h4 class="ui sub header">{{title}}</h4>
+				    <ul class="ui bulleted selection list">              
+				      <li class="item">{{latest_major_action_date}} | {{latest_major_action}}</li>
+				    </ul>
+				  </div>
+				</div>
+			{{/each}}
+	{{/each}}
+</div>
+{{/each}}
+</div>				
+</template>
