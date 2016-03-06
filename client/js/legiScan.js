@@ -118,7 +118,7 @@ function getFreq(obj) {
     var cloudArr = _.zip(keys,values);
     
     return cloudArr;
-};
+}
 
 makeCloud = function(arr) {
   var element = $('#wcloud')[0];
