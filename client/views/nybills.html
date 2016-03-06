@@ -1,10 +1,10 @@
 <template name="nybills">
 <div>
-<h4>Sponsored Bills: </h4>
+<h4>Sponsored Bills:  </h4>
 	{{#each spon_bills}}
 		<span>{{num_results}}</span>
 			{{#each bills}}
-				<p>bill: {{number}}</p>
+				<p>{{number}}: {{title}}</p>
 			{{/each}}
 	{{/each}}
 </div>
