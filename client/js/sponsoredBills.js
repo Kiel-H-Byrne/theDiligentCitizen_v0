@@ -1,33 +1,22 @@
 
-Template.nybills.helpers({
-	spon_bills: function() {
+Template.sponsoredBills.helpers({
+   reps: function() {
+      var reps = Session.get('legislators');
+      return reps;      
+   },
+	sponsored_bills: function() {
 /* 
 *	Each legislator is on a committe, so this committee function is called inside of each legislator function.
 * the 'this' object should be the legislator and the committees associated with said person.
 */
-	  var memberID = this.bioguide_id;
 	  if (this.bioguide_id) {
-	  	var res = ReactiveMethod.call('nytBills', memberID).results;
-			//console.log(res[0].bills);
-			return res;
-		}
-	}
-});
-
-Template.nytbills.helpers({
-	reps: function() {
-		var reps = Session.get('legislators');
-		return reps;		
-	},
-	spons_bills: function() {
-/* 
-*	Each legislator is on a committe, so this committee function is called inside of each legislator function.
-* the 'this' object should be the legislator and the committees associated with said person.
-*/
-	  var memberID = this.bioguide_id;
-	  if (this.bioguide_id) {
-	  	var res = ReactiveMethod.call('nytBills', memberID).results;
-			//console.log(res[0].bills);
+      //url = /bills?sponsor_id__in=M000303|L000304
+      var method = "bills";
+      var params = {};
+      params.sponsor_id__in=this.bioguide_id;
+      var urlParams = jQuery.param(params);
+	  	var res = ReactiveMethod.call('sunLight', method, urlParams).results;
+			console.log(res);
 			return res;
 		}
 	}

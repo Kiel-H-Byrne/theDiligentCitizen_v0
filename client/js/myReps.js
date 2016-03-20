@@ -118,8 +118,8 @@ Template.myReps.helpers ({
 		//var reps = Session.get('legislators');
 		var party = this.party;
 		
-		if (party == "D") {return "blue"}
-			else if (party =="R") {return "red"}
-				else {return "green"};
+		if (party == "D") {return "blue";}
+			else if (party =="R") {return "red";}
+				else {return "green";}
 	}
 });
