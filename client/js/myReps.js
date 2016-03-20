@@ -11,7 +11,7 @@ Template.myReps.helpers ({
 	if (ipInfo) {  
 		//when 'newZip' changes, this view rerenders and makes a new call for district.
 	  if (Session.get('newZip')) {
-			ipInfo.postal = Session.get('newZip')
+			ipInfo.postal = Session.get('newZip');
 			params.zip = ipInfo.postal;
 		} else { 
 			params.latitude = ipInfo.loc.split(",")[0];
@@ -46,7 +46,7 @@ Template.myReps.helpers ({
 		  var method = 'legislators/locate';
 		  var params = {};
 
-		  if (ipInfo.postal = Session.get('newZip')) {
+		  if (ipInfo.postal === Session.get('newZip')) {
 		  	params.zip = ipInfo.postal;
 		  } else { 
 		  	params.latitude = ipInfo.loc.split(",")[0];
@@ -120,6 +120,6 @@ Template.myReps.helpers ({
 		
 		if (party == "D") {return "blue"}
 			else if (party =="R") {return "red"}
-				else {return "green"}
+				else {return "green"};
 	}
 });

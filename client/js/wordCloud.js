@@ -27,7 +27,7 @@ Template.wordCloud.helpers({
     }
   },
   list: function () {
-    return Session.get('list')
+    return Session.get('list');
   }
 });
 

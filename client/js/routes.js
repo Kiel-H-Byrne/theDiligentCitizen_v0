@@ -115,6 +115,10 @@ Router.route('/bill/:id', function() {
             });
 
         }
+        else if(error) {
+            console.log("we have an error folks: "+error);
+            console.log(error);
+        }
     });
 
 

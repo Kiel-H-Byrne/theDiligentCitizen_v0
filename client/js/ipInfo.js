@@ -1,5 +1,5 @@
 $.getJSON("http://ipinfo.io", function(data){
-	console.log("--setting initial ipInfo--")
+	console.log("--setting initial ipInfo--");
 	Session.set('ipInfo', data);
 });
 
@@ -21,13 +21,14 @@ analytics.track( 'Viewed the HomePage', {
 Template.ipInfo.helpers({
 	locating: function() {
 		if (!Session.get('ipInfo')) {
-			return "loading"
+			var string = "loading";
+			return string;
 		}
 	},
 		
 	location: function() {
 		var ipInfo = Session.get('ipInfo');
-		return ipInfo
+		return ipInfo;
 	}
 });
 

@@ -13,12 +13,12 @@ Template.bill.helpers({
         switch(partyNomer) {
             case 'D':
                 return 'democratic-text';
-                break;
+                //break;
             case 'R':
                 return 'republican-text';
-                break;
+               // break;
             default:
-                return 'could-not-identify'
+                return 'could-not-identify';
         }
     }
 });

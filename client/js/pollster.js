@@ -27,18 +27,18 @@ METHODS:
 	topChart: function() {
 		//console.log(this);
 		
-		var arr = []
+		var arr = [];
 		
 		var bingo = _.each(this.estimates, function(p) {
-		  	arr.push({name: p.choice, y: p.value})
+		  	arr.push({name: p.choice, y: p.value});
 		  	});
 		
 	    return {
-			chart: {
-		        plotBackgroundColor: null,
-		        plotBorderWidth: null,
-		        plotShadow: true,
-		        type: 'pie'
+				chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: true,
+	        type: 'pie'
 		    },
 		    title: {
 		        text: this.title
@@ -83,7 +83,6 @@ METHODS:
 			        ]
 			        */
 		    }]
-
-		  }
+		  };
 		}
 });
