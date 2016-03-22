@@ -1,3 +1,8 @@
+// Check for Settings file
+console.log("...checking for settings file...")
+if (!Meteor.settings.public.govSettings) {
+    alert(" No Settings File! start server with 'NPM RuN' ");
+}
 
 abbr_State = function(name, to) {
     var states = new Array(                         {'name':'Alabama', 'abbrev':'AL'},          {'name':'Alaska', 'abbrev':'AK'},

@@ -1,3 +1,5 @@
+console.log("routes.js");
+
 Router.route('/', function(){
     this.render('home');
 });
@@ -127,4 +129,27 @@ Router.route('/bill/:id', function() {
 
 Router.route('/party', function() {
     this.render('party')
+});
+
+Router.route('/civics', function() {
+    this.render('gCivic')
+});
+
+Router.route('/civic/:address', function() {
+    var params = this.params;
+    //params.fields = "normalizedInput,offices,officials";
+    delete params.query;
+    delete params.hash;
+    console.log(params);
+    var urlParams = jQuery.param(params);
+    console.log(urlParams);
+
+    //TODO: fix jQuery.param, currently not converting object to parameters, 
+    var method = "representatives";
+
+    var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
+    //console.log(res);
+    Session.set('reps', res);
+
+    this.render('gCivic2')
 });

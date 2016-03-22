@@ -10,9 +10,9 @@ var apiCall = function (apiUrl, callback) {
     // If the API responded with an error message and a payload 
     if (error.response) {
 
-      //console.log(error.response);
-      errorCode = error.response.statusCode;
-      //errorMessage = error.response.headers.x-error-detail-header;
+      console.log(error.response.data.error);
+      errorCode = error.response.data.error.code;
+      errorMessage = error.response.data.error.message;
     // Otherwise use a generic error message
     } else {
       errorCode = 500;
@@ -32,7 +32,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.sunlight.apikey;
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    console.log("--URL--"+apiUrl);
+    //console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
   },
@@ -86,10 +86,24 @@ Meteor.methods({
     //console.log(apiUrl);
     //console.log(response);
     return response;
+  },
+
+  googleCivic: function(method, params) {
+     this.unblock();
+    console.log( '*** running googleCivic() with memberID:'+ method);
+    var key = Meteor.settings.public.govSettings.googleCivic.key;
+    var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method + '?key=' + key + '&' +params;
+    console.log(apiUrl);
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    //console.log(response);
+    return response;   
   }
+
 
 });
 
+
+//https://www.googleapis.com/civicinfo/v2/
 //http://politicalpartytime.org/api/v1/event/?beneficiaries__state=md&start_date__gt=2015-12-25&format=json&apikey="+Meteor.settings.public.govSettings.sunlight.apikey
 //http://politicalpartytime.org/api/v1/event/?beneficiaries__state=md&start_date__gt=2015-01-01&format=json&apikey=345a8f0b36114bde89222326b8b1e1af
 //console.log("http://api.nytimes.com/svc/politics/v3/us/legislative/congress/114/senate/members/current.json?api-key="+ Meteor.settings.public.govSettings.nytimes.key);

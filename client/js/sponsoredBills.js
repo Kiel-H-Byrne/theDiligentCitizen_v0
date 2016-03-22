@@ -13,7 +13,7 @@ Template.sponsoredBills.helpers({
       params.order="introduced_on";
       var urlParams = jQuery.param(params);
 	  	var res = ReactiveMethod.call('sunLight', method, urlParams).results;
-			console.log(res);
+			//console.log(res);
 			return res;
 		}
 	}
