@@ -1,7 +1,8 @@
-<template name="sponsoredBills2">
+<template name="sponsoredBills">
 	<div class="ui">
+		<h4 class="ui subheader">Sponsored Bills: </h4>
 		{{#each sponsored_bills}}
-				<p>{{bill_id}}: {{official_title}}</p>
+				<li><a href="{{urls.congress}}" >{{bill_id}}</a>: {{official_title}}</li>
 		{{/each}}
 	</div>
 </template>

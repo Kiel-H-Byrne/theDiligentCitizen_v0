@@ -2,7 +2,7 @@
 	<div id="legislators" class="ui" >
 		<h3 class="ui center aligned header"> Representatives for {{location.postal}}, {{location.state}}.</h3>
 
-		<div class="ui fluid container">
+		<div class="ui container">
 
 			{{#each legislators}}
 			<div class="ui horizontal segments">
@@ -59,8 +59,7 @@
 					<a class="ui bottom attached button" href="{{this.contact_form}}">Contact</a>
 				</div>
 				<div class="ui segment">
-					<h4>Sponsored Bills: </h4>
-					{{> sponsoredBills2}}
+					{{> sponsoredBills}}
 				</div>
 			</div>
 			{{/each }}

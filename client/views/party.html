@@ -1,0 +1,28 @@
+<template name="party">
+	<h2>Party Time!</h2>
+	<div>
+		{{#each party}}
+		<div class="ui segment">
+			<p> Party for:
+				{{#each this.beneficiaries}}
+					<li>{{this.title}} {{this.name}}</li>
+				{{/each}}
+			</p>
+			<p>Contribution Info: {{this.contributions_info}}</p>
+			<p>Paid for by: {{this.distribution_paid_for_by}}</p>
+			<p>RSVP to: {{rsvp_info}}</p>
+			<p>Hosted By: 
+				{{#each this.hosts}}
+				<li>{{this.name}}</li>
+				{{/each}}
+			</p>
+			<p>
+				Location: {{this.venue.venue_name}} <br />
+				{{this.venue.address1}} <br />
+				{{this.venue.city}},  {{this.venue.state}}  {{this.venue.zipcode}}  
+			</p>
+		</div>
+		{{/each}}
+	</div>
+</template>
+

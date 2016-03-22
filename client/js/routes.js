@@ -122,6 +122,9 @@ Router.route('/bill/:id', function() {
     });
 
 
-
     this.render('bill');
+});
+
+Router.route('/party', function() {
+    this.render('party')
 });

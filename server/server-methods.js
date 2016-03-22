@@ -32,9 +32,20 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.sunlight.apikey;
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    //console.log("--URL--"+apiUrl);
+    console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
+  },
+  partyTime: function(method, params) {
+    this.unblock();
+    console.log ( '*** running partyTime() with "'+ method +'" param: '+ params);
+    var key = Meteor.settings.public.govSettings.sunlight.apikey;
+    //methods are "/event, /lawmakers, /venue"
+    var apiUrl = 'http://politicalpartytime.org/api/v1/' + method + '?apikey=' + key + '&' +params;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);  
+    console.log("--URL--"+apiUrl);
+    //console.log(response);
+    return response;    
   },  
   legiScan: function(op, param) {
     this.unblock();
@@ -72,14 +83,15 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.nytimes.key;
     var apiUrl = 'http://api.nytimes.com/svc/politics/'+ version +'/us/legislative/congress/members/' + memberID + '/bills/' + type + '.json?api-key=' + key;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    console.log(apiUrl);
+    //console.log(apiUrl);
     //console.log(response);
     return response;
   }
 
 });
 
-
+//http://politicalpartytime.org/api/v1/event/?beneficiaries__state=md&start_date__gt=2015-12-25&format=json&apikey="+Meteor.settings.public.govSettings.sunlight.apikey
+//http://politicalpartytime.org/api/v1/event/?beneficiaries__state=md&start_date__gt=2015-01-01&format=json&apikey=345a8f0b36114bde89222326b8b1e1af
 //console.log("http://api.nytimes.com/svc/politics/v3/us/legislative/congress/114/senate/members/current.json?api-key="+ Meteor.settings.public.govSettings.nytimes.key);
 
 //"http://api.nytimes.com/svc/politics/v3/us/legislative/congress/114/nominees/state/md.json?api-key=557b2bfde68793e7d49ca5a2daf77602:14:28561524"
