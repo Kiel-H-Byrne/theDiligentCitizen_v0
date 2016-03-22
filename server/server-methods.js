@@ -89,7 +89,7 @@ Meteor.methods({
   },
 
   googleCivic: function(method, params) {
-     this.unblock();
+    this.unblock();
     console.log( '*** running googleCivic() with memberID:'+ method);
     var key = Meteor.settings.public.govSettings.googleCivic.key;
     var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method + '?key=' + key + '&' +params;

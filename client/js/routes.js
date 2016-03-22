@@ -140,16 +140,14 @@ Router.route('/civic/:address', function() {
     //params.fields = "normalizedInput,offices,officials";
     delete params.query;
     delete params.hash;
-    console.log(params);
+    console.log("the params {} is", params);
     var urlParams = jQuery.param(params);
-    console.log(urlParams);
-
+    console.log(urlParams.length);
     //TODO: fix jQuery.param, currently not converting object to parameters, 
     var method = "representatives";
 
     var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
     //console.log(res);
     Session.set('reps', res);
-
     this.render('gCivic2')
 });
