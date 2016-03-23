@@ -128,16 +128,16 @@ Router.route('/bill/:id', function() {
 });
 
 Router.route('/party', function() {
-    this.render('party')
+    this.render('party');
 });
 
 Router.route('/civics', function() {
-    this.render('gCivic')
+    this.render('gCivic');
 });
 
 Router.route('/civic/:address', function() {
     var params = this.params;
-    //params.fields = "normalizedInput,offices,officials";
+    params.fields = "normalizedInput,offices,officials";
     delete params.query;
     delete params.hash;
     console.log("the params {} is", params);
@@ -149,5 +149,32 @@ Router.route('/civic/:address', function() {
     var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
     //console.log(res);
     Session.set('reps', res);
-    this.render('gCivic2')
+    this.render('gCivic2');
 });
+/** Method '/elections' only returns 3 results as of 3/2016: US(test), AZ, RI elections. 
+Method '/voterinfo' only pulls voter polls in the state of any 'elections'; so right now only results get returned for AZ and RI.
+
+**/
+/**
+Router.route('/info/:address', function() {
+    var params = this.params;
+    params.fields = "normalizedInput,offices,officials";
+    delete params.query;
+    delete params.hash;
+    console.log("the params {} is", params);
+    var urlParams = jQuery.param(params);
+    console.log(urlParams.length);
+    //TODO: fix jQuery.param, currently not converting object to parameters, 
+    var method = "voterinfo";
+
+    var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
+    //console.log(res);
+    Session.set('vinfo', res);
+    this.render('voters');
+});
+**/
+
+
+
+
+
