@@ -1,5 +1,5 @@
 
-Template.gCivic2.helpers({
+Template.voters.helpers({
 	data: function() {
 
 		if (Session.get('reps')) {

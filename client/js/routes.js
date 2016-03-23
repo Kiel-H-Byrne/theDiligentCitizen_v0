@@ -151,11 +151,10 @@ Router.route('/civic/:address', function() {
     Session.set('reps', res);
     this.render('gCivic2');
 });
-/** Method '/elections' only returns 3 results as of 3/2016: US(test), AZ, RI elections. 
-Method '/voterinfo' only pulls voter polls in the state of any 'elections'; so right now only results get returned for AZ and RI.
-
+/** Method '/elections'(view) only returns 3 results as of 3/2016: US(test), AZ, RI elections. 
+Method '/voterinfo'(route) only pulls voter polls in the state of any 'elections'
 **/
-/**
+
 Router.route('/info/:address', function() {
     var params = this.params;
     params.fields = "normalizedInput,offices,officials";
@@ -172,7 +171,7 @@ Router.route('/info/:address', function() {
     Session.set('vinfo', res);
     this.render('voters');
 });
-**/
+
 
 
 
