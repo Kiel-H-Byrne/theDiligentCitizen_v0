@@ -7,6 +7,9 @@ Template.bill.helpers({
 
         return Session.get('currentBillSponsorPartisan');
     },
+    getPath:function(){
+        return Router.current().route.path(this);
+    },
     getPartyClass: function(partyNomer) {
 
         console.log(partyNomer);
