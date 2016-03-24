@@ -12,7 +12,7 @@ Template.bill.helpers({
     },
     getPartyClass: function(partyNomer) {
 
-        console.log(partyNomer);
+        //console.log(partyNomer);
         switch(partyNomer) {
             case 'D':
                 return 'democratic-text';

@@ -1,5 +1,6 @@
 var apiCall = function (apiUrl, callback) {
   // try…catch allows you to handle errors 
+  var errorCode, errorMessage;
   try {
     var response = HTTP.get(apiUrl).data;
     // A successful API call returns no error 
@@ -8,12 +9,14 @@ var apiCall = function (apiUrl, callback) {
   } catch (error) {
     // If the API responded with an error message and a payload 
     if (error.response) {
-      var errorCode = error.response.data.code;
-      var errorMessage = error.response.data.message;
+
+      //console.log(error.response);
+      errorCode = error.response.statusCode;
+      //errorMessage = error.response.headers.x-error-detail-header;
     // Otherwise use a generic error message
     } else {
-      var errorCode = 500;
-      var errorMessage = 'No idea what happened!';
+      errorCode = 500;
+      errorMessage = 'No idea what happened!';
     }
     // Create an Error object and return it via callback
     var myError = new Meteor.Error(errorCode, errorMessage);
@@ -29,7 +32,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.sunlight.apikey;
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    //console.log(apiUrl);
+    //console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
   },  
@@ -39,7 +42,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.legiscan.key;
     var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    //console.log(apiUrl);
+    //console.log("--URL--"+apiUrl);
     return response;
   },
   openFEC: function(method, params) {
@@ -48,7 +51,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.openfec.api_key;
     var apiUrl = 'https://api.open.fec.gov/v1?api_key=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    //console.log(apiUrl);
+    //console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
   },
@@ -57,11 +60,30 @@ Meteor.methods({
     console.log ( '*** running pollster() with method: "'+ method +'" and params: '+ params);
     var apiUrl = 'http://elections.huffingtonpost.com/pollster/api/' + method + '?' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    //console.log("--URL--"+apiUrl);
+    //console.log(response);
+    return response;
+  },
+  nytBills: function(memberID) {
+    this.unblock();
+    console.log( '*** running nytBills() with memberID:'+ memberID);
+    var version = "v3";
+    var type = "updated"; //or 'introduced'
+    var key = Meteor.settings.public.govSettings.nytimes.key;
+    var apiUrl = 'http://api.nytimes.com/svc/politics/'+ version +'/us/legislative/congress/members/' + memberID + '/bills/' + type + '.json?api-key=' + key;
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
     console.log(apiUrl);
     //console.log(response);
     return response;
   }
+
 });
+
+
+//console.log("http://api.nytimes.com/svc/politics/v3/us/legislative/congress/114/senate/members/current.json?api-key="+ Meteor.settings.public.govSettings.nytimes.key);
+
+//"http://api.nytimes.com/svc/politics/v3/us/legislative/congress/114/nominees/state/md.json?api-key=557b2bfde68793e7d49ca5a2daf77602:14:28561524"
+//"http://api.nytimes.com/svc/politics/v3/us/legislative/congress/states/members/party.json?api-key=557b2bfde68793e7d49ca5a2daf77602:14:28561524"
 
 /* Methods 
 /legislators

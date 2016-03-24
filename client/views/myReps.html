@@ -19,9 +19,6 @@
 						{{/if}}
 						<a>{{this.chamber}}</a> 
 						<a><span class="date">({{this.term_start}}</span></a>-<a><span class="date">{{this.term_end}})</span></a>
-						
-						{{! > committees}}
-						
 						</div>
 						
 						<p>{{this.office}} 
@@ -29,6 +26,11 @@
 							{{this.phone}}
 						</p>
 
+					</div>
+
+					<div class="extra content">
+						{{! > committees}}
+						{{> nybills}}
 					</div>
 
 				<div id="social" class="ui center aligned extra content">

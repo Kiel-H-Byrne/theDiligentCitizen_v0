@@ -15,7 +15,11 @@
           {{#if this.value.title}}
           <div class="ui card">
             <div class="content">
-              <div class="header">{{this.value.state}} - {{this.value.bill_number}} </div>
+              <div class="header">
+                <a href="bill/{{this.value.bill_id}}" target="_blank">
+                  {{this.value.state}} - {{this.value.bill_number}}
+                </a>
+              </div>
             </div>
             <div class="content">
               <h4 class="ui sub header">{{this.value.title}}</h4>
