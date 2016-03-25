@@ -1,0 +1,25 @@
+<template name="gCivic2">
+	<div class="ui">
+		<h4 class="ui subheader">Civic Data: </h4>
+		{{#with data}}
+		<p>Showing Reps for {{normalizedInput.city}}, {{normalizedInput.state}} {{normalizedInput.zip}}</p>
+            {{#each offices}}
+                <div class="office-container">
+                    <div class="office-name">
+                        {{name}}
+                    </div>
+
+                    {{#each officialIndices}}
+
+                        <div class="office-official-photo">
+                            <img height="100px" width="" src="{{getOfficialPhoto data this}}" alt="{{getOfficialName data this}}">
+                        </div>
+                        <div class="office-official-name">
+                            {{getOfficialName data this}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+		{{/with}}
+	</div>
+</template>
