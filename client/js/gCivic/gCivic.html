@@ -12,10 +12,10 @@
                     {{#each officialIndices}}
 
                         <div class="office-official-photo">
-                            <img height="100px" width="" src="{{getOfficialPhoto data this}}" alt="{{getOfficialName data this}}">
+                            <img height="100px" width="" src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}">
                         </div>
                         <div class="office-official-name">
-                            {{getOfficialName data this}}
+                            {{getOfficial 'name' data this}}
                         </div>
                     {{/each}}
                 </div>

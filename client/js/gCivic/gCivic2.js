@@ -8,16 +8,9 @@ Template.gCivic2.helpers({
 			return data;
 		}
 	},
-	getOfficialPhoto: function(data, index) {
-		console.log("args::::::::::::::+{}", arguments);
-		return data.officials[index].photoUrl;
-	},
-	getOfficialName: function(data, index) {
-		console.log("args::::::::::::::{}-------------{}", data, index);
-
-		return data.officials[index].name;
+	getOfficial: function(property, data, index) {
+		return data.officials[index][property];
 	}
-
 });
 
 //TODO: Take data from divisions, offices, officals; each object has 'indices' that match to the other object. create one master object per address lookup.
