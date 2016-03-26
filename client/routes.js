@@ -149,7 +149,7 @@ Router.route('/civic/:address', function() {
     var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
     //console.log(res);
     Session.set('reps', res);
-    this.render('gCivic2');
+    this.render('gCivic');
 });
 
 /** Method '/elections'(view) only returns 3 results as of 3/2016: US(test), AZ, RI elections. 
