@@ -151,6 +151,7 @@ Router.route('/civic/:address', function() {
     Session.set('reps', res);
     this.render('gCivic2');
 });
+
 /** Method '/elections'(view) only returns 3 results as of 3/2016: US(test), AZ, RI elections. 
 Method '/voterinfo'(route) only pulls voter polls in the state of any 'elections'
 **/
