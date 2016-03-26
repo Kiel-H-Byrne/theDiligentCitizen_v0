@@ -7,6 +7,9 @@ Template.gCivic2.helpers({
 			console.log(data);
 			return data;
 		}
+	},
+	getOfficial: function(property, data, index) {
+		return data.officials[index][property];
 	}
 });
 
