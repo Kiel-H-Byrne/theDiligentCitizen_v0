@@ -246,3 +246,9 @@ Template.legiScanResults.helpers({
   }
 });
 
+Template.legiScan.onRendered(function() {
+  /* Semantic UI Modules */
+  $('.ui.sticky')
+    .sticky({
+  });
+})

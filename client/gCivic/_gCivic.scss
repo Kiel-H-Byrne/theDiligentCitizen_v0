@@ -1,0 +1,29 @@
+// can't be in 'lib' folder because it gets hoisted before client/styles/index.sass. 
+//OR place index.sass and variables in a 'lib' folder
+
+.office-name{
+  //font-size: $lg-font-size !important;
+}
+.office-official-name {
+	//font-size: $md-font-size !important;
+}
+.rep-card {
+	//flex-direction: column-reverse !important;
+	max-width: 200px !important;
+
+}
+
+.office-card {
+	margin: 0.3rem;
+	//float: left;	
+	//min-width: 14rem !important
+	img {
+		overflow-y: hidden;
+	}
+}
+/*
+.office-official-photo img{
+	max-height: 256px;
+	max-width: 202px;
+}
+*/
