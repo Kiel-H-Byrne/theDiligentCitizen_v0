@@ -7,18 +7,23 @@
 .office-official-name {
 	//font-size: $md-font-size !important;
 }
+
+.rep-card-container{
+	max-width: 600px !important;
+}
+
 .rep-card {
 	//flex-direction: column-reverse !important;
-	max-width: 200px !important;
+	//max-width: 200px !important;
 
 }
 
-.office-card {
+.office-container {
 	margin: 0.3rem;
 	//float: left;	
 	//min-width: 14rem !important
 	img {
-		overflow-y: hidden;
+		//overflow-y: hidden;
 	}
 }
 /*
@@ -27,3 +32,7 @@
 	max-width: 202px;
 }
 */
+
+#social.icon {
+	border: 1px solid red;
+}

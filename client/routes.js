@@ -156,24 +156,6 @@ Router.route('/civic/:address', function() {
 Method '/voterinfo'(route) only pulls voter polls in the state of any 'elections'
 **/
 
-Router.route('/info/:address', function() {
-    var params = this.params;
-    params.fields = "normalizedInput,offices,officials";
-    delete params.query;
-    delete params.hash;
-    console.log("the params {} is", params);
-    var urlParams = jQuery.param(params);
-    console.log(urlParams.length);
-    //TODO: fix jQuery.param, currently not converting object to parameters, 
-    var method = "voterinfo";
-
-    var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
-    //console.log(res);
-    Session.set('vinfo', res);
-    this.render('voters');
-});
-
-
 
 
 

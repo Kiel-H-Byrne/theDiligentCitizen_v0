@@ -4,12 +4,16 @@ Template.gCivic.helpers({
 
 		if (Session.get('reps')) {
 			var data = Session.get('reps');
-			console.log(data);
+			//console.log(data);
 			return data;
 		}
 	},
 	getOfficial: function(property, data, index) {
-		return data.officials[index][property];
+
+		var res = data.officials[index][property]
+		//trying to filter out 'if this.type=GooglePlus then true, so that the icon changes'
+
+		return res;
 	}
 });
 
@@ -18,7 +22,9 @@ Template.gCivic.helpers({
 
   /* Semantic UI Modules */
 Template.gCivic.onRendered(function() {
-	$('.special.cards .image').dimmer({
+
+	$('.image').dimmer({
 	  on: 'hover'
 	});
+
 });

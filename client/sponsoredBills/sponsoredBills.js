@@ -20,8 +20,14 @@ Template.sponsoredBills.helpers({
 });
 
 
-/*
+//TODO: A Way to show only first N number of bills, then click dropdown to show more?
 
-
-
-*/
+Template.sponsoredBills.onRendered(function(){
+	$('.accordion')
+	  .accordion({
+	    selector: {
+	      trigger: '.title .icon'
+	    }
+	  })
+	;
+});
