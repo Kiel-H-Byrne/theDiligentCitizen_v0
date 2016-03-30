@@ -16,7 +16,7 @@
                     {{#each officialIndices}}
                     <div class="rep-card ui card">
                     
-                        <div class="office-official-photo ui small blurring dimmable image">
+                        <div class="office-official-photo ui blurring dimmable medium image">
                             <div class="ui dimmer">
                                 <div class="content">
                                   <div class="center">
@@ -39,14 +39,15 @@
                         </div>
 
                         <div id="social" class="ui center aligned extra content">
-                            {{#each getOfficial 'channels' data this}}
-                                {{#if this.GooglePlus }}
-                                    <a href="http://www.{{this.type}}.com/{{this.id}}">
+                            {{! #each getOfficial 'channels' data this}}
+                            {{#each social 'channels' data this}}
+                                {{#if isGP}}
+                                    <a href="http://www.{{type}}.com/{{id}}">
                                         <i class="google plus big icon"></i>
                                     </a>
                                 {{else}}
-                                    <a href="http://www.{{this.type}}.com/{{this.id}}">
-                                        <i class="{{this.type.toLowerCase}} big icon"></i>
+                                    <a href="http://www.{{type}}.com/{{id}}">
+                                        <i class="{{type.toLowerCase}} big icon"></i>
                                     </a>    
                                 {{/if}}
                             {{/each}}                            

@@ -28,6 +28,12 @@ Template.wordCloud.helpers({
   },
   list: function () {
     return Session.get('list');
+  },
+  list2: function() {
+    var sBills = Session.get('sponsoredBills');
+    var list2 = getFreq(sBills);
+    console.log(list2);
+    return sponsoredList
   }
 });
 

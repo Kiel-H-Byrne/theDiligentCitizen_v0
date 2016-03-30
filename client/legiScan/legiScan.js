@@ -72,10 +72,10 @@ function compareActionDates(documentA, documentB) {
 // obj = object to pluck 
 // key = key name to pluck
 // i.e 
-function getFreq(obj) {
+getFreq = function(obj) {
 
   var wordsArr = _.pluck(obj, 'title').join(" ");
-//  console.log(wordsArr);
+  //  console.log(wordsArr);
   var wordCount = wordsArr.length;
 
   /* Below is a regular expression that finds alphanumeric characters
@@ -246,7 +246,7 @@ Template.legiScanResults.helpers({
   }
 });
 
-Template.legiScan.onRendered(function() {
+Template.legiScanSearch.onRendered(function() {
   /* Semantic UI Modules */
   $('.ui.sticky')
     .sticky({
