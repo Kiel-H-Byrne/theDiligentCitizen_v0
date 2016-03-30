@@ -17,13 +17,14 @@ console.log("--wordcloud.js");
 */
 
 Template.wordCloud.helpers({
-  hidden: function() {
-    if (!Session.get('list')) {
+  loader: function() {
+    if (!Session.get('sbWords')) {
       var str = "loading active";
       return str;
+    } else if (!Session.get('lsWords')) {
+      makeCloud(Session.get('sbWords')); 
     } else {
-      var list = Session.get('list');
-      makeCloud(list);
+      makeCloud(Session.get('lsWords'));
     }
   },
   list: function () {
@@ -31,9 +32,9 @@ Template.wordCloud.helpers({
   },
   list2: function() {
     var sBills = Session.get('sponsoredBills');
-    var list2 = getFreq(sBills);
-    console.log(list2);
-    return sponsoredList
+    var list = getFreq(sBills, 'official_title');
+    console.log(list);
+    return list
   }
 });
 

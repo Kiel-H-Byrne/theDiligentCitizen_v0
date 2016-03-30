@@ -72,10 +72,11 @@ function compareActionDates(documentA, documentB) {
 // obj = object to pluck 
 // key = key name to pluck
 // i.e 
-getFreq = function(obj) {
-
-  var wordsArr = _.pluck(obj, 'title').join(" ");
-  //  console.log(wordsArr);
+getFreq = function(obj, label) {
+  //takes api results object and the parameter of the body of text. 
+  
+  var wordsArr = _.pluck(obj, label).join(" ");
+  //console.log(wordsArr);
   var wordCount = wordsArr.length;
 
   /* Below is a regular expression that finds alphanumeric characters
@@ -121,6 +122,7 @@ getFreq = function(obj) {
 }
 
 makeCloud = function(arr) {
+  //takes array of words & numbers 
   var element = $('#wcloud')[0];
 
   var options = {
@@ -190,9 +192,6 @@ Template.legiScanSearch.events({
 
 
 Template.legiScanResults.helpers({
-  results: function() {
-  
-  },
   query: function () {
     query = Session.get('query');
     //console.log(query);
@@ -224,8 +223,7 @@ Template.legiScanResults.helpers({
         res = res.searchresult;
         res.query = params.query;
         Session.set('results', res);
-        Session.set('list', getFreq(res));
-        //makeCloud(zipObj(getFreq(res)));
+        Session.set('lsWords', getFreq(res, 'title'));
         //return res;
       }
     });

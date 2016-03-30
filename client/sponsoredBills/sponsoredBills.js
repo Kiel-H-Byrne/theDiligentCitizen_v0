@@ -12,9 +12,10 @@ Template.sponsoredBills.helpers({
       params.sponsor_id__in=this.bioguide_id;
       params.order="introduced_on";
       var urlParams = jQuery.param(params);
-	  	var res = ReactiveMethod.call('sunLight', method, urlParams).results;
-	  	Session.set('sponsoredBills', res);
-			//console.log(res);
+	  var res = ReactiveMethod.call('sunLight', method, urlParams).results;
+	  Session.set('sponsoredBills', res);
+	  console.log(res);
+	  Session.set('sbWords', getFreq(res, 'official_title'));			
 			return res;
 		}
 	}
