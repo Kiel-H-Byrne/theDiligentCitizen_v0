@@ -1,14 +1,16 @@
 <template name="elections">
-		{{#with data}}
-	<h2>Upcoming Elections:</h2>
-	<div>
+<div id="election-container">
+	<h2 class="ui header">Upcoming Elections:</h2>
 
+	<div class="ui segments">
+	{{#with data}}
 		{{#each elections}}
 		<div class="ui segment">
 				<h3>{{name}} - {{electionDay}}</h3>
 		</div>
 		{{/each}}
-	</div>
 	{{/with}}
+	</div>
+</div>
 </template>
 
