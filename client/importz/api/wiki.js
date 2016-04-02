@@ -8,14 +8,16 @@ Template.wiki.helpers({
     params.exintro='';
     params.explaintext='';
     params.redirects='';
-    params.titles = query;
+    if (query) {
+    	params.titles = query;
+    } else {params.titles =''};
     var urlParams = jQuery.param(params);
 	  var res = ReactiveMethod.call('wikiCall', urlParams).query.pages;
 	  //Session.set('wikiText', res);
 	  //console.log(res);
 	  var newPair = _.pairs(res)[0];
 		var sum = newPair[1]['extract'];
-		console.log(sum);
+		//console.log(sum);
 		return sum;
 	},
 	getName: function(){

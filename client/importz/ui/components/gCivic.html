@@ -8,60 +8,60 @@
             {{#each offices}}
             <div class="office-container ui segments">
 
-                <h3 class="office-name ui centered attached header">
+                <h3 class="office-name ui segment centered attached header">
                     Your {{name}}
                 </h3>
 
-                <div id="rep-card-container" class="ui segment special cards"  style="position:relative">
+                <div id="rep-card-container" class="ui segment special cards grid"  style="position:relative">
                     {{#each officialIndices}}
-                    <div class="rep-card ui card">
-                    
-                        <div class="office-official-photo ui blurring dimmable medium image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                  <div class="center">
-                                    <div class="ui inverted button">Add Friend</div>
-                                  </div>
+                    <div class="ui three wide column">
+                        <div class="rep-card ui card">
+                        
+                            <div class="office-official-photo ui blurring dimmable medium image">
+                                <div class="ui dimmer">
+                                    <div class="content">
+                                      <div class="center">
+                                        <div class="ui inverted button">Add Friend</div>
+                                      </div>
+                                    </div>
                                 </div>
+                                
+                                {{#if getOfficial 'photoUrl' data this}}
+                                    <img class="ui image " src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}" >
+                                {{else}}
+                                    <img class="no-photo ui image" src="/img/pholder.png">
+                                {{/if}}
                             </div>
                             
-                            {{#if getOfficial 'photoUrl' data this}}
-                                <img class="ui image " src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}" >
-                            {{else}}
-                                <img class="no-photo ui image" src="/img/pholder.png">
-                            {{/if}}
-                        </div>
-                        
-                        <div class="centered content">
-                            <h4 class="office-official-name header">
-                                {{getOfficial 'name' data this}}
-                            </h4>
-                        </div>
+                            <div class="centered content">
+                                <h4 class="office-official-name header">
+                                    {{getOfficial 'name' data this}}
+                                </h4>
+                            </div>
 
-                        <div id="social" class="ui center aligned extra content">
-                            {{! #each getOfficial 'channels' data this}}
-                            {{#each social 'channels' data this}}
-                                {{#if isGP}}
-                                    <a href="http://www.{{type}}.com/{{id}}">
-                                        <i class="google plus big icon"></i>
-                                    </a>
-                                {{else}}
-                                    <a href="http://www.{{type}}.com/{{id}}">
-                                        <i class="{{type.toLowerCase}} big icon"></i>
-                                    </a>    
-                                {{/if}}
-                            {{/each}}                            
+                            <div id="social" class="ui center aligned extra content">
+                                {{! #each getOfficial 'channels' data this}}
+                                {{#each social 'channels' data this}}
+                                    {{#if isGP}}
+                                        <a href="http://www.{{type}}.com/{{id}}">
+                                            <i class="google plus big icon"></i>
+                                        </a>
+                                    {{else}}
+                                        <a href="http://www.{{type}}.com/{{id}}">
+                                            <i class="{{type.toLowerCase}} big icon"></i>
+                                        </a>    
+                                    {{/if}}
+                                {{/each}}                            
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="bio-card ui twelve wide column basic segments">
+                        {{#with getOfficial 'name' data this}}
+                            {{> wiki}}
+                        {{/with}}
                     </div>
                     
-                    <div class="ui vertical divider"></div>
-                    <div class="ui fluid container">
-                        <div class="bio-card ui fluid card segments">
-                            {{#with getOfficial 'name' data this}}
-                                {{> wiki}}
-                            {{/with}}
-                        </div>
-                    </div>
 
                     {{/each}}
                 </div>
