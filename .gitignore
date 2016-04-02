@@ -1,3 +1,4 @@
 .idea
-/client/lib/packages/*
+/client/lib/packages/semantic-ui/*
+!/client/lib/packages/semantic-ui/custom.semantic.json
 
