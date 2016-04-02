@@ -1,65 +1,25 @@
-<template name="gCivic">
-    <div id="rep-container" class="ui fluid container" >
-        <h1 class="ui header">Civic Data: </h1>
-        {{#with data}}
-        <h2 class="ui centered header">Showing Reps for {{normalizedInput.city.toUpperCase}}, {{normalizedInput.state}} {{normalizedInput.zip}}</h2>
-        <div id="rep-cards" class="ui ">
-            
+<template name="gCivic2">
+	<div class="ui">
+		<h4 class="ui subheader">Civic Data: </h4>
+		{{#with data}}
+		<p>Showing Reps for {{normalizedInput.city}}, {{normalizedInput.state}} {{normalizedInput.zip}}</p>
             {{#each offices}}
-            <div class="office-container ui segments">
-
-                <h3 class="office-name ui centered attached header">
-                    Your {{name}}
-                </h3>
-
-                <div id="rep-card-container" class="ui segment special cards">
-                    {{#each officialIndices}}
-                    <div class="rep-card ui card">
-                    
-                        <div class="office-official-photo ui blurring dimmable medium image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                  <div class="center">
-                                    <div class="ui inverted button">Add Friend</div>
-                                  </div>
-                                </div>
-                            </div>
-                            
-                            {{#if getOfficial 'photoUrl' data this}}
-                                <img class="ui image " src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}" >
-                            {{else}}
-                                <img class="no-photo ui image" src="/img/pholder.png">
-                            {{/if}}
-                        </div>
-                        
-                        <div class="centered content">
-                            <h4 class="office-official-name header">
-                                {{getOfficial 'name' data this}}
-                            </h4>
-                        </div>
-
-                        <div id="social" class="ui center aligned extra content">
-                            {{! #each getOfficial 'channels' data this}}
-                            {{#each social 'channels' data this}}
-                                {{#if isGP}}
-                                    <a href="http://www.{{type}}.com/{{id}}">
-                                        <i class="google plus big icon"></i>
-                                    </a>
-                                {{else}}
-                                    <a href="http://www.{{type}}.com/{{id}}">
-                                        <i class="{{type.toLowerCase}} big icon"></i>
-                                    </a>    
-                                {{/if}}
-                            {{/each}}                            
-                        </div>
+                <div class="office-container">
+                    <div class="office-name">
+                        {{name}}
                     </div>
 
+                    {{#each officialIndices}}
+
+                        <div class="office-official-photo">
+                            <img height="100px" width="" src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}">
+                        </div>
+                        <div class="office-official-name">
+                            {{getOfficial 'name' data this}}
+                        </div>
                     {{/each}}
                 </div>
-
-            </div>
             {{/each}}
-        </div>
-        {{/with}}
-    </div>
+		{{/with}}
+	</div>
 </template>
