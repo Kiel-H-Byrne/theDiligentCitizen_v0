@@ -1,0 +1,13 @@
+<template name="ApplicationLayout">
+    {{> MainMenu}}
+    <div class="ui grid">
+        <div id="sideBar" class="five wide column fixed">
+            {{> ipInfo}}
+            {{> legiScanSearch}}
+            {{> wordCloud}}
+        </div>
+        <div id="content" class="eleven wide column">
+            {{> yield "content"}}
+        </div>
+    </div>
+</template>
