@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script shoudl be run in hudson by doing bash -ex stage.sh
+# This script should be run in hudson by doing bash -ex prod.sh
 
 echo "Doing a staging deployment"
 
@@ -12,7 +12,7 @@ chmod -R 777 "$WORKSPACE"
 
 # Kill any existing running meteor staging apps
 echo "Kill meteor apps"
-sudo -u meteor_stage -H bash -c "pkill -f '\/home\/meteor_stage\/\.meteor' -U meteor_stage || true"
+sudo -u meteor -H bash -c "pkill -f '\/home\/meteor\/\.meteor' -U meteor || true"
 
 # As the meteor user clean up and stage files
 echo "Run as meteor user"
