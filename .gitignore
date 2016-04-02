@@ -1,9 +1,3 @@
 .idea
-semantic-ui/.custom.semantic.json
-semantic-ui/theme.config.semantic.json
-semantic-ui/theme.import.less
-semantic-ui/semantic.less
-semantic-ui/themes/
-semantic-ui/definitions/
-semantic-ui/site/
+client/lib/packages
 
