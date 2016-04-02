@@ -12,7 +12,7 @@ chmod -R 777 "$WORKSPACE"
 
 # Kill any existing running meteor staging apps
 echo "Kill meteor staging apps"
-pkill -f "/home/meteor_stage/.meteor" -U meteor_stage
+pkill -f "/home/meteor_stage/.meteor" -U meteor_stage || true
 
 # As the meteor user clean up and stage files
 echo "Run as meteor user"
