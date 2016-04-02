@@ -1,34 +1,45 @@
 
 Template.gCivic.helpers({
 	data: function() {
-
-		if (Session.get('reps')) {
-			var data = Session.get('reps');
-			//console.log(data);
-			return data;
-		}
+		var ipInfo = Session.get('ipInfo');
+		if (ipInfo) {
+	    var params = {};
+	    params.address = ipInfo.loc;
+	    params.fields = "normalizedInput,offices,officials";
+	    //console.log("the params {} is", params);
+	    var urlParams = jQuery.param(params);
+	    //console.log(urlParams.length);
+	    var method = "representatives";
+	    var res = ReactiveMethod.call('googleCivic', method, urlParams);
+	    //console.log(res);
+	    Session.set('reps', res);
+	    
+	    return res;
+    }
 	},
 	getOfficial: function(property, data, index) {
-
-		var res = data.officials[index][property]
-		return res;
+		if (data) {
+			return data.officials[index][property];
+		}
 	},
 	social: function(property, data, index) {
 		//TODO: figure out 'if this.type=GooglePlus is true, so that the icon changes'
 		//set a conditional statement that returns true if type = GooglePlus
-		var social = data.officials[this]['channels'];
-		isGP = function() {
-			if(type == 'GooglePlus') {
-				console.log('true!');
-				return true
+		if (data) {
+			var social = data.officials[this]['channels'];
+			isGP = function() {
+				if(type == 'GooglePlus') {
+					console.log('true!');
+					return true
+				}
+			};
+			//console.log(social);
+			
+			return social;
+
 			}
-		};
-		console.log(social);
-		return social;
-
-		}
+	}
 });
-
 
 
 //TODO: Take data from divisions, offices, officals; each object has 'indices' that match to the other object. create one master object per address lookup.
