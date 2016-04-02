@@ -12,7 +12,7 @@
                     Your {{name}}
                 </h3>
 
-                <div id="rep-card-container" class="ui segment special cards">
+                <div id="rep-card-container" class="ui segment special cards"  style="position:relative">
                     {{#each officialIndices}}
                     <div class="rep-card ui card">
                     
@@ -51,6 +51,15 @@
                                     </a>    
                                 {{/if}}
                             {{/each}}                            
+                        </div>
+                    </div>
+                    
+                    <div class="ui vertical divider"></div>
+                    <div class="ui fluid container">
+                        <div class="bio-card ui fluid card segments">
+                            {{#with getOfficial 'name' data this}}
+                                {{> wiki}}
+                            {{/with}}
                         </div>
                     </div>
 

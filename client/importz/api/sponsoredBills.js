@@ -1,7 +1,8 @@
 
 Template.sponsoredBills.helpers({
 	sponsored_bills: function() {
-/* 
+/*
+ 
 *	Each legislator is on a committe, so this committee function is called inside of each legislator function.
 * the 'this' object should be the legislator and the committees associated with said person.
 */
