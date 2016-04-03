@@ -1,4 +1,7 @@
-.idea
-/client/lib/packages/semantic-ui/*
-!/client/lib/packages/semantic-ui/custom.semantic.json
-
+client/lib/packages/semantic-ui/.custom.semantic.json
+client/lib/packages/semantic-ui/theme.config.semantic.json
+client/lib/packages/semantic-ui/theme.import.less
+client/lib/packages/semantic-ui/semantic.less
+client/lib/packages/semantic-ui/themes/
+client/lib/packages/semantic-ui/definitions/
+client/lib/packages/semantic-ui/site/
