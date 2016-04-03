@@ -1,7 +1,7 @@
-client/lib/packages/semantic-ui/.custom.semantic.json
-client/lib/packages/semantic-ui/theme.config.semantic.json
-client/lib/packages/semantic-ui/theme.import.less
-client/lib/packages/semantic-ui/semantic.less
-client/lib/packages/semantic-ui/themes/
-client/lib/packages/semantic-ui/definitions/
-client/lib/packages/semantic-ui/site/
+semantic-ui/.custom.semantic.json
+semantic-ui/theme.config.semantic.json
+semantic-ui/theme.import.less
+semantic-ui/semantic.less
+semantic-ui/themes/
+semantic-ui/definitions/
+semantic-ui/site/
