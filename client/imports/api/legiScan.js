@@ -119,7 +119,7 @@ getFreq = function(obj, label) {
     var cloudArr = _.zip(keys,values);
     
     return cloudArr;
-}
+};
 
 makeCloud = function(arr) {
   //takes array of words & numbers 
@@ -249,4 +249,4 @@ Template.legiScanSearch.onRendered(function() {
   $('.ui.sticky')
     .sticky({
   });
-})
+});

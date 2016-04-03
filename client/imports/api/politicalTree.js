@@ -12,6 +12,7 @@ Template.politicalTree.onRendered( function() {
 		        //  var node = e.diagram.findNodeForKey(28);
 		        //  if (node !== null) e.diagram.commandHandler.scrollToPart(node);
 		        //},
+		        isReadOnly: true,
 		        layout:
 		          $(go.TreeLayout,  // use a TreeLayout to position all of the nodes
 		            {
