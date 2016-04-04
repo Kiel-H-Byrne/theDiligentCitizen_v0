@@ -2,7 +2,7 @@ console.log("routes.js");
 
 Router.route('/', function(){
     this.layout('ApplicationLayout');
-    this.render('PoliticalTree', {to: 'content'});
+    this.render('gCivic', {to: 'content'});
 });
 
 Router.route('/bill/:id', function() {

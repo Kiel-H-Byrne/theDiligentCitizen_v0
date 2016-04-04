@@ -4,11 +4,13 @@ Template.gCivic.helpers({
 		var ipInfo = Session.get('ipInfo');
 		if (ipInfo) {
 	    var params = {};
+  		
   		if (Session.get('newZip')) {
 		    params.address = Session.get('newZip');
 	    } else { 
 	    	params.address = ipInfo.loc;
-	    };
+	    }
+
 	    params.fields = "normalizedInput,offices,officials";
 	    //console.log("the params {} is", params);
 	    var urlParams = jQuery.param(params);
@@ -19,6 +21,7 @@ Template.gCivic.helpers({
 	    Session.set('reps', res);
 	    
 	    return res;
+	    //TODO: Need to make array of objects for the politicalTree chart
     }
 	},
 	getOfficial: function(property, data, index) {
@@ -30,11 +33,11 @@ Template.gCivic.helpers({
 		//TODO: figure out 'if this.type=GooglePlus is true, so that the icon changes'
 		//set a conditional statement that returns true if type = GooglePlus
 		if (data) {
-			var social = data.officials[this]['channels'];
+			var social = data.officials[this].channels;
 			isGP = function() {
 				if(type == 'GooglePlus') {
 					console.log('true!');
-					return true
+					return true;
 				}
 			};
 			//console.log(social);

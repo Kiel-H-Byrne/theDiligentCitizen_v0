@@ -1,9 +1,9 @@
 Template.politicalTree.onRendered( function() {
-	console.log("OBJECT RENDERED ");
 		var $ = go.GraphObject.make;
 		var myDiagram =
 			$(go.Diagram, "myDiagramDiv",  // the DIV HTML element
 		      {
+		        isReadOnly: true,
 		        // Put the diagram contents at the top center of the viewport
 		        initialDocumentSpot: go.Spot.TopCenter,
 		        initialViewportSpot: go.Spot.TopCenter,
@@ -12,7 +12,6 @@ Template.politicalTree.onRendered( function() {
 		        //  var node = e.diagram.findNodeForKey(28);
 		        //  if (node !== null) e.diagram.commandHandler.scrollToPart(node);
 		        //},
-		        isReadOnly: true,
 		        layout:
 		          $(go.TreeLayout,  // use a TreeLayout to position all of the nodes
 		            {
@@ -32,8 +31,9 @@ Template.politicalTree.onRendered( function() {
 		});
 
     // define Converters to be used for Bindings
-    var theNationFlagConverter = function(nation) {
-	    return "http://www.nwoods.com/go/Flags/" + nation.toLowerCase().replace(/\s/g, "-") + "-flag.Png";
+    //var theNationFlagConverter = function(nation) {
+    var theImage = function(nation) {
+	    return this.image-url;
     };
 
     var theInfoTextConverter = function(info) {
@@ -85,8 +85,8 @@ Template.politicalTree.onRendered( function() {
               alignment: go.Spot.TopRight
             },
             // only set a desired size if a flag is also present:
-            new go.Binding("desiredSize", "nation", function(){ return new go.Size(34, 26) }),
-            new go.Binding("source", "nation", theNationFlagConverter)),
+            new go.Binding("desiredSize", "official", function(){ return new go.Size(34, 26); }),
+            new go.Binding("source", "official", theImage)),
           // the additional textual information
           $(go.TextBlock,
             {
@@ -97,24 +97,29 @@ Template.politicalTree.onRendered( function() {
         )  // end Table Panel
       );  // end Node
 
-    // define the Link template, a simple orthogonal line
-    myDiagram.linkTemplate =
-      $(go.Link, go.Link.Orthogonal,
-        { selectable: false },
-        $(go.Shape, { strokeWidth: 2, stroke: '#222' } ));  // the default black link shape
+		// define a Link template that routes orthogonally, with no arrowhead
+		myDiagram.linkTemplate =
+		  $(go.Link,
+	    // default routing is go.Link.Normal
+	    // default corner is 0
+		    { routing: go.Link.Orthogonal, corner: 5 },
+		    $(go.Shape, { strokeWidth: 3, stroke: "#555" }) // the link shape
 
+	    // if we wanted an arrowhead we would also add another Shape with toArrow defined:
+	    // $(go.Shape, { toArrow: "Standard", stroke: null }
+    );
 
     // set up the nodeDataArray, describing each person/position
 		var nodeDataArray = [
-			{ key: 0, name: "Ban Ki-moon 반기문", nation: "South Korea", title: "Secretary-General of the United Nations", headOf: "Secretariat" },
-			{ key: 1, boss: 0, name: "Patricia O'Brien", nation: "Ireland", title: "Under-Secretary-General for Legal Affairs and United Nations Legal Counsel", headOf: "Office of Legal Affairs" },
-			{ key: 3, boss: 1, name: "Peter Taksøe-Jensen", nation: "Denmark", title: "Assistant Secretary-General for Legal Affairs" },
-			{ key: 9, boss: 3, name: "Other Employees" },
-			{ key: 4, boss: 1, name: "Maria R. Vicien - Milburn", nation: "Argentina", title: "General Legal Division Director", headOf: "General Legal Division" },
-			{ key: 10, boss: 4, name: "Other Employees" },
-			{ key: 5, boss: 1, name: "Václav Mikulka", nation: "Czech Republic", title: "Codification Division Director", headOf: "Codification Division" },
-			{ key: 11, boss: 5, name: "Other Employees" },
-			{ key: 6, boss: 1, name: "Sergei Tarassenko", nation: "Russia", title: "Division for Ocean Affairs and the Law of the Sea Director", headOf: "Division for Ocean Affairs and the Law of the Sea" },
+			{ key: 0, name: "Ban Ki-moon 반기문", official: "South Korea", title: "Secretary-General of the United Nations", headOf: "Secretariat" },
+				{ key: 1, boss: 0, name: "Patricia O'Brien", nation: "Ireland", title: "Under-Secretary-General for Legal Affairs and United Nations Legal Counsel", headOf: "Office of Legal Affairs" },
+						{ key: 3, boss: 1, name: "Peter Taksøe-Jensen", nation: "Denmark", title: "Assistant Secretary-General for Legal Affairs" },
+								{ key: 9, boss: 3, name: "Other Employees" },
+						{ key: 4, boss: 1, name: "Maria R. Vicien - Milburn", nation: "Argentina", title: "General Legal Division Director", headOf: "General Legal Division" },
+									{ key: 10, boss: 4, name: "Other Employees" },
+						{ key: 5, boss: 1, name: "Václav Mikulka", nation: "Czech Republic", title: "Codification Division Director", headOf: "Codification Division" },
+										{ key: 11, boss: 5, name: "Other Employees" },
+						{ key: 6, boss: 1, name: "Sergei Tarassenko", nation: "Russia", title: "Division for Ocean Affairs and the Law of the Sea Director", headOf: "Division for Ocean Affairs and the Law of the Sea" },
 			{ key: 12, boss: 6, name: "Alexandre Tagore Medeiros de Albuquerque", nation: "Brazil", title: "Chairman of the Commission on the Limits of the Continental Shelf", headOf: "The Commission on the Limits of the Continental Shelf" },
 			{ key: 17, boss: 12, name: "Peter F. Croker", nation: "Ireland", title: "Chairman of the Committee on Confidentiality", headOf: "The Committee on Confidentiality" },
 			{ key: 31, boss: 17, name: "Michael Anselme Marc Rosette", nation: "Seychelles", title: "Vice Chairman of the Committee on Confidentiality" },
@@ -136,15 +141,15 @@ Template.politicalTree.onRendered( function() {
 			{ key: 26, boss: 12, name: "Wenzhang Lu", nation: "China", title: "Member of the Commission on the Limits of the Continental Shelf" },
 			{ key: 27, boss: 12, name: "Isaac Owusu Orudo", nation: "Ghana", title: "Member of the Commission on the Limits of the Continental Shelf" },
 			{ key: 28, boss: 12, name: "Fernando Manuel Maia Pimentel", nation: "Portugal", title: "Member of the Commission on the Limits of the Continental Shelf" },
-			{ key: 7, boss: 1, name: "Renaud Sorieul", nation: "France", title: "International Trade Law Division Director", headOf: "International Trade Law Division" },
+						{ key: 7, boss: 1, name: "Renaud Sorieul", nation: "France", title: "International Trade Law Division Director", headOf: "International Trade Law Division" },
 			{ key: 13, boss: 7, name: "Other Employees" },
-			{ key: 8, boss: 1, name: "Annebeth Rosenboom", nation: "Netherlands", title: "Treaty Section Chief", headOf: "Treaty Section" },
+						{ key: 8, boss: 1, name: "Annebeth Rosenboom", nation: "Netherlands", title: "Treaty Section Chief", headOf: "Treaty Section" },
 			{ key: 14, boss: 8, name: "Bradford Smith", nation: "United States", title: "Substantive Legal Issues Head", headOf: "Substantive Legal Issues" },
 			{ key: 29, boss: 14, name: "Other Employees" },
 			{ key: 15, boss: 8, name: "Andrei Kolomoets", nation: "Russia", title: "Technical/Legal Issues Head", headOf: "Technical/Legal Issues" },
 			{ key: 30, boss: 15, name: "Other Employees" },
 			{ key: 16, boss: 8, name: "Other Employees" },
-			{ key: 2, boss: 0, name: "Heads of Other Offices/Departments" }
+					{ key: 2, boss: 0, name: "Heads of Other Offices/Departments" }
 		];
 
     // create the Model with data for the tree, and assign to the Diagram

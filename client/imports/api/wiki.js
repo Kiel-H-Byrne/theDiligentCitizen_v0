@@ -10,13 +10,13 @@ Template.wiki.helpers({
     params.redirects='';
     if (query) {
     	params.titles = query;
-    } else {params.titles =''};
+    } else {params.titles ='';}
     var urlParams = jQuery.param(params);
 	  var res = ReactiveMethod.call('wikiCall', urlParams).query.pages;
 	  //Session.set('wikiText', res);
 	  //console.log(res);
 	  var newPair = _.pairs(res)[0];
-		var sum = newPair[1]['extract'];
+		var sum = newPair[1].extract;
 		//console.log(sum);
 		return sum;
 	},
