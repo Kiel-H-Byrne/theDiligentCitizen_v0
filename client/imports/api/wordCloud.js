@@ -34,7 +34,7 @@ Template.wordCloud.helpers({
     var sBills = Session.get('sponsoredBills');
     var list = getFreq(sBills, 'official_title');
     console.log(list);
-    return list
+    return list;
   }
 });
 
