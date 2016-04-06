@@ -16,28 +16,29 @@
 <template name="polTree">
 <!-- THIS TEMPLATE GETS CALLED FROM GCIVIC TEMPLATE -->
 <!-- http://capricasoftware.co.uk/#/projects/orgchart/tutorial/basic-chart  -->
-<div id="orgChart">
-	<ul id="orgChart-source" class="hide">
- 		{{#each offices}}
-	      		{{#if newRow}}
-						<ul>
-	      		{{/if}}
- <!--title --><li> Your {{name}} 
-	            	<ul>
-							{{#each officialIndices}}
-			          <li>{{getOfficial 'name' data this}}</li>
-							{{/each}}
-              </ul>
-            </li>
-	      		{{#if newRow}}
-						<ul>
-	      		{{/if}}            
-            {{/each}}
-          </ul>
-        </li>
-      </ul>
-    </li>
-	</ul>
-</div>
-
+	<div id="orgChart">
+		<ul id="orgChart-source" class="hide">
+	 		{{#each offices}}
+	  		{{#if newRow}}
+					<ul>
+						<li> Your {{name}} 
+	          	<ul>
+								{{#each officialIndices}}
+				          <li>{{getOfficial 'name' data this}}</li>
+								{{/each}}
+	            </ul>
+	          </li>           
+	        </ul>
+	  		{{else}}
+						<li> Your {{name}} 
+	          	<ul>
+								{{#each officialIndices}}
+				          <li>{{getOfficial 'name' data this}}</li>
+								{{/each}}
+	            </ul>
+	          </li>                 		
+	  		{{/if}}
+			{{/each}}
+		</ul>
+	</div>
 </template>
