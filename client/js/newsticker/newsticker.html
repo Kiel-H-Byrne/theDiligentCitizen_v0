@@ -1,0 +1,37 @@
+<template name="NewsTicker">
+
+    <!--<div class="newsticker-container fixed">-->
+        <!--<ul id="newsticker">-->
+            <!--{{#each newsItems}}-->
+                <!--<li>-->
+                    <!--<span>-->
+                        <!--<i class="fa {{this.icon}}"></i>-->
+                        <!--<span class="ui label">{{this.category}}</span>-->
+                    <!--</span>-->
+                    <!--<span>-->
+                        <!--{{this.title}}-->
+                    <!--</span>-->
+                <!--</li>-->
+            <!--{{/each}}-->
+        <!--</ul>-->
+    <!--</div>-->
+    <div class="breakingNews bn-bordernone bn-black" id="bn1">
+        <div class="bn-title" style="width: auto;"><h2 style="display: inline-block;">Bulletin</h2><span></span></div>
+        <ul style="left: 138px;">
+            {{#each newsItems}}
+                <li style="display: list-item;"><a href="{{this.link}}">{{this.title}} -{{this.author}}</a></li>
+
+            {{/each}}
+            </ul>
+        <div class="bn-navi">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+{{#each newsItems}}
+    <div class="ui popup" id="popup-{{this.id}}">
+        <div class="header">Custom Header</div>
+        <div class="ui button">Click Me</div>
+    </div>
+{{/each}}
+</template>

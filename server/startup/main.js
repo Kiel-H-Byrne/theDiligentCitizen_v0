@@ -1,18 +1,22 @@
-var apiCall = function (apiUrl, callback) {
-  // try…catch allows you to handle errors 
+var apiCall = function (apiUrl, params, headers, callback) {
+  // tryâ€¦catch allows you to handle errors 
   var errorCode, errorMessage;
   try {
-    var response = HTTP.get(apiUrl).data;
-    // A successful API call returns no error 
+    var response = HTTP.get(apiUrl, {params: params, headers: headers}).data;
+
+    // A successful API call returns no error
     // but the contents from the JSON response
-    callback(null, response);
+    if(callback) {
+      callback(null, response);
+    }
+    return response;
   } catch (error) {
     // If the API responded with an error message and a payload 
     if (error.response) {
 
-      console.log(error.response.data.error);
-      errorCode = error.response.data.error.code;
-      errorMessage = error.response.data.error.message;
+      console.log(error.response);
+      errorCode = error.response.data.error ? error.response.data.error.code : -1914;
+      errorMessage = error.response.data.error ? error.response.data.error.message : error.response.data.message;
     // Otherwise use a generic error message
     } else {
       errorCode = 500;
@@ -20,7 +24,11 @@ var apiCall = function (apiUrl, callback) {
     }
     // Create an Error object and return it via callback
     var myError = new Meteor.Error(errorCode, errorMessage);
-    callback(myError, null);
+    if(callback) {
+      callback(myError, null);
+    }
+
+    return myError;
   }
 };
 
@@ -32,7 +40,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.sunlight.apikey;
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    console.log("--URL--"+apiUrl);
+    //console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
   },
@@ -43,7 +51,7 @@ Meteor.methods({
     //methods are "/event, /lawmakers, /venue"
     var apiUrl = 'http://politicalpartytime.org/api/v1/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    //console.log("--URL--"+apiUrl);
+    console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;    
   },  
@@ -87,7 +95,6 @@ Meteor.methods({
     //console.log(response);
     return response;
   },
-
   googleCivic: function(method, params) {
     this.unblock();
     console.log( '*** running googleCivic() with memberID:'+ method);
@@ -97,20 +104,25 @@ Meteor.methods({
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
     //console.log(response);
     return response;   
-  }, 
-  wikiCall: function(params){
-    this.unblock();
-    console.log( '*** running wiki() with params:'+ params);
-    var apiUrl = 'https://en.wikipedia.org/w/api.php?' + params;
-    //console.log(apiUrl);
-    var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    //console.log(response);
-    return response; 
+  },
+  getNewsTickerFeed: function(author) {
+    var reutersUrl = "http://feeds.reuters.com/Reuters/PoliticsNews";
+    var quotesUrl = "https://webknox-entities.p.mashape.com/entities/quotes";
+    var quotesParams = {
+      author: author
+    };
+
+    var quotesHeaders = {
+      'X-Mashape-Key': Meteor.settings.public.govSettings.mashable.key
+    };
+    var response = Meteor.wrapAsync(apiCall)(quotesUrl, quotesParams,quotesHeaders);
+    console.log("ending get news ticker feed {}", response);
+
+    return response;
   }
+
 });
 
-
-// https://congress.api.sunlightfoundation.com/votes?apikey=345a8f0b36114bde89222326b8b1e1af&voter_ids.C000141__exists=true
 
 //https://www.googleapis.com/civicinfo/v2/
 //http://politicalpartytime.org/api/v1/event/?beneficiaries__state=md&start_date__gt=2015-12-25&format=json&apikey="+Meteor.settings.public.govSettings.sunlight.apikey
@@ -120,7 +132,7 @@ Meteor.methods({
 //"http://api.nytimes.com/svc/politics/v3/us/legislative/congress/114/nominees/state/md.json?api-key=557b2bfde68793e7d49ca5a2daf77602:14:28561524"
 //"http://api.nytimes.com/svc/politics/v3/us/legislative/congress/states/members/party.json?api-key=557b2bfde68793e7d49ca5a2daf77602:14:28561524"
 
-/* sunLight Methods 
+/* Methods 
 /legislators
 /legislators/locate 
 /districts/locate 

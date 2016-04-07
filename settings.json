@@ -9,7 +9,8 @@
       "openfec" :      {"api_key" : "VlzCNbEgjbxSxKTDHgET4DWnZdVuVaOB3SkI2C3I"},
       "opensecrets" :  {"key" : "08d7cd3a8000d7e4a48517a963eaf0d2"},
       "nytimes" :      {"key" : "557b2bfde68793e7d49ca5a2daf77602:14:28561524"},
-      "googleCivic" :  {"key" : "AIzaSyBNzyA3bLJAEgG5Uaod51j6g_8sBlTk26E"}      
+      "googleCivic" :  {"key" : "AIzaSyBNzyA3bLJAEgG5Uaod51j6g_8sBlTk26E"},
+      "mashable" : {"key" : "5PSkG942Xxmsh544UJtAwof0D4pSp1sQ2A3jsnQBNLNhvbnHqR"}
     }
   }
 }
