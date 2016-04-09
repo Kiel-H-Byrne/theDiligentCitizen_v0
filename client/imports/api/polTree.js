@@ -19,22 +19,27 @@ Template.polTree.helpers({
 	newRow: function(did) {
 //TODO: Need to get how many 'levels' there are to the org chart, 
 
-		//get current value of 'divisionId' & compare it to current version.
-		//if different, create a new <'ul'> for it, otherwise leave it be.
+		//get current value of 'divisionId' & compare it to last division.
+		//if different, create a new <'ul'> for it, otherwise leave it as a <li>
 		//return true if different
-		var lastDid = Session.get('curDiv');
-		var now = this.divisionId;
-		console.log(now);
-		var last = lastDid;
-		if (now === last) {
-			var newRow = true;
-			return newRow;
+		//Whatever i do, i get a loop on the client!!
+		var last = getLast();
+		var curr = this.divisionId.valueOf();
+		if (curr != last) {
+			var isDiff = true;
+			Session.set('lastDid', curr);
+			console.log(isDiff);			
+			return isDiff;
 		}
 		else {
-			newRow = false;
-			console.log(newRow);			
-			//Session.set('curDiv', now);
-			return newRow;
+			isDiff = false;
+			console.log(curr);			
+			return isDiff;
 		}
-	}
+	}		
 });
+
+var	getLast = function() {
+		console.log(Session.get('lastDid'));
+		return Session.get('lastDid');
+	};

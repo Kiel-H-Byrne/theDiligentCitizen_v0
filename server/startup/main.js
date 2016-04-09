@@ -1,4 +1,4 @@
-var apiCall = function (apiUrl, params, headers, callback) {
+var apiCall2 = function (apiUrl, params, headers, callback) {
   // tryâ€¦catch allows you to handle errors 
   var errorCode, errorMessage;
   try {
@@ -29,6 +29,32 @@ var apiCall = function (apiUrl, params, headers, callback) {
     }
 
     return myError;
+  }
+};
+
+var apiCall = function (apiUrl, callback) {
+  // try…catch allows you to handle errors 
+  var errorCode, errorMessage;
+  try {
+    var response = HTTP.get(apiUrl).data;
+    // A successful API call returns no error 
+    // but the contents from the JSON response
+    callback(null, response);
+  } catch (error) {
+    // If the API responded with an error message and a payload 
+    if (error.response) {
+
+      console.log(error.response.data.error);
+      errorCode = error.response.data.error.code;
+      errorMessage = error.response.data.error.message;
+    // Otherwise use a generic error message
+    } else {
+      errorCode = 500;
+      errorMessage = 'No idea what happened!';
+    }
+    // Create an Error object and return it via callback
+    var myError = new Meteor.Error(errorCode, errorMessage);
+    callback(myError, null);
   }
 };
 
@@ -115,8 +141,8 @@ Meteor.methods({
     var quotesHeaders = {
       'X-Mashape-Key': Meteor.settings.public.govSettings.mashable.key
     };
-    var response = Meteor.wrapAsync(apiCall)(quotesUrl, quotesParams,quotesHeaders);
-    console.log("ending get news ticker feed {}", response);
+    var response = Meteor.wrapAsync(apiCall2)(quotesUrl, quotesParams,quotesHeaders);
+    //console.log("ending get news ticker feed {}", response);
 
     return response;
   }

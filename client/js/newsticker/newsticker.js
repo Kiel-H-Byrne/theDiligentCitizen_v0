@@ -4,21 +4,19 @@
 
 
 
-Template.NewsTicker.rendered = function() {
+Template.NewsTicker.onRendered(function() {
 
     $("#bn1").on('updateTicker', function(){
         console.log("updateTicker called");
         updateTicker();
     });
 
-
-
     //updateTicker();
     updateTicker();
 
-};
+});
 
-function updateTicker() {
+updateTicker = function() {
     //var newTickerHandle = $('.newsticker');
     //newTickerHandle.easyTicker({
     //    direction: 'up',
@@ -55,23 +53,22 @@ function updateTicker() {
 
     $.each($newsItems, function(index, $newsItem){
         $($newsItem).popup({hoverable: true, popup: $("#popup-"+index)});
-        console.log("what's $newsItem ", $newsItem);
+        //console.log("what's $newsItem ", $newsItem);
     });
+};
 
-}
-
-function shorten(phrase, length) {
+var shorten = function(phrase, length){
     if(phrase.length > length) {
         phrase = phrase.substring(0, length - 3);
         phrase += '...';
     }
 
     return phrase;
-}
+};
 
 Template.NewsTicker.helpers({
    newsItems: function() {
-       console.log("in newsItems");
+       //console.log("in newsItems");
        var items = [
            //{icon:"fa-newspaper-o", category:"NEWS",title:"This is the News story headline."},
            //{icon:"fa-video-camera", category:"VIDEO", title:"A Youtube video link goes here"},
@@ -82,7 +79,7 @@ Template.NewsTicker.helpers({
        if(!quotes)
        {
            quotes = ReactiveMethod.call('getNewsTickerFeed', "Barbara Mikulski");
-           console.log("found quotes", quotes);
+          // console.log("found quotes", quotes);
            Session.set('quotes', quotes);
 
        }
@@ -90,7 +87,7 @@ Template.NewsTicker.helpers({
 
        if(quotes) {
            id = 0;
-           console.log("these are the quotes on the client {}", quotes);
+           //console.log("these are the quotes on the client {}", quotes);
            //{
            //    "author": "Barbara Mikulski",
            //    "quote": "Barbara Mikulski said the goal now was to work out a broader spending plan for the rest of fiscal 2014 that would ease the impact of forced cuts to the military and other government programs.",
@@ -109,7 +106,7 @@ Template.NewsTicker.helpers({
 
                                 return newsTickerQuote;
                            });
-           console.log("these are the quotes on the client after processing {}", quotes);
+           //console.log("these are the quotes on the client after processing {}", quotes);
 
            for(var z = 0; z < 2; z++) {
                if(quotes[z]) {
@@ -118,8 +115,8 @@ Template.NewsTicker.helpers({
            }
        }
 
-       console.log("these are the items on the newsTicker {}", items);
-       console.log("attempting to fire updateTicker {}", $("#bn1"));
+       //console.log("these are the items on the newsTicker {}", items);
+       //console.log("attempting to fire updateTicker {}", $("#bn1"));
        $("#bn1").trigger('updateTicker');
 
        return quotes;
