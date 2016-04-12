@@ -36,6 +36,9 @@ Template.polTree.helpers({
 			console.log(curr);			
 			return isDiff;
 		}
+	},
+	branch: function(){
+		
 	}		
 });
 
@@ -43,3 +46,10 @@ var	getLast = function() {
 		console.log(Session.get('lastDid'));
 		return Session.get('lastDid');
 	};
+
+	
+getOfficial = function(property, data, index) {
+	if (data) {
+		return data.officials[index][property];
+	}
+};

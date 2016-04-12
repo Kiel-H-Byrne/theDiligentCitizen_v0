@@ -3,26 +3,26 @@ Template.gCivic.helpers({
 	data: function() {
 		var ipInfo = Session.get('ipInfo');
 		if (ipInfo) {
-	    var params = {};
+		    var params = {};
   		
-  		if (Session.get('newZip')) {
-		    params.address = Session.get('newZip');
-	    } else { 
-	    	params.address = ipInfo.loc;
-	    }
+	  		if (Session.get('newZip')) {
+			    params.address = Session.get('newZip');
+		    } else { 
+		    	params.address = ipInfo.loc;
+		    }
 
-	    params.fields = "normalizedInput,offices,officials";
-	    //console.log("the params {} is", params);
-	    var urlParams = jQuery.param(params);
-	    //console.log(urlParams.length);
-	    var method = "representatives";
-	    var res = ReactiveMethod.call('googleCivic', method, urlParams);
-	    //console.log(res);
-	    Session.set('reps', res);
+		    params.fields = "normalizedInput,offices,officials";
+		    //console.log("the params {} is", params);
+		    var urlParams = jQuery.param(params);
+		    //console.log(urlParams.length);
+		    var method = "representatives";
+		    var res = ReactiveMethod.call('googleCivic', method, urlParams);
+		    //console.log(res);
+		    Session.set('reps', res);
 	    
-	    return res;
-	    //TODO: Need to make array of objects for the politicalTree chart
-    }
+		    return res;
+
+	    }
 	},
 	getOfficial: function(property, data, index) {
 		if (data) {
@@ -53,7 +53,7 @@ Template.gCivic.helpers({
 //https://www.googleapis.com/civicinfo/v2/representatives?address=+20902&fields=normalizedInput%2Coffices%2Cofficials&key={YOUR_API_KEY}
 
 /* ------- Semantic UI Modules --------  */
-/**
+
 Template.gCivic.onRendered(function() {
 
 	$('.image').dimmer({
@@ -61,5 +61,3 @@ Template.gCivic.onRendered(function() {
 	});
 
 });
-
-**/

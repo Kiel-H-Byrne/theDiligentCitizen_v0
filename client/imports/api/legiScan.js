@@ -158,9 +158,6 @@ var setList = function(l) {
 
 
 
-/*  */
-
-
 
 Template.legiScanSearch.helpers({
   location: function() {
@@ -169,6 +166,7 @@ Template.legiScanSearch.helpers({
       var state;
       state = ipInfo.state;
       ipInfo.region = abbr_State(state, "name");
+      console.log(ipInfo.region+" Right????");
       return ipInfo.region;
     }
   }

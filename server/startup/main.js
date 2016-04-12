@@ -66,8 +66,8 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.sunlight.apikey;
     var apiUrl = 'https://congress.api.sunlightfoundation.com/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
-    //console.log("--URL--"+apiUrl);
-    //console.log(response);
+    console.log("--URL--"+apiUrl);
+    // console.log(response);
     return response;
   },
   partyTime: function(method, params) {
@@ -78,7 +78,7 @@ Meteor.methods({
     var apiUrl = 'http://politicalpartytime.org/api/v1/' + method + '?apikey=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);  
     console.log("--URL--"+apiUrl);
-    //console.log(response);
+    // console.log(response);
     return response;    
   },  
   legiScan: function(op, param) {
@@ -87,7 +87,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.legiscan.key;
     var apiUrl = 'http://api.legiscan.com/?key=' + key + '&op=' + op + '&' + param;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    //console.log("--URL--"+apiUrl);
+    console.log("--URL--"+apiUrl);
     return response;
   },
   openFEC: function(method, params) {
@@ -96,7 +96,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.openfec.api_key;
     var apiUrl = 'https://api.open.fec.gov/v1?api_key=' + key + '&' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    //console.log("--URL--"+apiUrl);
+    console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
   },
@@ -145,7 +145,16 @@ Meteor.methods({
     //console.log("ending get news ticker feed {}", response);
 
     return response;
-  }
+  }, 
+  wikiCall: function(params){
+    this.unblock();
+    console.log( '*** running wiki() with params:'+ params);
+    var apiUrl = 'https://en.wikipedia.org/w/api.php?' + params;
+    console.log(apiUrl);
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    //console.log(response);
+    return response; 
+   }
 
 });
 

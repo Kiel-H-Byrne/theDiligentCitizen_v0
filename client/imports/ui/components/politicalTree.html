@@ -13,13 +13,13 @@
 
 </template>
 
-<template name="polTree">
+<template name="polTreez">
 <!-- THIS TEMPLATE GETS CALLED FROM GCIVIC TEMPLATE -->
 <!-- http://capricasoftware.co.uk/#/projects/orgchart/tutorial/basic-chart  -->
 	<div id="orgChart">
 		<ul id="orgChart-source" class="hide">
 	 		{{#each offices}}
-	  		{{#if newRow}}
+	  		{{#if has_branch}}
 					<ul>
 						<li> Your {{name}} 
 	          	<ul>
@@ -41,4 +41,27 @@
 			{{/each}}
 		</ul>
 	</div>
+</template>
+
+<template name="polTree">
+  <ul>
+    {{#each branch}}
+      <li>    
+        {{>branch}}
+      </li>       
+    {{/each}}
+  </ul>
+</template>
+
+<template name="branch">
+    {{name}}
+    {{#if branch.length}}
+       <ul>
+           {{#each branch}}
+               <li>
+                   {{>branch}}
+               </li>
+           {{/each}}
+       </ul>
+    {{/if}}
 </template>

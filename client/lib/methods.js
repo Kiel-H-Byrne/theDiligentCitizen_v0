@@ -5,6 +5,7 @@ if (!Meteor.settings.public.govSettings) {
 }
 
 abbr_State = function(name, to) {
+    console.log("Abbreviating!");
     var states = new Array(                         {'name':'Alabama', 'abbrev':'AL'},          {'name':'Alaska', 'abbrev':'AK'},
         {'name':'Arizona', 'abbrev':'AZ'},          {'name':'Arkansas', 'abbrev':'AR'},         {'name':'California', 'abbrev':'CA'},
         {'name':'Colorado', 'abbrev':'CO'},         {'name':'Connecticut', 'abbrev':'CT'},      {'name':'Delaware', 'abbrev':'DE'},
@@ -26,17 +27,17 @@ abbr_State = function(name, to) {
         );
     var name = name;
     var to = to;
-    var returnthis = false;
+    var returnthis;
     $.each(states, function(index, value){
         if (to == 'name') {
             if (value.abbrev == name){
                 returnthis = value.name;
-                return false;
+                // return false;
             }
         } else if (to == 'abbrev') {
             if (value.name == name){
                 returnthis = value.abbrev;
-                return false;
+                // return false;
             }
         }
     });

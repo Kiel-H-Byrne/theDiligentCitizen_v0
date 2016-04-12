@@ -1,10 +1,10 @@
 <template name="gCivic">
     {{#with data}}
-        {{! > politicalTree}}
+        {{!-- {{> politicalTree}} --}}
         {{> polTree}}
     {{/with}}
 
-    <!--div id="rep-container" class="ui fluid container" >
+    <div id="rep-container" class="ui fluid container" >
         <h1 class="ui header">Civic Data: </h1>
         {{#with data}}
         <h2 class="ui centered header">Showing Reps for {{normalizedInput.city.toUpperCase}}, {{normalizedInput.state}} {{normalizedInput.zip}}</h2>
@@ -75,5 +75,5 @@
             {{/each}}
         </div>
         {{/with}}
-    </div-->
+    </div>
 </template>
