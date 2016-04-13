@@ -1,5 +1,5 @@
 // Check for Settings file
-console.log("...checking for settings file...")
+console.log("...checking for settings file...");
 if (!Meteor.settings.public.govSettings) {
     alert(" No Settings File! start server with 'NPM RuN' ");
 }
@@ -25,8 +25,8 @@ abbr_State = function(name, to) {
         {'name':'West Virginia', 'abbrev':'WV'},    {'name':'Wisconsin', 'abbrev':'WI'},        {'name':'Wyoming', 'abbrev':'WY'},
         {'name':'District of Columbia', 'abbrev':'DC'}
         );
-    var name = name;
-    var to = to;
+    name = name;
+    to = to;
     var returnthis;
     $.each(states, function(index, value){
         if (to == 'name') {
