@@ -1,6 +1,5 @@
 {
   "ignore": [
-    "**/lib/**",
     "**/deps/**",
     "**/node_modules/**",
     "**/thirdparty/**",
@@ -45,7 +44,7 @@
     "bower_components/**",
     "**/packages/**",
     "**/public/js/**",
-    
+    "client/lib/packages/**"
   ],
   "test": [
     "**/test/**",
