@@ -5,6 +5,11 @@ Router.route('/', function(){
     this.render('gCivic', {to: 'content'});
 });
 
+Router.route('/tree', function(){
+    this.layout('ApplicationLayout');
+    this.render('polTree', {to: 'content'});
+});
+
 Router.route('/bill/:id', function() {
     var params = this.params;
 

@@ -1,0 +1,34 @@
+<head>
+	<script src="js/jquery.orgchart.js"></script>
+	<link rel="stylesheet" href="css/jquery.orgchart.css">
+</head>
+
+<template name="polTree">
+<!-- THIS TEMPLATE GETS CALLED FROM GCIVIC TEMPLATE -->
+<!-- http://capricasoftware.co.uk/#/projects/orgchart/tutorial/basic-chart  -->
+	<div id="orgChart">
+		<ul id="orgChart-source" class="hide">
+{{#with data}}
+	 		{{#each offices}}
+		 		<li>
+
+					{{>branch}}
+
+		 		</li>
+			{{/each}}
+{{/with}}
+		</ul>
+	</div>
+</template>
+
+
+<template name="branch">
+	Your {{name}}
+		<ul>
+			{{#each officialIndices}}
+				<li>
+					{{getOfficial 'name' data this}}
+				</li>
+			{{/each}}
+		</ul>
+</template>
