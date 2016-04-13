@@ -25,8 +25,9 @@ Template.polTree.helpers({
 		//Whatever i do, i get a loop on the client!!
 		var last = getLast();
 		var curr = this.divisionId.valueOf();
+		var isDiff = bool;
 		if (curr != last) {
-			var isDiff = true;
+			isDiff = true;
 			Session.set('lastDid', curr);
 			console.log(isDiff);			
 			return isDiff;
@@ -48,8 +49,8 @@ var	getLast = function() {
 	};
 
 	
-getOfficial = function(property, data, index) {
-	if (data) {
-		return data.officials[index][property];
-	}
-};
+// getOfficial = function(property, data, index) {
+// 	if (data) {
+// 		return data.officials[index][property];
+// 	}
+// };
