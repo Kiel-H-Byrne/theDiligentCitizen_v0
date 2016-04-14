@@ -33,10 +33,10 @@ Template.registerHelper('data', function() {
 		    params.fields = "normalizedInput,offices,officials";
 		    //console.log("the params {} is", params);
 		    var urlParams = jQuery.param(params);
-		    console.log(urlParams);
+		    //console.log(urlParams);
 		    var method = "representatives";
 		    var res = ReactiveMethod.call('googleCivic', method, urlParams);
-		    //console.log(res);
+		    console.log(res);
 		    Session.set('reps', res);
 	    
 		    return res;
@@ -49,6 +49,13 @@ Template.registerHelper('getOfficial',function(property, data, index) {
 	}
 });
 
+Template.registerHelper('getOffice',function(property, data, index) {
+	if (data) {
+		// console.log(data.offices[index][property]);
+		// console.log(data.offices[index]);
+		return data.offices[index][property];
+	}
+});
 
 //TODO: Take data from divisions, offices, officals; each object has 'indices' that match to the other object. create one master object per address lookup.
 //https://www.googleapis.com/civicinfo/v2/representatives?address=+20902&fields=normalizedInput%2Coffices%2Cofficials&key={YOUR_API_KEY}
