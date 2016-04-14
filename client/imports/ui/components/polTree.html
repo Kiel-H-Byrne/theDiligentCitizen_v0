@@ -19,15 +19,21 @@
 </template>
 
 <template name="branch">
-<!-- if indices are >1 print ul, elseprinnt li. -->
-<ol>
+	{{#if hasSibs}}
+		<ul>
 			{{#each officialIndices}}
-
 				<li> 	
 				<p>{{getOfficial 'name' data this}}</p>
-				
 				{{>branch}}
 				</li>
 			{{/each}}
-</ol>
+		</ul>
+	{{else}}
+		{{#each officialIndices}}
+			<li> 	
+			<p>{{getOfficial 'name' data this}}</p>
+			{{>branch}}
+			</li>
+		{{/each}}
+	{{/if}}
 </template>

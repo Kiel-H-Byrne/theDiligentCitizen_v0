@@ -36,7 +36,7 @@ Template.registerHelper('data', function() {
 		    //console.log(urlParams);
 		    var method = "representatives";
 		    var res = ReactiveMethod.call('googleCivic', method, urlParams);
-		    console.log(res);
+		    //console.log(res);
 		    Session.set('reps', res);
 	    
 		    return res;
