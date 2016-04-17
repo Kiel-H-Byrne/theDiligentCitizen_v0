@@ -12,7 +12,6 @@ Template.gCivic.helpers({
 				}
 			};
 			//console.log(social);
-			
 			return social;
 
 			}
@@ -38,7 +37,10 @@ Template.registerHelper('data', function() {
 		    var res = ReactiveMethod.call('googleCivic', method, urlParams);
 		    //console.log(res);
 		    Session.set('reps', res);
-	    
+    	// semantic blur images
+			$('.image').dimmer({
+				on: 'hover'
+			});
 		    return res;
 	    }
 });
@@ -60,12 +62,3 @@ Template.registerHelper('getOffice',function(property, data, index) {
 //TODO: Take data from divisions, offices, officals; each object has 'indices' that match to the other object. create one master object per address lookup.
 //https://www.googleapis.com/civicinfo/v2/representatives?address=+20902&fields=normalizedInput%2Coffices%2Cofficials&key={YOUR_API_KEY}
 
-/* ------- Semantic UI Modules --------  */
-
-Template.gCivic.onRendered(function() {
-
-	$('.image').dimmer({
-	  on: 'hover'
-	});
-
-});

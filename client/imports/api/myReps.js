@@ -1,5 +1,5 @@
 
-console.log("--myReps.js");
+// console.log("--myReps.js");
 
 Template.myReps.helpers ({
 	location: function() {

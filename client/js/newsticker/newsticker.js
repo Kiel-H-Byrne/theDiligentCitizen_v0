@@ -7,7 +7,7 @@
 Template.NewsTicker.onRendered(function() {
 
     $("#bn1").on('updateTicker', function(){
-        console.log("updateTicker called");
+        //console.log("updateTicker called");
         updateTicker();
     });
 

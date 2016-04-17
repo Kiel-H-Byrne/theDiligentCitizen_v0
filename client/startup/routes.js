@@ -1,4 +1,4 @@
-console.log("routes.js");
+// console.log("routes.js");
 
 Router.route('/', function(){
     this.layout('ApplicationLayout');
@@ -164,22 +164,22 @@ Router.route('/civics', function() {
 });
 
 
-Router.route('/info/:address', function() {
-    var params = this.params;
-    params.fields = "normalizedInput,offices,officials";
-    delete params.query;
-    delete params.hash;
-    console.log("the params {} is", params);
-    var urlParams = jQuery.param(params);
-    console.log(urlParams.length);
-    //TODO: fix jQuery.param, currently not converting object to parameters, 
-    var method = "voterinfo";
+// Router.route('/info/:address', function() {
+//     var params = this.params;
+//     params.fields = "normalizedInput,offices,officials";
+//     delete params.query;
+//     delete params.hash;
+//     console.log("the params {} is", params);
+//     var urlParams = jQuery.param(params);
+//     console.log(urlParams.length);
+//     //TODO: fix jQuery.param, currently not converting object to parameters, 
+//     var method = "voterinfo";
 
-    var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
-    //console.log(res);
-    Session.set('vinfo', res);
-    this.render('voters');
-});
+//     var res = ReactiveMethod.call('googleCivic', method, "address="+params.address);
+//     //console.log(res);
+//     Session.set('vinfo', res);
+//     this.render('voters');
+// });
 
 
 

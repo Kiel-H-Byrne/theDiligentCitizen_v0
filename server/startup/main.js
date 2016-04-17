@@ -1,5 +1,5 @@
 var apiCall2 = function (apiUrl, params, headers, callback) {
-  // tryâ€¦catch allows you to handle errors 
+  // try...catch allows you to handle errors 
   var errorCode, errorMessage;
   try {
     var response = HTTP.get(apiUrl, {params: params, headers: headers}).data;
@@ -27,7 +27,6 @@ var apiCall2 = function (apiUrl, params, headers, callback) {
     if(callback) {
       callback(myError, null);
     }
-
     return myError;
   }
 };
@@ -40,6 +39,7 @@ var apiCall = function (apiUrl, callback) {
     // A successful API call returns no error 
     // but the contents from the JSON response
     callback(null, response);
+    
   } catch (error) {
     // If the API responded with an error message and a payload 
     if (error.response) {
@@ -126,12 +126,14 @@ Meteor.methods({
     console.log( '*** running googleCivic() with memberID:'+ method);
     var key = Meteor.settings.public.govSettings.googleCivic.key;
     var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method + '?key=' + key + '&' +params;
-    console.log(apiUrl);
+    //console.log(apiUrl);
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
     //console.log(response);
     return response;   
+
   },
   getNewsTickerFeed: function(author) {
+    this.unblock();
     var reutersUrl = "http://feeds.reuters.com/Reuters/PoliticsNews";
     var quotesUrl = "https://webknox-entities.p.mashape.com/entities/quotes";
     var quotesParams = {

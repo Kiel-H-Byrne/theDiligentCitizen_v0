@@ -1,4 +1,4 @@
-console.log("--wordcloud.js");
+//console.log("--wordcloud.js");
 
 /* Utilizing WordCloud2.js
 * API DOCS: https://github.com/timdream/wordcloud2.js/blob/master/API.md
@@ -18,13 +18,15 @@ console.log("--wordcloud.js");
 
 Template.wordCloud.helpers({
   loader: function() {
-    if (!Session.get('sbWords')) {
-      var str = "loading active";
-      return str;
-    } else if (!Session.get('lsWords')) {
+    if (Session.get('sbWords')) {
       makeCloud(Session.get('sbWords')); 
-    } else {
+    } else if (Session.get('lsWords')) {
       makeCloud(Session.get('lsWords'));
+    } else if (Session.get('bioWords')) {
+      makeCloud(Session.get('bioWords'));
+    } else {
+      var str = "loading active";
+      return str;      
     }
   },
   list: function () {

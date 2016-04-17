@@ -1,5 +1,5 @@
 $.getJSON("http://ipinfo.io", function(data){
-	console.log("--setting initial ipInfo--");
+//	console.log("--setting initial ipInfo--");
 	Session.set('ipInfo', data);
 });
 

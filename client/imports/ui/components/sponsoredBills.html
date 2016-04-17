@@ -17,18 +17,18 @@
 </template>
 
 <template name="sponsoredBills">
-	<div class="ui fluid container">
+	<div class="ui container">
 		<h4 class="ui centered header">Sponsored Bills: </h4>
+		<div class ="ui tag labels">
 		{{#each sponsored_bills}}
-		<div class="ui accordion">
-			<div class="title">
-				<i class="dropdown icon"></i>
-				<a class="header" href="{{urls.congress}}" >{{bill_id}}</a>
-			</div>
-			<div class="content">
+		<span class="ui accordion label">
+			<a class="title " href="{{urls.congress}}" >{{bill_id}}</a>
+			<i class="dropdown icon"></i>
+			<span class="content">
 				<p class="transition hidden"> {{official_title}} </p>
-			</div>
-		</div>
+			</span>
+		</span>
 		{{/each}}
+		</div>
 	</div>
 </template>

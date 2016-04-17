@@ -21,7 +21,10 @@ Template.branch.helpers({
 		if (this.officialIndices) {
 			count = this.officialIndices.length;
 			console.log(count);
-			if (count > 1) {return true;}
+			if (count > 1) {
+				return true;
+			}
 		}
 	}
 });
+
