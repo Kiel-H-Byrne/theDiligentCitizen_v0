@@ -1,12 +1,13 @@
 <template name="upcoming">
 <div class="ui segment">
 	<h4 class="ui header">Upcoming Bills: </h4>
-	<div class="ui tag labels">
+	<div class="ui tag red labels">
 	{{#each upcoming}}
 		<span class="ui label" data-variation="basic">
 			<a href="{{url}}"> {{bill_id}} </a>
 		</span>
-		<div class="ui fluid popup hidden">{{description}}</div>
+		<div class="ui fluid popup hidden" >{{description}}</div>
+	{{render}}
 	{{/each}}
 	</div>
 </div>

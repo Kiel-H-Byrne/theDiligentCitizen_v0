@@ -1,4 +1,3 @@
-
 Template.upcoming.helpers({
 	upcoming: function() {
 /* 
@@ -14,12 +13,14 @@ Template.upcoming.helpers({
 	  		console.log(results);
 			return results;
 		}
-	// semantic popup on labels
-		$('.label')
-		.popup({
-			inline : true,
-		    position : 'top center'
-		});
+	},
+	render: function() {
+		// semantic popup on labels
+			$('.label')
+			.popup({
+				inline : true,
+			    position : 'bottom right'
+			});
 	}
-
 });
+

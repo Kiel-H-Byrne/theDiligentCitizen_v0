@@ -18,9 +18,10 @@ Template.legiScanSearch.helpers({
 Template.legiScanSearch.events({
   'submit #legi-search': function (evt, tpl) {
     event.preventDefault();
-    
-    var query = tpl.find('input#query').value;
+    // mimic form submit, search result forces route to bills page.
+    Router.go('/bills');
 
+    var query = tpl.find('input#query').value;
     Session.set('query', query);
 
     analytics.track("Legi Search", {

@@ -60,6 +60,15 @@ var apiCall = function (apiUrl, callback) {
 
 
 Meteor.methods({
+  zipCode: function(zip) {
+    this.unblock();
+    console.log("***calling zipCodeAPI.com method with "+zip);
+    var key = Meteor.settings.public.govSettings.zipCodeAPI.key;
+    var apiUrl = 'https://www.zipcodeapi.com/rest/'+ key + '/info.json/'+ zip + '/degrees';
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    console.log("--URL--"+apiURL);
+    return response;
+  },
   sunLight: function(method, params) {
     this.unblock();
     console.log ( '*** running sunLight() with "'+ method +'" param: '+ params);
