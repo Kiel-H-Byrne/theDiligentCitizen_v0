@@ -1,13 +1,13 @@
 <template name="ipInfo">
-		<div id="ipInfo" class="ui segment">	
-			<form id="state-form" class="ui form">
-				<div class="field">
+		<div id="ipInfo" class="ui centered ">	
+			<form id="state-form" class="ui fluid search">
+				<div class="ui icon input">
 					{{#if location.region}}
-						<label> Not in {{location.region}}? Enter your zipcode here: </label>
-				    <input type="text" id="self-state" name="self-state" size="6" placeholder="{{location.postal}}..." />
+				    <input class="prompt" type="text" id="self-state" name="self-state" placeholder="Enter zipcode:" />
+				    <i class="search icon"></i>
 			    {{else}}
-						<label> Enter your zipcode here: </label>
-				    <input type="text" id="self-state" name="self-state" size="6" placeholder="90210" />
+				    <input class="prompt" type="text" id="self-state" name="self-state" placeholder=" Enter your zipcode here:" />
+				    <i class="search icon"></i>
 			    {{/if}}
 			  </div>
 			</form>

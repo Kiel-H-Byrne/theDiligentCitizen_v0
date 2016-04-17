@@ -1,8 +1,10 @@
 <template name="wiki">
 	{{#if wikiText getVal this}}
 		<div class="wiki-text ui basic segment">
-			{{wikiText getVal this }}
-			[<a href="https://en.wikipedia.org/wiki/{{this}}" alt="More at Wikipedia.com">...</a>]
+			<p>
+				{{wikiText getVal this }}
+				[<a href="https://en.wikipedia.org/wiki/{{this}}" alt="More at Wikipedia.com">...</a>]
+			</p>
 		</div>
 	{{else}}
 	{{/if }}

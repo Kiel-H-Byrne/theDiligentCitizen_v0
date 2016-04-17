@@ -17,29 +17,51 @@
                     {{#each officialIndices}}
                     <div class="ui six wide column">
                         <div class="rep-card ui card">
-                        
-                            <div class="office-official-photo ui blurring dimmable large image">
-                                <div class="ui dimmer">
-                                    <div class="content">
-                                      <div class="center">
-                                        <div class="ui inverted button">Add Friend</div>
-                                      </div>
-                                    </div>
-                                </div>
-                                
-                                {{#if getOfficial 'photoUrl' data this}}
-                                    <img class="ui image " src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}" >
-                                {{else}}
-                                    <img class="no-photo ui image" src="/img/pholder.png">
-                                {{/if}}
-                            </div>
-                            
-                            <div class="centered content">
-                                <h4 class="office-official-name header">
-                                    {{getOfficial 'name' data this}}
-                                </h4>
-                            </div>
 
+                            {{#if getOfficial 'photoUrl' data this}}
+                                <div class="office-official-photo ui blurring dimmable medium image">
+                                    <div class="ui dimmer">
+                                        <div class="content">
+                                          <div class="center">
+                                            <div class="ui inverted button">Add Friend</div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <img class="ui image " src="{{getOfficial 'photoUrl' data this}}" alt="{{getOfficial 'name' data this}}"  />
+                                </div>
+                            {{else}}
+                                <div class="office-official-photo ui blurring dimmable small image">
+                                    <div class="ui dimmer">
+                                        <div class="content">
+                                          <div class="center">
+                                            <div class="ui inverted button">Add Friend</div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <img class="no-photo ui image" src="/img/pholder.png" />
+                                </div>
+                            {{/if}}
+                            
+                            {{#if getOfficial 'name' data this }}
+                                <div class="centered content">
+                                    <h4 class="office-official-name header">
+                                       
+                                        {{getOfficial 'name' data this}}
+                                        
+                                    </h4>
+                                </div>
+                            {{/if}}
+                            {{#if getOfficial 'address' data this }}
+                                {{#with getOfficial 'address' data this}}
+                                    <div class="centered content">
+                                        <p>
+                                        {{this.line1}}<br />
+                                        {{this.line2}}<br />
+                                        {{this.city}}, {{this[0].state}}  {{this.zip}}
+                                        </p>
+                                    </div>
+                                {{/with}}
+                            {{/if}}
                             <div id="social" class="ui center aligned extra content">
                                 {{! #each getOfficial 'channels' data this}}
                                 {{#each social 'channels' data this}}

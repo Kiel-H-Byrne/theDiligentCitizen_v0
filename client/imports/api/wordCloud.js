@@ -18,33 +18,20 @@
 
 Template.wordCloud.helpers({
   loader: function() {
-    if (Session.get('sbWords')) {
-      makeCloud(Session.get('sbWords')); 
-    } else if (Session.get('lsWords')) {
-      makeCloud(Session.get('lsWords'));
-    } else if (Session.get('bioWords')) {
-      makeCloud(Session.get('bioWords'));
+    if (Session.get('cloudArr')) {
+      var arr = Session.get('cloudArr');
+      makeCloud(arr);
+      return true;
+    //   makeCloud(Session.get('sbWords')); 
+    // } else if (Session.get('lsWords')) {
+    //   makeCloud(Session.get('lsWords'));
+    // } else if (Session.get('bioWords')) {
+    //   var arr = session.get('bioWords')
+    //   makeCloud(Session.get('bioWords'));
     } else {
       var str = "loading active";
       return str;      
     }
-  },
-  list: function () {
-    return Session.get('list');
-  },
-  list2: function() {
-    var sBills = Session.get('sponsoredBills');
-    var list = getFreq(sBills, 'official_title');
-    console.log(list);
-    return list;
   }
 });
-
-Template.wordCloud.onRendered( function() {
-
-//var list = Session.get('list');
-//makeCloud(list);
-
-});
-
 
