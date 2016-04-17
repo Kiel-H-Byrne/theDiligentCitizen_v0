@@ -152,7 +152,7 @@ Meteor.methods({
     this.unblock();
     console.log( '*** running wiki() with params:'+ params);
     var apiUrl = 'https://en.wikipedia.org/w/api.php?' + params;
-    console.log(apiUrl);
+    //console.log(apiUrl);
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
     //console.log(response);
     return response; 

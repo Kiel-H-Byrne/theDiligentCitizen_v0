@@ -6,11 +6,10 @@ Template.legiScanSearch.helpers({
   location: function() {
     var ipInfo = Session.get('ipInfo');
     if (ipInfo) {
-      var state;
-      state = ipInfo.state;
-      ipInfo.region = abbr_State(state, "name");
+      var state = ipInfo.region;
+      state = abbr_State(state, "abbrev");
       //console.log(ipInfo.region+" Right????");
-      return ipInfo.region;
+      return state;
     }
   }
 });
@@ -40,7 +39,8 @@ Template.legiScanResults.helpers({
   },
   queryList: function() {
 
-    var state = Session.get('ipInfo').state;
+    var state = Session.get('ipInfo').region;
+    state = abbr_State(state, "abbrev");
 
     if (Session.get('newState')) {
       state = Session.get('newState');
@@ -78,7 +78,7 @@ Template.legiScanResults.helpers({
       });
     }
 
-    queryArr.sort(compareActionDates);
+    //queryArr.sort(compareActionDates);
 
     //console.log(queryArr);
     return queryArr;

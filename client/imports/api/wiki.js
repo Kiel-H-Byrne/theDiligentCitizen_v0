@@ -44,8 +44,8 @@ Template.gCivic.onRendered(function() {
 					var abbrevSumm = summ.substring(0,500);
 					//console.log(summ);
 					var oldSumm = summArr;
-				  	summArr = oldSumm.concat(summ);
-				  	Session.set('bioWords', summArr);
+				  	//summArr = oldSumm.concat(summ);
+				  	Session.set('bioWords', summ);
 					return abbrevSumm;
 				} else {return null;}
 		},

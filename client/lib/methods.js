@@ -32,8 +32,7 @@ abbr_State = function(name, to) {
         {'name':'West Virginia', 'abbrev':'WV'},    {'name':'Wisconsin', 'abbrev':'WI'},        {'name':'Wyoming', 'abbrev':'WY'},
         {'name':'District of Columbia', 'abbrev':'DC'}
         );
-    name = name;
-    to = to;
+
     var returnthis;
     $.each(states, function(index, value){
         if (to == 'name') {
@@ -41,7 +40,7 @@ abbr_State = function(name, to) {
                 returnthis = value.name;
                 // return false;
             }
-        } else if (to == 'abbrev') {
+        } else if (to === 'abbrev') {
             if (value.name == name){
                 returnthis = value.abbrev;
                 // return false;

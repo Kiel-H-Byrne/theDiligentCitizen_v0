@@ -7,12 +7,19 @@ Template.upcoming.helpers({
 */
 	  var method = 'upcoming_bills';
 	  var params = {};
-	  //params.member_ids = this.bioguide_id;
 	  urlParams = jQuery.param(params);
-	  if (params.member_ids) {
-			return ReactiveMethod.call('sunLight', method, urlParams).results;
+	  var res = ReactiveMethod.call('sunLight', method, urlParams);
+	  if (res) {
+	  		var results = res.results;
+	  		console.log(results);
+			return results;
 		}
-
+	// semantic popup on labels
+		$('.label')
+		.popup({
+			inline : true,
+		    position : 'top center'
+		});
 	}
 
 });
