@@ -179,12 +179,16 @@ getFreq = function(obj, label) {
     /* Now that `freqObj` has our object, we can log it. */
     //console.log( freqObj );
 
-    //removing values like 'is, a, an, ...'
-    var keys = _.chain(freqObj)
-                .keys()
-                .difference(this, ['is', 'of', 'as', 'to', 'or', 'an', 'in', 'a', 'The', 'and', 'it', 'by'])
-                .value();
-    console.log(keys);
+    //removing values like 'is, a, an... (shorter then 3 characters)'
+    var allKeys = _.keys(freqObj);
+    var shorts = [];
+    _.find(allKeys, function(o) {
+        if (o.length <= 3) {
+          shorts.push(o);
+        }
+    });
+    var keys = _.difference(allKeys, shorts);
+    console.log(shorts);
     var values = _.map(keys, function(k) { return freqObj[k]; });
     // Transpose the values matrix
     
