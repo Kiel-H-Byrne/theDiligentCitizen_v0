@@ -1,3 +1,15 @@
+// ============= GLOBALS ============
+
+summArr = [];
+
+joinArr = function(o, n) {
+	newArr = o.concat(n);
+	return newArr;
+};
+
+// ============= HELPERS ============
+
+
 Template.gCivic.onRendered(function() {
 	Template.wiki.helpers({
 		wikiText: function(query) {
@@ -12,6 +24,7 @@ Template.gCivic.onRendered(function() {
 		    	params.titles = query;
 			    var urlParams = jQuery.param(params);
 			    var summ;
+			    //set summ to wiki entry.
 			    if (ReactiveMethod.call('wikiCall', urlParams)) {
 					var res = ReactiveMethod.call('wikiCall', urlParams).query.pages;
 					//Session.set('wikiText', res);
@@ -21,15 +34,27 @@ Template.gCivic.onRendered(function() {
 					var missing = newPair[1].missing;
 					if (missing === "") {
 						summ = "We do not currently have a summary for "+ query+ ".";
+						summ = false;
 					}
 				}
-				return summ;
-
+				//set return false if summ DNE.
+				if (summ === false) {
+					return false;
+				} else if (summ) {
+					var abbrevSumm = summ.substring(0,500);
+					//console.log(summ);
+					var oldSumm = summArr;
+				  	//summArr = oldSumm.concat(summ);
+				  	Session.set('bioWords', summ);
+					return abbrevSumm;
+				} else {return null;}
 		},
-		getName: function(){
-		  var name = this.valueOf();
+		getVal: function(str){
+		  var name = this.valueOf(str);
+		  //console.log(name);
 		  return name;
 		}
 	});
 
 });
+

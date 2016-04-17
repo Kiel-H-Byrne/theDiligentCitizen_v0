@@ -1,28 +1,24 @@
 <template name="gCivic">
-    {{#with data}}
-        {{!-- {{> politicalTree}} --}}
-        {{!-- {{> polTree}} --}}
-    {{/with}}
-
     <div id="rep-container" class="ui fluid container" >
-        <h1 class="ui header">Civic Data: </h1>
         {{#with data}}
-        <h2 class="ui centered header">Showing Reps for {{normalizedInput.city.toUpperCase}}, {{normalizedInput.state}} {{normalizedInput.zip}}</h2>
+        <h1 class="ui centered header">Elected Officials of {{normalizedInput.city.toUpperCase}}, {{normalizedInput.state}} ({{normalizedInput.zip}})</h1>
         <div id="rep-cards" class="ui ">
             
             {{#each offices}}
             <div class="office-container ui segments">
 
-                <h3 class="office-name ui segment centered attached header">
-                    Your {{name}}
+                <h3 class="office-name ui raised segment centered attached header">
+                    Office of {{name}}
                 </h3>
-
+                <h4 class="ui segment attached block header">
+                    {{>wiki name}}
+                </h4>
                 <div id="rep-card-container" class="ui segment special cards grid"  style="position:relative">
                     {{#each officialIndices}}
-                    <div class="ui three wide column">
+                    <div class="ui six wide column">
                         <div class="rep-card ui card">
                         
-                            <div class="office-official-photo ui blurring dimmable medium image">
+                            <div class="office-official-photo ui blurring dimmable large image">
                                 <div class="ui dimmer">
                                     <div class="content">
                                       <div class="center">
@@ -61,9 +57,12 @@
                         </div>
                     </div>
 
-                    <div class="bio-card ui twelve wide column basic segments">
+                    <div class="bio-card ui ten wide column basic segments">
                         {{#with getOfficial 'name' data this}}
-                            {{> wiki}}
+                            <div class ="ui block header segment">
+                                <h3> Bio: </h3>
+                            </div>
+                            {{> wiki this}}
                         {{/with}}
                     </div>
                     

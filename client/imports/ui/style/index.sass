@@ -1,8 +1,12 @@
+
 @import _mixins
 @import _meyersReset
 @import _variables
 @import _palette-dBlueTetrad
-@import _gCivic  
+@import _gCivic 
+//@import ../../../lib/packages/breakingNewsTicker/breakingNews
+@import _newsTicker
+
 
 html
 	font-size: $BASEFONTSIZE
@@ -10,7 +14,7 @@ html
 body
   padding: 1.5rem
   //background-color: $color-primary-4
-  background-color: #eee
+  background-color: $clr-white
 
 // To allow the sidebar to scroll with the rest of the page
 #sideBar
@@ -33,10 +37,10 @@ body
   text-align: center
 
 .democratic-text
-  color: $democratic-blue
+  color: $clr-secondary
 
 .republican-text
-  color: $republican-red
+  color: $clr-primary
 
 .sponsors-header
   margin-top: 40px !important
@@ -58,4 +62,4 @@ body
   min-height: 200px
 
 #charts
-  border: 1px solid blue
+  border: 1px solid $clr-secondary

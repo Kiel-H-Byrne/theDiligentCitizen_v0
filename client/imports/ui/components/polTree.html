@@ -1,0 +1,40 @@
+<head>
+	<script src="js/jquery.orgchart.js"></script>
+	<link rel="stylesheet" href="css/jquery.orgchart.css">
+</head>
+
+<template name="polTree">
+<!-- http://capricasoftware.co.uk/#/projects/orgchart/tutorial/basic-chart  -->
+	<div id="orgChart">
+	<p id="msg" ></p>
+		<ul id="orgChart-source" class="hide">
+			{{#with data}}
+		 		{{#each offices}}
+		 		<li> <strong> Your {{name}}</strong>
+					{{>branch}}
+				</li>
+				{{/each}}
+			{{/with}}
+		</ul>
+	</div>
+</template>
+
+<template name="branch">
+	{{#if hasSibs}}
+		<ul>
+			{{#each officialIndices}}
+				<li> 	
+				<p>{{getOfficial 'name' data this}}</p>
+				{{>branch}}
+				</li>
+			{{/each}}
+		</ul>
+	{{else}}
+		{{#each officialIndices}}
+			<li> 	
+			<p>{{getOfficial 'name' data this}}</p>
+			{{>branch}}
+			</li>
+		{{/each}}
+	{{/if}}
+</template>

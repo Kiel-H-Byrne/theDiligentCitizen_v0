@@ -1,10 +1,11 @@
 $.getJSON("http://ipinfo.io", function(data){
-	console.log("--setting initial ipInfo--");
+//	console.log("--setting initial ipInfo--");
 	Session.set('ipInfo', data);
 });
 
-analytics.track( 'Viewed the HomePage', {
-  title: 'ipInfo test'
+analytics.track( 'ipInfo data', {
+  title: 'Pulled Geo Info',
+  data: Session.get('ipInfo)')
 });
 
 			/*
@@ -19,16 +20,15 @@ analytics.track( 'Viewed the HomePage', {
 			*/
 
 Template.ipInfo.helpers({
-	locating: function() {
-		if (!Session.get('ipInfo')) {
+	location: function() {
+		if ( Session.get('ipInfo') ) {
+			var ipInfo = Session.get('ipInfo');
+			return ipInfo;
+		} else {
+			//string is loading for semantic 'loader' class
 			var string = "loading";
 			return string;
 		}
-	},
-		
-	location: function() {
-		var ipInfo = Session.get('ipInfo');
-		return ipInfo;
 	}
 });
 

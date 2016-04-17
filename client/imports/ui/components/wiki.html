@@ -1,8 +1,9 @@
 <template name="wiki">
-	<div class ="ui header basic segment">
-		<h3> Bio: </h3>
-	</div>
-	<div class="wiki-text ui basic segment">
-			{{wikiText getName }}
-	</div>
+	{{#if wikiText getVal this}}
+		<div class="wiki-text ui basic segment">
+			{{wikiText getVal this }}
+			[<a href="https://en.wikipedia.org/wiki/{{this}}" alt="More at Wikipedia.com">...</a>]
+		</div>
+	{{else}}
+	{{/if }}
 </template>

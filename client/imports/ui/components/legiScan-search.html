@@ -1,10 +1,11 @@
 <template name="legiScanSearch">
-	<div id="legiSearch" class="ui sticky segment">
-    <form id="legi-search" class="ui form">
-      <div class="field">
-        <label>Search for an issue in {{location}}: </label>
-        <input id="query" name="query" type="text" placeholder="firearms..."/>
-      </div>
-    </form>
+	<div id="legiSearch" class="ui segment">
+	    
+	    <form id="legi-search" class="ui search" action="/bills">
+			<div class="ui icon input">
+				<input id="query" class="prompt" name="query" type="text" placeholder="Search the Laws in {{location}}..."/>
+				<i class="search icon"></i>
+			</div>
+	    </form>
 	</div>
 </template>

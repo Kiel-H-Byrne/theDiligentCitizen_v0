@@ -1,0 +1,339 @@
+@import '../../../imports/ui/style/_variables';
+
+.breakingNews {
+  width: 100%;
+  height: 40px;
+  background: $clr-white;
+  position: relative;
+  border: solid 2px $clr-dark;
+  overflow: hidden;
+
+  > {
+    .bn-title {
+      width: auto;
+      height: 40px;
+      display: inline-block;
+      background: $clr-dark;
+      position: relative;
+
+      > {
+        h2 {
+          display: inline-block;
+          margin: 0;
+          padding: 0 20px;
+          line-height: 40px;
+          font-size: 20px;
+          color: $clr-white;
+          height: 40px;
+          box-sizing: border-box;
+        }
+
+        span {
+          width: 0;
+          position: absolute;
+          right: -10px;
+          top: 10px;
+          height: 0;
+          border-style: solid;
+          border-width: 10px 0 10px 10px;
+          border-color: transparent transparent transparent $clr-accent;
+        }
+      }
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      position: absolute;
+      left: 210px;
+      top: 0;
+      right: 40px;
+      height: 40px;
+      font-size: 16px;
+
+      > li {
+        position: absolute;
+        height: 40px;
+        width: 100%;
+        line-height: 40px;
+        display: none;
+
+        > a {
+          text-decoration: none;
+          color: $clr-dark;
+          overflow: hidden;
+          display: block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-weight: normal;
+
+          > span, &:hover {
+            color: $clr-accent;
+          }
+        }
+      }
+    }
+
+    .bn-navi {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      opacity: 0;
+
+      > span {
+        width: 20px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        cursor: pointer;
+        opacity: 0.3;
+        background-image: url(../img/bn-arrows.png);
+        background-repeat: no-repeat;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &:first-child {
+          background-position: left center;
+          left: 0;
+        }
+
+        &:last-child {
+          background-position: right center;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &:hover .bn-navi {
+    opacity: 1;
+  }
+}
+
+.bn-large {
+  height: 50px;
+
+  > {
+    .bn-title {
+      height: 50px;
+
+      > {
+        h2 {
+          line-height: 50px;
+          font-size: 26px;
+        }
+
+        span {
+          top: 15px;
+        }
+      }
+    }
+
+    ul {
+      height: 50px;
+      left: 250px;
+      font-size: 20px;
+
+      > li {
+        height: 50px;
+        line-height: 50px;
+      }
+    }
+
+    .bn-navi {
+      height: 50px;
+
+      > span {
+        height: 50px;
+      }
+    }
+  }
+}
+
+.bn-small {
+  height: 30px;
+
+  > {
+    .bn-title {
+      height: 30px;
+
+      > {
+        h2 {
+          line-height: 30px;
+          font-size: 18px;
+        }
+
+        span {
+          top: 5px;
+        }
+      }
+    }
+
+    ul {
+      height: 30px;
+      left: 200px;
+      font-size: 14px;
+
+      > li {
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+
+    .bn-navi {
+      height: 30px;
+
+      > span {
+        height: 30px;
+      }
+    }
+  }
+}
+
+/*color styles -----------------------------*/
+
+.bn-primary {
+  border-color: $clr-primary;
+
+  > {
+    .bn-title {
+      background: $clr-primary;
+
+      > span {
+        border-left-color: $clr-primary;
+      }
+    }
+
+    ul > li > a {
+      &:hover, > span {
+        color: $clr-primary;
+      }
+    }
+  }
+}
+
+.bn-secondary {
+  border-color: $clr-secondary;
+
+  > {
+    .bn-title {
+      background: $clr-secondary;
+
+      > span {
+        border-left-color: $clr-secondary;
+      }
+    }
+
+    ul > li > a {
+      &:hover, > span {
+        color: $clr-secondary;
+      }
+    }
+  }
+}
+
+.bn-accent {
+  border-color: $clr-accent;
+
+  > {
+    .bn-title {
+      background: $clr-accent;
+
+      > span {
+        border-left-color: $clr-accent;
+      }
+    }
+
+    ul > li > a {
+      &:hover, > span {
+        color: $clr-accent;
+      }
+    }
+  }
+}
+
+.bn-dark {
+  border-color: $clr-dark;
+
+  > {
+    .bn-title {
+      background: $clr-dark;
+
+      > span {
+        border-left-color: $clr-dark;
+      }
+    }
+
+    ul > li > a {
+      &:hover, > span {
+        color: $clr-dark;
+      }
+    }
+  }
+}
+
+.bn-light {
+  border-color: $clr-light;
+
+  > {
+    .bn-title {
+      background: $clr-light;
+
+      > span {
+        border-left-color: $clr-light;
+      }
+    }
+
+    ul > li > a {
+      &:hover, > span {
+        color: $clr-light;
+      }
+    }
+  }
+}
+
+.bn-white {
+  border-color: $clr-white;
+
+  > {
+    .bn-title {
+      background: $clr-white;
+
+      > span {
+        border-left-color: $clr-white;
+      }
+    }
+
+    ul > li > a {
+      &:hover, > span {
+        color: $clr-white;
+      }
+    }
+  }
+}
+
+
+.bn-bordernone {
+  border: none;
+}
+
+.bn-italic > ul > li > a {
+  font-style: italic;
+}
+
+.bn-bold > ul > li > a {
+  font-weight: bold;
+}
+
+.breakingNews > {
+  .bn-navi, ul > li > a, .bn-navi > span {
+    transition: .25s linear;
+    -moz-transition: .25s linear;
+    -webkit-transition: .25s linear;
+  }
+}
