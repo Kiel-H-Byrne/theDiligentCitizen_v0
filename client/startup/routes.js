@@ -157,10 +157,10 @@ Router.route('/party', function() {
     this.render('party', {to: 'content'});
 });
 
-Router.route('/voters', function() {
+Router.route('/elections', function() {
     // use the template named ApplicationLayout for our layout
     this.layout('ApplicationLayout');
-    this.render('voters', {to: 'content'});
+    this.render('elections', {to: 'content'});
 });
 
 
