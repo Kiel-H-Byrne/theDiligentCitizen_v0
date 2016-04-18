@@ -188,7 +188,7 @@ getFreq = function(obj, label) {
         }
     });
     var keys = _.difference(allKeys, shorts);
-    console.log(shorts);
+    //console.log(shorts);
     var values = _.map(keys, function(k) { return freqObj[k]; });
     // Transpose the values matrix
     

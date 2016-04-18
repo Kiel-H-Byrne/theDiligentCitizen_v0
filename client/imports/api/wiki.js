@@ -42,9 +42,9 @@ Template.gCivic.onRendered(function() {
 					return false;
 				} else if (summ) {
 					var abbrevSumm = summ.substring(0,500);
-					//console.log(summ);
+					console.log(typeof summ);
 					var oldSumm = summArr;
-				  	summArr = oldSumm.concat( getFreq(summ) );
+			  		oldSumm.push( summ );
 				  	//console.log(summArr);
 				  	Session.set('cloudArr', summArr);
 					return abbrevSumm;

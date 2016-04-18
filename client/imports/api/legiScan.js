@@ -65,7 +65,7 @@ Template.legiScanResults.helpers({
         res = res.searchresult;
         res.query = params.query;
         Session.set('results', res);
-        Session.set('lsWords', getFreq(res, 'title'));
+        Session.set('cloudArr', getFreq(res, 'title'));
         //return res;
       }
     });

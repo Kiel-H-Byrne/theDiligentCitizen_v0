@@ -10,7 +10,7 @@ Template.upcoming.helpers({
 	  var res = ReactiveMethod.call('sunLight', method, urlParams);
 	  if (res) {
 	  		var results = res.results;
-	  		console.log(results);
+	  		//console.log(results);
 			return results;
 		}
 	},

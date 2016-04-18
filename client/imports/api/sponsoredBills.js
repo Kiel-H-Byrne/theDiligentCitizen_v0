@@ -18,7 +18,8 @@ Template.sponsoredBills.helpers({
 				var results = res.results;
 				//console.log(res);
 				Session.set('sponsoredBills', results);
-				Session.set('sbWords', getFreq(results, 'official_title'));			
+				//should add to a cumulative array and then make that cumulative array the cloudarray.
+				Session.set('cloudArr', getFreq(results, 'official_title'));			
 				return results;
 			}
 			
