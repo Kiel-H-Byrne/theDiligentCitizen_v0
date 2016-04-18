@@ -1,11 +1,15 @@
 <template name="pollster">
 	<div id="charts" class="ui container">
-		<h3 class="ui medium header">Huffington Polls: </h3>
 		<div class="ui cards">
 			{{#each charts}}
 				{{#if estimates}}
 				<div class="chart ui card">
+					<div class="ui content">
 						{{> highchartsHelper chartId=this.slug chartWidth="100%" charHeight="100%" chartObject=topChart}}
+					</div>
+					<div class="ui extra content centered sub header">
+						<h5>Updated on {{date}}</h5>
+					</div>					
 				</div>
 				{{/if}}
 			{{/each}}

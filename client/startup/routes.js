@@ -133,34 +133,34 @@ Router.route('/bill/:id', function() {
     this.render('bill');
 });
 
+Router.route('/bills', function(){
+    // use the template named ApplicationLayout for our layout
+    this.layout('ApplicationLayout');
+    this.render('legiScanResults', {to: 'content'});
+});
 
 Router.route('/representatives', function(){
     // use the template named ApplicationLayout for our layout
     this.layout('ApplicationLayout');
-
     this.render('myReps', {to: 'content'});
-});
-
-Router.route('/bills', function(){
-    // use the template named ApplicationLayout for our layout
-    this.layout('ApplicationLayout');
-
-    this.render('legiScanResults', {to: 'content'});
 });
 
 Router.route('/public-opinion-polls', function(){
     // use the template named ApplicationLayout for our layout
     this.layout('ApplicationLayout');
-
-    this.render('PublicOpinionPolls', {to: 'content'});
+    this.render('pollster', {to: 'content'});
 });
 
 Router.route('/party', function() {
-    this.render('party');
+    // use the template named ApplicationLayout for our layout
+    this.layout('ApplicationLayout');
+    this.render('party', {to: 'content'});
 });
 
-Router.route('/civics', function() {
-    this.render('gCivic');
+Router.route('/voters', function() {
+    // use the template named ApplicationLayout for our layout
+    this.layout('ApplicationLayout');
+    this.render('voters', {to: 'content'});
 });
 
 

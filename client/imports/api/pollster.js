@@ -15,14 +15,16 @@ METHODS:
 */
 	
 	var ipInfo = Session.get('ipInfo');
-	  var method = 'charts';
-	  var params = {};
-	  params.state = ipInfo.state;
-	  urlParams = jQuery.param(params);
-	  if (params.state) {
-			return ReactiveMethod.call('huffPollster', method, urlParams);
-		}
-
+	var method = 'charts';
+	var params = {};
+	// params.state = abbr_State(ipInfo.region, 'abbrev');
+	params.state = "US";
+	params.topic = '2016-president';
+	urlParams = jQuery.param(params);
+	var res =  ReactiveMethod.call('huffPollster', method, urlParams);
+	console.log(res);
+	return res;
+	  
 	},
 	topChart: function() {
 		//console.log(this);
@@ -84,5 +86,12 @@ METHODS:
 			        */
 		    }]
 		  };
+		},
+		date: function() {
+			var utcDate = this.last_updated;
+			
+			var localDate = new Date(utcDate);
+			localDate = localDate.toLocaleDateString("en-US");
+			return localDate;
 		}
 });

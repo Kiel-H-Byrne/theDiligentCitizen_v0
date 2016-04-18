@@ -1,26 +1,56 @@
 <template name="party">
-	<h2>Party Time!</h2>
-	<div>
+
+	<div class="ui cards">
 		{{#each party}}
-		<div class="ui segment">
-			<p> Party for:
-				{{#each this.beneficiaries}}
-					<li>{{this.title}} {{this.name}}</li>
-				{{/each}}
-			</p>
-			<p>Contribution Info: {{this.contributions_info}}</p>
-			<p>Paid for by: {{this.distribution_paid_for_by}}</p>
-			<p>RSVP to: {{rsvp_info}}</p>
-			<p>Hosted By: 
-				{{#each this.hosts}}
-				<li>{{this.name}}</li>
-				{{/each}}
-			</p>
-			<p>
-				Location: {{this.venue.venue_name}} <br />
-				{{this.venue.address1}} <br />
-				{{this.venue.city}},  {{this.venue.state}}  {{this.venue.zipcode}}  
-			</p>
+		<div class="ui card">
+			<div class="content">
+				<a class="ui  ribbon label"> Party for: </a>
+				<span>
+					{{#each beneficiaries}}
+						{{title}} {{name}}
+					{{/each}}
+				</span>
+			</div>
+			{{#if contributions_info}}
+			<div class="content">
+				<a class="ui  ribbon label">Contribution Info: </a>
+				<p>{{contributions_info}}</p>
+			</div>
+			{{/if}}
+			{{#if distribution_paid_for_by}}
+			<div class="content">
+				<a class="ui  ribbon label">Paid for by: </a>
+				<span>{{distribution_paid_for_by}}</span>
+			</div>
+			{{/if}}
+			{{#if rsvp_info}}
+			<div class="content">
+				<a class="ui  ribbon label"> RSVP to: </a>
+				<span>{{rsvp_info}}</span>
+			</div>
+			{{/if}}
+			{{#if hosts}}
+			<div class="content">
+				<a class="ui  ribbon label">Hosted By: </a>
+				<p>
+					{{#each hosts}}
+						{{name}}
+					{{/each}}
+				</p>
+			</div>
+			{{/if}}
+			<div class="content">
+			<a class="ui  ribbon label"> Venue: </a>
+			<span class="ui cleared">
+				{{#with venue}}
+					{{#if venue_name}} {{venue_name}} <br /> {{/if}}
+					{{#if address1}} {{address1}} <br /> {{/if}}
+					{{#if city}} {{city}} {{/if}},  
+					{{#if state}} {{state}}  {{/if}}
+					{{#if zipcode}} {{zipcode}}  {{/if}}
+				{{/with}}
+			</span>
+			</div>
 		</div>
 		{{/each}}
 	</div>

@@ -40,8 +40,19 @@ Template.ipInfo.events({
    var entered = tpl.find('input#self-state').value;
 	 if (entered.length === 5 ) {
 	    var newZip = entered;
-	    Session.set('newZip', newZip);
-	    console.log("they put "+newZip);
+	    Session.set('newZip', entered);
+	    console.log("they put "+entered);
+	    var res = Meteor.call('zipCode', entered, function(e,r) {
+	    	if (e) {
+	    		console.log(e);
+	    	} else {
+	    		console.log(r.state);
+	   			Session.set('newState', r.state);
+	    		return r;
+	    	}
+	    });
+
+
 	  }
     //else if entered a number , set value to zipcode
 	

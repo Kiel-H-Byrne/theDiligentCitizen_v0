@@ -65,8 +65,9 @@ Meteor.methods({
     console.log("***calling zipCodeAPI.com method with "+zip);
     var key = Meteor.settings.public.govSettings.zipCodeAPI.key;
     var apiUrl = 'https://www.zipcodeapi.com/rest/'+ key + '/info.json/'+ zip + '/degrees';
+    console.log("--URL--"+apiUrl);
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    console.log("--URL--"+apiURL);
+    //console.log(response);
     return response;
   },
   sunLight: function(method, params) {
@@ -85,8 +86,8 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.sunlight.apikey;
     //methods are "/event, /lawmakers, /venue"
     var apiUrl = 'http://politicalpartytime.org/api/v1/' + method + '?apikey=' + key + '&' +params;
-    var response = Meteor.wrapAsync(apiCall)(apiUrl);  
     console.log("--URL--"+apiUrl);
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);  
     // console.log(response);
     return response;    
   },  
@@ -114,7 +115,7 @@ Meteor.methods({
     console.log ( '*** running pollster() with method: "'+ method +'" and params: '+ params);
     var apiUrl = 'http://elections.huffingtonpost.com/pollster/api/' + method + '?' +params;
     var response = Meteor.wrapAsync(apiCall)(apiUrl);
-    //console.log("--URL--"+apiUrl);
+    console.log("--URL--"+apiUrl);
     //console.log(response);
     return response;
   },
