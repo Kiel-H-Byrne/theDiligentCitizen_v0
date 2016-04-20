@@ -42,11 +42,12 @@ Template.gCivic.onRendered(function() {
 					return false;
 				} else if (summ) {
 					var abbrevSumm = summ.substring(0,500);
-					console.log(typeof summ);
-					var oldSumm = summArr;
-			  		oldSumm.push( summ );
+					//TODO: Need to set up so that cloud array builds up with each call. summary/bio #2 gets added to #1, #3 gets added to this overall summary, etc....
+					//console.log(typeof summ);
+					// var oldSumm = summArr;
+			  		// oldSumm.push( summ );
 				  	//console.log(summArr);
-				  	Session.set('cloudArr', summArr);
+				  	// Session.set('cloudArr', summArr);
 					return abbrevSumm;
 				} else {return null;}
 		},

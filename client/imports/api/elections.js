@@ -9,11 +9,12 @@ Template.elections.helpers({
 		var method = "elections";
 		var params = {};
 		var res = ReactiveMethod.call('googleCivic', method);
-
+		if (res) {
 			//removes first value of array (VIP Test Election) 
-		res.elections.shift();
-			//console.log(res);
-		return res;
+			res.elections.shift();
+			console.log(res);
+			return res;
+		}
 	}
 });
 
