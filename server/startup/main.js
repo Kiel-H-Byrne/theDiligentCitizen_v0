@@ -137,7 +137,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.googleCivic.key;
     var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method + '?key=' + key + '&' +params;
     //console.log(apiUrl);
-    //var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    var response = Meteor.wrapAsync(apiCall)(apiUrl);
     //console.log(response);
     return response;   
 
