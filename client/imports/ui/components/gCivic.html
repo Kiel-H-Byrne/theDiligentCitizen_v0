@@ -53,13 +53,15 @@
                             {{/if}}
                             {{#if getOfficial 'address' data this }}
                                 {{#with getOfficial 'address' data this}}
-                                    <div class="centered content">
-                                        <p>
-                                        {{this.line1}}<br />
-                                        {{this.line2}}<br />
-                                        {{this.city}}, {{this[0].state}}  {{this.zip}}
-                                        </p>
-                                    </div>
+                                    {{#each this}}
+                                        <div class="centered content">
+                                            <p>
+                                            {{capitalize this.line1}}<br />
+                                            {{capitalize this.line2}}<br />
+                                            {{capitalize this.city}}, {{this.state}}  {{this.zip}}
+                                            </p>
+                                        </div>
+                                    {{/each}}
                                 {{/with}}
                             {{/if}}
                             <div id="social" class="ui center aligned extra content">

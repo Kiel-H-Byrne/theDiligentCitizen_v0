@@ -51,6 +51,12 @@ Template.registerHelper('getOfficial',function(property, data, index) {
 	}
 });
 
+Template.registerHelper('capitalize',function toTitleCase(str)
+{
+	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+});
+
+
 Template.registerHelper('getOffice',function(property, data, index) {
 	if (data) {
 		// console.log(data.offices[index][property]);
