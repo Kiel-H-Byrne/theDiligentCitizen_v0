@@ -1,18 +1,17 @@
 <template name="elections">
 		{{#with data}}
-<div class="ui container">
-	<h2>Upcoming Elections:</h2>
-	<div class="ui compact piled segments">
-		{{#each elections}}
-		<div class="ui segment">
-			<div class="content">
-				<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
-				<span class="ui">{{name}}</span> 
-			</div>
+<div class="ui text container segments">
+<h2 class="ui block center aligned attached header">Upcoming Elections:</h2>
+	{{#each elections}}
+	<div class="ui segment">
+		<div class="content">
+			<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
+			<span class="ui tiny header">{{name}}</span> 
 		</div>
-		{{/each}}
 	</div>
+	{{/each}}
 </div>
+
 	{{/with}}
 </template>
 

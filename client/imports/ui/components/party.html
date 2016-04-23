@@ -1,58 +1,73 @@
-<template name="party">
-
-	<div class="ui cards">
-		{{#each party}}
-		<div class="ui card">
+<template name="fundRaisers">
+<div class="ui container" id="fund-raiser">
+	<h2 class="ui header block centered segment">Local Fundraisers:</h2>
+	<div class="ui three stackable cards">
+		{{#each fundraiser}}
+		<div class="ui card ">
 			<div class="content">
-				<a class="ui  ribbon label"> Party for: </a>
-				<span>
+				<a class="ui large basic ribbon horizontal label"> Party for: </a>
+				<p class="ui horizontal list">
 					{{#each beneficiaries}}
-						{{title}} {{name}}
+					<div class="ui item">
+						<div class="header">
+							{{title}} {{name}}
+						</div>
+						<div class="meta description">
+							{{state}} ({{party}})
+						</div>
+					</div>
 					{{/each}}
-				</span>
+				</p>
 			</div>
+			{{#if start_date}}
+			<div class="content">
+				<a class="ui large ribbon horizontal label">Date &amp; Time: </a>
+				<div class="ui tiny header">{{start_date}} | {{start_time}}</div>
+			</div>
+			{{/if}}
 			{{#if contributions_info}}
 			<div class="content">
-				<a class="ui  ribbon label">Contribution Info: </a>
-				<p>{{contributions_info}}</p>
+				<a class="ui medium ribbon label">Contribution Info: </a>
+				<div class="ui tiny header">{{contributions_info}}</div>
 			</div>
 			{{/if}}
 			{{#if distribution_paid_for_by}}
 			<div class="content">
-				<a class="ui  ribbon label">Paid for by: </a>
-				<span>{{distribution_paid_for_by}}</span>
+				<a class="ui large ribbon label">Paid for by: </a>
+				<div class="ui tiny header">{{distribution_paid_for_by}}</div>
 			</div>
 			{{/if}}
 			{{#if rsvp_info}}
 			<div class="content">
-				<a class="ui  ribbon label"> RSVP to: </a>
-				<span>{{rsvp_info}}</span>
+				<a class="ui large ribbon label"> RSVP to: </a>
+				<div class="ui tiny header">{{rsvp_info}}</div>
 			</div>
 			{{/if}}
 			{{#if hosts}}
 			<div class="content">
-				<a class="ui  ribbon label">Hosted By: </a>
-				<p>
+				<a class="ui large horizontal ribbon label">Hosted By: </a>
+				<div class="ui celled selection list">
 					{{#each hosts}}
-						{{name}}
+					<div class="item"> {{name}}</div>
 					{{/each}}
-				</p>
+				</div>
 			</div>
 			{{/if}}
 			<div class="content">
-			<a class="ui  ribbon label"> Venue: </a>
-			<span class="ui cleared">
-				{{#with venue}}
-					{{#if venue_name}} {{venue_name}} <br /> {{/if}}
-					{{#if address1}} {{address1}} <br /> {{/if}}
-					{{#if city}} {{city}} {{/if}},  
-					{{#if state}} {{state}}  {{/if}}
-					{{#if zipcode}} {{zipcode}}  {{/if}}
-				{{/with}}
-			</span>
+				<a class="ui large ribbon label"> Venue: </a>
+				<div class="ui tiny header">
+					{{#with venue}}
+						{{#if venue_name}}{{venue_name}} <br /> {{/if}}
+						{{#if address1}}{{address1}} <br /> {{/if}}
+							{{#if city}} {{city}} ,{{/if}}  
+							{{#if state}} {{state}}  {{/if}}
+							{{#if zipcode}} {{zipcode}} {{/if}}
+					{{/with}}
+				</div>
 			</div>
 		</div>
 		{{/each}}
 	</div>
+</div>
 </template>
 

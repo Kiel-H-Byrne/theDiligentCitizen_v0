@@ -1,9 +1,9 @@
 <template name="sponsoredBills">
 	<div class="ui container">
-		<h4 class="ui centered header">Sponsored Bills: </h4>
+		<h4 class="ui center aligned block header">Sponsored Bills: </h4>
 		<div class="ui tag labels">
 		{{#each sponsored_bills bioguide_id}}
-			<span class="ui label" data-variation="basic">
+			<span class="ui label" >
 				<a href="{{urls.congress}}"> {{bill_id}} </a>
 			</span>
 			<div class="ui fluid popup hidden">{{official_title}}</div>

@@ -11,6 +11,7 @@ Template.legiScanSearch.helpers({
       //console.log(ipInfo.region+" Right????");
       return state;
     }
+
   }
 });
 

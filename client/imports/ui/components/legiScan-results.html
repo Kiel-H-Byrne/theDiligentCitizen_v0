@@ -2,37 +2,46 @@
 
   <div id="legiResults" class="">
     <!-- set the data context -->
-    {{#with query}}
-      <!-- if location has an error property, display it -->
-      {{#if error}}
-        <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
-      {{else}}
-      <h3 class="ui center aligned header segment"> Bills related to '{{query}}' ... </h3>
-      <div id="legi-results" class="ui cards centered">
-        {{#each queryList}}
-          {{#if this.value.title}}
-          <div class="ui card">
-            <div class="content">
-              <div class="header">
-                <a href="bill/{{this.value.bill_id}}" target="_blank">
-                  {{this.value.state}} - {{this.value.bill_number}}
-                </a>
+    {{#if query}}
+      {{#with query}}
+        <!-- if location has an error property, display it -->
+        {{#if error}}
+          <p>There was an error:[{{error.errorType}}] [{{error.message}}]!</p>
+        {{else}}
+        <h3 class="ui center aligned header segment"> Bills related to '{{query}}' ... </h3>
+        <div id="legi-results" class="ui cards centered">
+          {{#each queryList}}
+            {{#if this.value.title}}
+            <div class="ui card">
+              <div class="content">
+                <div class="header">
+                  <a href="bill/{{this.value.bill_id}}" target="_blank">
+                    {{this.value.state}} - {{this.value.bill_number}}
+                  </a>
+                </div>
+              </div>
+              <div class="content">
+                <h4 class="ui sub header">{{this.value.title}}</h4>
+                <ul class="ui bulleted selection list">              
+                  <li class="item">{{this.value.last_action_date}} | {{this.value.last_action}}</li>
+                  <li class="item"><a href="{{this.value.text_url}}">View Text</a></li>
+                  <li class="item"><a href="{{this.value.research_url}}">Research This</a></li>
+                  <li class="item"><a href="bill/{{this.value.bill_id}}" target="_blank">Bill Detail</a></li>
+                </ul>
               </div>
             </div>
-            <div class="content">
-              <h4 class="ui sub header">{{this.value.title}}</h4>
-              <ul class="ui bulleted selection list">              
-                <li class="item">{{this.value.last_action_date}} | {{this.value.last_action}}</li>
-                <li class="item"><a href="{{this.value.text_url}}">View Text</a></li>
-                <li class="item"><a href="{{this.value.research_url}}">Research This</a></li>
-                <li class="item"><a href="bill/{{this.value.bill_id}}" target="_blank">Bill Detail</a></li>
-              </ul>
-            </div>
-          </div>
-          {{/if}}
-        {{/each}}
+            {{/if}}
+          {{/each}}
+        </div>
+        {{/if}} 
+      {{/with}}
+    {{else}}
+      <div class="ui error floated message " style="margin-top:2rem">
+        <h3 class="ui aligned right header">
+          Enter a topic to search, here: 
+          <i class="icon aligned right float long arrow right"></i>
+        </h3>
       </div>
-      {{/if}} 
-    {{/with}}
+    {{/if}}
   </div>
 </template>

@@ -154,7 +154,7 @@ Router.route('/public-opinion-polls', function(){
 Router.route('/party', function() {
     // use the template named ApplicationLayout for our layout
     this.layout('ApplicationLayout');
-    this.render('party', {to: 'content'});
+    this.render('fundRaisers', {to: 'content'});
 });
 
 Router.route('/elections', function() {
