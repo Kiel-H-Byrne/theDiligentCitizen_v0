@@ -1,3 +1,7 @@
+Template.elections.onCreated(function() {
+	Meteor.subscribe('electionEvents');
+});
+
 Template.elections.helpers({
 	events: function() {
 /* 
@@ -15,12 +19,14 @@ Template.elections.helpers({
 
 				//removes first value of array (VIP Test Election) 
 				res.elections.shift();
-				Elections.insert(res.elections);
-				var num = Elections.find().count();
-				console.log("some such events, " + num);
 				return res;
 			}
 //		}
+	},
+	events2: function() {
+		var num = Elections.find().count();
+		console.log(num + "election events");
+		return Elections.find();
 	},
 	voterinfo: function(add, id) {
 /* 

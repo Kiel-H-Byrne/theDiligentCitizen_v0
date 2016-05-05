@@ -27,3 +27,10 @@ simple:reactive-method
 maazalik:highcharts
 iron:router
 houston:admin
+accounts-ui
+accounts-password
+accounts-facebook
+accounts-base
+accounts-google
+accounts-twitter
+accounts-oauth

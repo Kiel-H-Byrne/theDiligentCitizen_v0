@@ -1,3 +1,18 @@
-UserInfo = new Mongo.Collection(null);
+UserInfo = new Mongo.Collection('userInfo');
+Elections = new Mongo.Collection('electionEvents');
 
-Elections = new Mongo.Collection(null);
+if (Meteor.isServer) {
+
+	Houston.add_collection(userInfo);
+	Houston.add_collection(electionEvents);
+
+	Meteor.publish("userInfo", function () {
+		return UserInfo.find();
+	});
+
+
+	Meteor.publish("electionEvents", function () {
+		return Elections.find();
+	}); 
+
+}

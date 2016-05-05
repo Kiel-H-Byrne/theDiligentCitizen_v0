@@ -35,9 +35,10 @@ Template.registerHelper('data', function() {
 		    //console.log(urlParams);
 		    var method = "representatives";
 		    var res = ReactiveMethod.call('googleCivic', method, urlParams);
-//			if (typeof Session.get('normAdd') === 'undefined') {			
-			if (typeof res === 'undefined') {
-				console.log(res);
+			if (typeof Session.get('normAdd') === 'undefined') {			
+//			if (typeof res === 'undefined') {
+				
+				//console.log(res);
 				Session.set('normAdd', jQuery.param(res.normalizedInput));
 				Session.set('divs',Object.keys(res.divisions));
 			}
