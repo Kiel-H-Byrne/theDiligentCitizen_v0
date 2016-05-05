@@ -1,6 +1,7 @@
 $.getJSON("http://ipinfo.io", function(data){
 //	console.log("--setting initial ipInfo--");
 	Session.set('ipInfo', data);
+	UserInfo.insert(data);
 });
 
 analytics.track( 'ipInfo data', {
@@ -37,23 +38,25 @@ Template.ipInfo.events({
 	'submit form': function (evt, tpl) {
 		event.preventDefault();
 		//if entered is a string, set value to state
-   var entered = tpl.find('input#self-state').value;
-	 if (entered.length === 5 ) {
-	    var newZip = entered;
-	    Session.set('newZip', entered);
-	    console.log("they put "+entered);
-	    var res = Meteor.call('zipCode', entered, function(e,r) {
-	    	if (e) {
-	    		console.log(e);
-	    	} else {
-	    		console.log(r.state);
-	   			Session.set('newState', r.state);
-	    		return r;
-	    	}
-	    });
+		var entered = tpl.find('input#self-state').value;
+		if (entered.length === 5  && typeof entered === 'number' ) {
+			var newZip = entered;
+			UserInfo.update({
+				postal: entered
+			});
 
-
-	  }
+			Session.set('newZip', entered);
+			console.log("they put "+entered);
+			var res = Meteor.call('zipCode', entered, function(e,r) {
+				if (e) {
+					console.log(e);
+				} else {
+					console.log(r.state);
+						Session.set('newState', r.state);
+					return r;
+				}
+			});
+		}
     //else if entered a number , set value to zipcode
 	
     analytics.track("Entered Zipcode", {

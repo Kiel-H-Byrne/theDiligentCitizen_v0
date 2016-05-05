@@ -1,15 +1,25 @@
 <template name="elections">
-		{{#with data}}
+		{{#with events}}
 <div class="ui container">
 	<h2>Upcoming Elections:</h2>
 	<div class="ui compact piled segments">
 		{{#each elections}}
-		<div class="ui segment">
-			<div class="content">
-				<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
-				<span class="ui">{{name}}</span> 
+			{{#if divMatch ocdDivisionId }}
+			<div class="ui segment">
+				<div class="block header">Your Local Polling Place:</div>
+				<div class="content">
+					<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
+					<span class="ui">{{name}}</span> 
+				</div>
 			</div>
-		</div>
+			{{else}}
+			<div class="ui segment">
+				<div class="content">
+					<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
+					<span class="ui">{{name}}</span> 
+				</div>
+			</div>
+			{{/if}}
 		{{/each}}
 	</div>
 </div>

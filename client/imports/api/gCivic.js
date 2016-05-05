@@ -29,13 +29,19 @@ Template.registerHelper('data', function() {
 		    	params.address = ipInfo.loc;
 		    }
 
-		    params.fields = "normalizedInput,offices,officials";
+		    params.fields = "divisions,normalizedInput,offices,officials";
 		    //console.log("the params {} is", params);
 		    var urlParams = jQuery.param(params);
 		    //console.log(urlParams);
 		    var method = "representatives";
 		    var res = ReactiveMethod.call('googleCivic', method, urlParams);
-		    //console.log(res);
+//			if (typeof Session.get('normAdd') === 'undefined') {			
+			if (typeof res === 'undefined') {
+				console.log(res);
+				Session.set('normAdd', jQuery.param(res.normalizedInput));
+				Session.set('divs',Object.keys(res.divisions));
+			}
+		    
 		    Session.set('reps', res);
     	// semantic blur images
 			$('.image').dimmer({
@@ -51,9 +57,10 @@ Template.registerHelper('getOfficial',function(property, data, index) {
 	}
 });
 
-Template.registerHelper('capitalize',function toTitleCase(str)
-{
-	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+Template.registerHelper('capitalize',function toTitleCase(str) { 
+	if (typeof str !== 'undefined') {	
+		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	}
 });
 
 
