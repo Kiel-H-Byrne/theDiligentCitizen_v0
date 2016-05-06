@@ -1,7 +1,7 @@
 <template name="elections">
 		{{#with events}}
 <div class="ui container">
-	<h2>Upcoming Elections:</h2>
+	<h2 class="ui block compact header">Upcoming Elections:</h2>
 	<div class="ui compact piled segments">
 		{{#each elections}}
 			{{#if divMatch ocdDivisionId }}
@@ -23,7 +23,6 @@
 		{{/each}}
 	</div>
 </div>
-
 	{{/with}}
 </template>
 

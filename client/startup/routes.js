@@ -129,8 +129,8 @@ Router.route('/bill/:id', function() {
         }
     });
 
-
-    this.render('bill');
+    this.layout('ApplicationLayout');
+    this.render('bill', {to: 'content'});
 });
 
 Router.route('/bills', function(){
