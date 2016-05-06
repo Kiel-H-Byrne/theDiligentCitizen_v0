@@ -1,13 +1,14 @@
 <template name="register">
-
-  <form class="ui form" id="signup">
-    <label for="emailAddress">Email Address</label>
-    <input type="email" name="emailAddress" />
-    <label for="password">Password</label>
-    <input type="password" name="password" />
-    <button class="ui button" type="submit" value="Sign Up" >Sign Up</button>
-    <button class="ui button" type="submit" value="Log in">
-	    {{> loginButtons}}}
-    </button>
-  </form>
+  <div>
+    <form class="ui small form" id="signup">
+      <label for="emailAddress">Email Address</label>
+      <input type="email" name="emailAddress" />
+      <label for="password">Password</label>
+      <input type="password" name="password" />
+      <button class="ui button" type="submit" value="Sign Up" >Sign Up</button>
+      <button class="ui button" type="submit" value="Log in">
+  	    {{> loginButtons}}
+      </button>
+    </form>
+  </div>
 </template>

@@ -16,7 +16,9 @@
         <!--</ul>-->
     <!--</div>-->
     <div class="breakingNews bn-bordernone bn-primary" id="bn1">
-        <div class="bn-title" style="width: auto;"><h2 style="display: inline-block;">Bulletin</h2><span></span></div>
+        <div class="bn-title" style="width: auto;">
+            <h2 style="display: inline-block;">Bulletin</h2>
+        </div>
         <ul style="left: 138px;">
             {{#each newsItems}}
                 <li style="display: list-item;"><a href="{{this.link}}">{{this.title}} -{{this.author}}</a></li>
@@ -28,10 +30,10 @@
             <span></span>
         </div>
     </div>
-{{#each newsItems}}
-    <div class="ui popup" id="popup-{{this.id}}">
-        <div class="header">Custom Header</div>
-        <div class="ui button">Click Me</div>
-    </div>
-{{/each}}
+        {{#each newsItems}}
+            <div class="ui popup" id="popup-{{this.id}}">
+                <div class="header">Custom Header</div>
+                <div class="ui button">Click Me</div>
+            </div>
+        {{/each}}
 </template>
