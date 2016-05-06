@@ -181,7 +181,10 @@ Router.route('/elections', function() {
 //     this.render('voters');
 // });
 
-
+Router.route('/blank', function() {
+    this.layout('ApplicationLayout');
+    
+})
 
 
 
