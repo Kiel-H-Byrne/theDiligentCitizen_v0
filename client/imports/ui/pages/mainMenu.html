@@ -1,18 +1,22 @@
 <template name="MainMenu">
-    <div id="main-menu" class="ui fixed menu">
-        <div class="ui container">
-            <a href="/" class="header item">
+
+    <div id="main-menu" class="ui fixed pointing menu">
+        <div class="item">
+            <a href="/" >
                 <img class="logo" src="img/tdc.png" >
             </a>
-            <a href="/" class="item">Home</a>
-            <a class="item" href="/bills">Bills</a>
-            <a class="item" href="/representatives">Representatives</a>
-            <div class="ui simple dropdown item">
-                More.... <i class="dropdown icon"></i>
+        </div>
+        <div class="ui container">
+            <!-- <a class="header item" href="/"> Home </a> -->
+            <a class="header item" href="/bills"> Search Laws </a>
+            <a class="header item" href="/representatives"> Representatives </a>
+            <div class="ui pointing dropdown item">
+                <a class="header item"> More.... </a>
+                <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item" href="/public-opinion-polls">Presidential Public Opinion</a>
-                    <a class="item" href="/party">Local Fundraising Events</a>
-                    <a class="item" href="/elections">Upcoming Elections</a>
+                    <a class="header item" href="/public-opinion-polls">Presidential Public Opinion</a>
+                    <a class="header item" href="/party">Local Fundraising Events</a>
+                    <a class="header item" href="/elections">Upcoming Elections</a>
                 </div>
             </div>
             <div class=" item">

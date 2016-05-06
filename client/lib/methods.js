@@ -232,3 +232,10 @@ var setList = function(l) {
 Template.registerHelper("isEmpty", function (object) {
     return jQuery.isEmpty(object);
 });
+
+Template.MainMenu.onRendered(function() {
+
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+});

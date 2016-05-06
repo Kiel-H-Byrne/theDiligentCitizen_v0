@@ -1,8 +1,19 @@
+var cache = new ApiCache('rest', 60);
 var apiCall2 = function (apiUrl, params, headers, callback) {
   // try...catch allows you to handle errors 
   var errorCode, errorMessage;
   try {
-    var response = HTTP.get(apiUrl, {params: params, headers: headers}).data;
+
+    var dataFromCache = cache.get(apiUrl);
+    console.log("key: "+apiUrl);
+    var response = {};
+
+    if(dataFromCache) {
+      response = dataFromCache;
+    } else {
+      response = HTTP.get(apiUrl, {params: params, headers: headers}).data;
+      cache.set(apiUrl, response);
+    }
 
     // A successful API call returns no error
     // but the contents from the JSON response
@@ -35,8 +46,18 @@ var apiCall = function (apiUrl, callback) {
   // try…catch allows you to handle errors 
   var errorCode, errorMessage;
   try {
-    var response = HTTP.get(apiUrl).data;
-    // A successful API call returns no error 
+
+    var dataFromCache = cache.get(apiUrl);
+    var response = {};
+
+    if(dataFromCache) {
+      response = dataFromCache;
+    } else {
+      response = HTTP.get(apiUrl).data;
+      cache.set(apiUrl, response);
+    }
+
+    // A successful API call returns no error
     // but the contents from the JSON response
     callback(null, response);
     
