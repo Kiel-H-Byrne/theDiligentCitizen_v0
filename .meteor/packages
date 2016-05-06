@@ -26,7 +26,6 @@ overture8:wordcloud2
 simple:reactive-method
 maazalik:highcharts
 iron:router
-houston:admin
 accounts-ui
 accounts-password
 accounts-facebook
@@ -37,3 +36,5 @@ accounts-oauth
 alanning:roles
 miktam:server-cache
 dburles:google-maps
+yogiben:admin
+dburles:collection-helpers
