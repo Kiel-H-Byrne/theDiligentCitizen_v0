@@ -28,11 +28,18 @@ Template.myReps.helpers ({
 	    	//console.log("Sesh-district: " + res.district);
 
 	    	//adding ipInfo Object: districts, params, state
-				ipInfo.districts = res;
-				ipInfo.params = urlParams;
-				ipInfo.state = ipInfo.districts[0].state;
-				//console.log(ipInfo.state);
-	      Session.set('ipInfo', ipInfo);
+			ipInfo.districts = res;
+			ipInfo.params = urlParams;
+			ipInfo.state = ipInfo.districts[0].state;
+			//console.log(ipInfo.state);
+			Session.set('ipInfo', ipInfo);
+			Meteor.users.update({
+				_id : Meteor.user()._id
+			}, { 
+				$set: {
+					"profile.state" : res[0].state
+				} 
+			});
 	    }
 	  });	  
 		return ipInfo;
@@ -62,8 +69,15 @@ Template.myReps.helpers ({
 		    } else {
 		    	res = res.results;
 		    	//console.log("Sesh-district: " + res.district);
-					Session.set('legislators', res);
-					//console.log(res[0]);
+				Session.set('legislators', res);
+				//console.log(res[0]);
+				Meteor.users.update({
+					_id : Meteor.user()._id
+				}, { 
+					$set: {
+						"profile.legislators" : res
+					} 
+				});
 		      return res;
 		    }
 		  });
