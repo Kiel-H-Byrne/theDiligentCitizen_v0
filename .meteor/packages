@@ -31,10 +31,10 @@ accounts-password
 accounts-facebook
 accounts-base
 accounts-google
-accounts-twitter
 accounts-oauth
 alanning:roles
 miktam:server-cache
 dburles:google-maps
-yogiben:admin
 dburles:collection-helpers
+useraccounts:semantic-ui
+houston:admin
