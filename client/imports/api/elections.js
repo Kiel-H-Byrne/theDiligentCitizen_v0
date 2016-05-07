@@ -49,9 +49,16 @@ Template.elections.helpers({
 	}, 
 	divMatch: function(id) {
 		var divs = Session.get('div');
-		// console.log(id); 
-		console.log(jQuery.inArray(id,divs));
-		if (jQuery.inArray(id,divs) !== -1 ) {
+		var users = Meteor.users.find({
+			_id : Meteor.user()._id,
+			// "profile.divs" : id
+		}).fetch();
+		var divz = users[0].profile.divs;
+		console.log(divz);
+		console.log(id); 
+		var match = jQuery.inArray(id,divz);
+		if (match !== -1 ) {
+			console.log('MATCH!!');
 			return true;	
 		}
 		
