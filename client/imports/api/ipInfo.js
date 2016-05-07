@@ -1,7 +1,13 @@
 $.getJSON("http://ipinfo.io", function(data){
 //	console.log("--setting initial ipInfo--");
 	Session.set('ipInfo', data);
-	UserInfo.insert(data);
+	Meteor.users.update({
+		_id : Meteor.user()._id
+	}, { 
+		$set: {
+			profile : data
+	} });
+
 });
 
 analytics.track( 'ipInfo data', {
@@ -39,10 +45,15 @@ Template.ipInfo.events({
 		event.preventDefault();
 		//if entered is a string, set value to state
 		var entered = tpl.find('input#self-state').value;
-		if (entered.length === 5  && typeof entered === 'number' ) {
+		console.log(entered);
+		if (entered.length === 5  && $.isNumeric(entered) ) {
 			var newZip = entered;
-			UserInfo.update({
-				postal: entered
+			Meteor.users.update({
+				_id : Meteor.user()._id
+			}, { 
+				$set: {
+					"profile.postal" : entered
+				} 
 			});
 
 			Session.set('newZip', entered);
@@ -52,12 +63,22 @@ Template.ipInfo.events({
 					console.log(e);
 				} else {
 					console.log(r.state);
-						Session.set('newState', r.state);
+					Session.set('newState', r.state);
+					Meteor.users.update({
+						_id : Meteor.user()._id
+					}, { 
+						$set: {
+							"profile.state" : r.state
+						} 
+					});
 					return r;
 				}
 			});
 		}
-    //else if entered a number , set value to zipcode
+		else {
+			console.log("Did not enter a valid zip!");
+		}
+	    
 	
     analytics.track("Entered Zipcode", {
       zip: entered

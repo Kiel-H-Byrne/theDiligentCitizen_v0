@@ -1,4 +1,9 @@
+//milktam:server-cache package - https://github.com/miktam/server-cache
+//instantiates ApiCache obect which creates ' rest_+name+ ' upon creation, with time to live.
+//ex. var cache = new ApiCache('name',ttl);
+
 var cache = new ApiCache('rest', 120);
+
 var apiCall2 = function (apiUrl, params, headers, callback) {
   // try...catch allows you to handle errors 
   var errorCode, errorMessage;
@@ -9,9 +14,16 @@ var apiCall2 = function (apiUrl, params, headers, callback) {
     var response = {};
 
     if(dataFromCache) {
+      console.log("Data from Cache2...");
       response = dataFromCache;
     } else {
-      response = HTTP.get(apiUrl, {params: params, headers: headers}).data;
+      console.log("Data from API2...");
+        if (params, headers) {
+          response = HTTP.get(apiUrl, {params: params, headers: headers}).data;
+        }
+        else {
+          response = HTTP.get(apiUrl).data;
+        }
       cache.set(apiUrl, response);
     }
 
@@ -48,18 +60,23 @@ var apiCall = function (apiUrl, callback) {
   try {
 
     var dataFromCache = cache.get(apiUrl);
+    console.log("key: "+apiUrl);
     var response = {};
 
     if(dataFromCache) {
+      console.log("Data from Cache...");
       response = dataFromCache;
     } else {
+      console.log("Data from API...");
       response = HTTP.get(apiUrl).data;
       cache.set(apiUrl, response);
     }
 
     // A successful API call returns no error
     // but the contents from the JSON response
-    callback(null, response);
+    if(callback) {
+      callback(null, response);
+    }
     
   } catch (error) {
     // If the API responded with an error message and a payload 
@@ -156,9 +173,20 @@ Meteor.methods({
     this.unblock();
     console.log( '*** running googleCivic() with memberID:'+ method);
     var key = Meteor.settings.public.govSettings.googleCivic.key;
-    var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method + '?key=' + key + '&' +params;
+
+    var gHeaders = {
+      'Accept-Encoding': 'gzip',
+    };
+    // var pParams = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+    // pParams.key = key;
+    // console.log(pParams);
+
+    // var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method;
+    
+    var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method + '?' + params + '&key=' +key;
+    var pParams;
     //console.log(apiUrl);
-    var response = Meteor.wrapAsync(apiCall)(apiUrl);
+    var response = Meteor.wrapAsync(apiCall2)(apiUrl, pParams, gHeaders);
     //console.log(response);
     return response;   
 
