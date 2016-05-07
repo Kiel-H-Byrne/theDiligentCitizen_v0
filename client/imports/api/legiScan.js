@@ -24,6 +24,10 @@ Template.legiScanSearch.events({
 
     var query = tpl.find('input#query').value;
     Session.set('query', query);
+    Queries.insert({
+      'query' : query,
+      'searchDate' : new Date()
+    });
 
     analytics.track("Legi Search", {
       query: query

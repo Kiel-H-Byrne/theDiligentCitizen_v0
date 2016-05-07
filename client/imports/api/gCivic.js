@@ -40,7 +40,13 @@ Template.registerHelper('data', function() {
 				
 				//console.log(res);
 				Session.set('normAdd', jQuery.param(res.normalizedInput));
-				Session.set('divs',Object.keys(res.divisions));
+				// Session.set('divs',Object.keys(res.divisions));
+				Meteor.users.update({
+					_id : Meteor.user()._id
+				}, { 
+					$set: {
+						"profile.divs" : Object.keys(res.divisions)
+				} });
 			}
 		    
 		    Session.set('reps', res);
