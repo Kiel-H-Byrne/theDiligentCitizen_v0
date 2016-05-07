@@ -1,4 +1,4 @@
-var cache = new ApiCache('rest', 60);
+var cache = new ApiCache('rest', 120);
 var apiCall2 = function (apiUrl, params, headers, callback) {
   // try...catch allows you to handle errors 
   var errorCode, errorMessage;

@@ -28,13 +28,8 @@ maazalik:highcharts
 iron:router
 accounts-ui
 accounts-password
-accounts-facebook
 accounts-base
-accounts-google
-accounts-oauth
-alanning:roles
 miktam:server-cache
 dburles:google-maps
 dburles:collection-helpers
-useraccounts:semantic-ui
 houston:admin

@@ -10,10 +10,11 @@
       "opensecrets" :  {"key" : "08d7cd3a8000d7e4a48517a963eaf0d2"},
       "nytimes" :      {"key" : "557b2bfde68793e7d49ca5a2daf77602:14:28561524"},
       "googleCivic" :  {"key" : "AIzaSyBNzyA3bLJAEgG5Uaod51j6g_8sBlTk26E"},
-      "googleMaps"  :  {"key":"AIzaSyBNzyA3bLJAEgG5Uaod51j6g_8sBlTk26E"},
       "zipCodeAPI" : {"key":"C7wW0clw2qVoiRsynUlKhlzkei1Bx4N9bk6cxrIASEYbwrJUl4ECqeXEwYf423ee"},
       "mashable" : {"key" : "5PSkG942Xxmsh544UJtAwof0D4pSp1sQ2A3jsnQBNLNhvbnHqR"}
-    }
+    },
+    "houston_root_route": "/admin", 
+    "houston_documents_per_page": 9001
   }
 }
 
