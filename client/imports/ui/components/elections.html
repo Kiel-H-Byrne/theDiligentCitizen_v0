@@ -8,14 +8,23 @@
 				<div class="ui raised segment">
 					<div class="content">
 						<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
-						<span class="ui">{{name}}</span> 
-					</div>
-					<div class="block header">Your Local Polling Place:</div>
-					{{#with voterinfo id}}
-						<div class="content">
-							
+						<span class="">{{name}}</span> 
+						<div class="ui segment">
+							<div class="ui block header">Your Local Polling Place:</div>
+							{{#with voterinfo id}}
+							<div class="content">
+								{{#with dropOffLocations.[0]}}
+								
+									<h3 class="subheader"> {{name}}</h3>
+									<p>	{{address.line1}} <br />
+									{{address.city}}, {{address.state}}  {{address.zip}}</p>
+									<p> Hours: {{pollingHours}}</p>
+								
+								{{/with}}
+							</div>
+							{{/with}}
 						</div>
-					{{/with}}
+					</div>
 				</div>
 				{{else}}
 				<div class="ui segment">

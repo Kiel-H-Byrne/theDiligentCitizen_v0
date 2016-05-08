@@ -50,14 +50,15 @@ Template.ipInfo.events({
 			//user has entered their zipcode
 	
 			Session.set('newZip', entered);
-			console.log("they put "+entered);
+			// console.log("they put "+entered);
 			//convert zipcode to state.
 			var res = Meteor.call('zipCode', entered, function(e,r) {
 				if (e) {
 					console.log(e);
 				} else {
-					console.log(r.state);
+					console.log(r);
 					Session.set('newState', r.state);
+					Session.set('newLoc', r.lat +',' +r.lng)
 					return r;
 				}
 			});

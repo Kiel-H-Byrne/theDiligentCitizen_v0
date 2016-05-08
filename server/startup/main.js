@@ -179,9 +179,9 @@ Meteor.methods({
     var gHeaders = {
       // 'Accept-Encoding': 'gzip',
     };
-    // var pParams = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
-    // pParams.key = key;
-    // console.log(pParams);
+    var addrObj = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+    // addrObj.key = key;
+    console.log(addrObj);
 
     // var apiUrl = 'https://www.googleapis.com/civicinfo/v2/' + method;
     

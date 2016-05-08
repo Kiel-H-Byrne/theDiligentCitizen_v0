@@ -31,11 +31,16 @@ Template.elections.helpers({
 	voterinfo: function(id) {
 /* 
 * Searches with an address for voter information. Each election event has an ID, which can also be used to search.
+
+//get more info with more address info.
+// https://www.googleapis.com/civicinfo/v2/voterinfo?address=31%20S%20Parker%20St,%20Lowell,%20OR%2097452&electionId=4206&key=AIzaSyBNzyA3bLJAEgG5Uaod51j6g_8sBlTk26E
+// https://www.googleapis.com/civicinfo/v2/voterinfo?address=43.917121%2C-122.778832&electionId=4259&key
 */
 		var method = "voterinfo";
 		var params = {};
 		// params.fields = "elections";
-		params.address = Session.get('normAdd');
+		params.fields = "normalizedInput,dropOffLocations"
+		params.address = Session.get('newLoc');
 		params.electionId = id;
 		var urlParams = jQuery.param(params);
 		var res = ReactiveMethod.call('googleCivic', method, urlParams);
@@ -47,6 +52,9 @@ Template.elections.helpers({
 			return res;
 		}
 	}, 
+	location : function(index) {
+		console.log(this);
+	},
 	divMatch: function(id) {
 		let userDivs = Meteor.users.find({
 			_id : Meteor.user()._id,
@@ -58,7 +66,7 @@ Template.elections.helpers({
 			let params = {};
 			params.address = entered;
 		    params.fields = "divisions";
-		    //console.log("the params {} is", params);
+		    // console.log("the params {} is", params);
 		    var urlParams = jQuery.param(params);
 		    //console.log(urlParams);
 		    let method = "representatives";
@@ -79,7 +87,7 @@ Template.elections.helpers({
 		}
 
 		if (match !== -1 ) {
-			console.log('MATCH!!', this);
+			console.log('MATCH in '+ this.name);
 			return true;	
 		}
 		
