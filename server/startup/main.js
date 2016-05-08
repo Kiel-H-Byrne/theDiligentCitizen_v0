@@ -2,6 +2,7 @@
 //instantiates ApiCache obect which creates ' rest_+name+ ' upon creation, with time to live.
 //ex. var cache = new ApiCache('name',ttl);
 
+
 var cache = new ApiCache('rest', 120);
 
 var apiCall2 = function (apiUrl, params, headers, callback) {
@@ -36,9 +37,8 @@ var apiCall2 = function (apiUrl, params, headers, callback) {
   } catch (error) {
     // If the API responded with an error message and a payload 
     if (error.response) {
-
       console.log(error.response);
-      errorCode = error.response.data.error ? error.response.data.error.code : -1914;
+      errorCode = error.response.data.error ? error.response.data.error.code : 1911;
       errorMessage = error.response.data.error ? error.response.data.error.message : error.response.data.message;
     // Otherwise use a generic error message
     } else {
@@ -47,6 +47,8 @@ var apiCall2 = function (apiUrl, params, headers, callback) {
     }
     // Create an Error object and return it via callback
     var myError = new Meteor.Error(errorCode, errorMessage);
+    let msg = 'Error: [' + errorCode + '] ' + errorMessage ;
+    Errors.insert({message: msg});
     if(callback) {
       callback(myError, null);
     }
@@ -175,7 +177,7 @@ Meteor.methods({
     var key = Meteor.settings.public.govSettings.googleCivic.key;
 
     var gHeaders = {
-      'Accept-Encoding': 'gzip',
+      // 'Accept-Encoding': 'gzip',
     };
     // var pParams = JSON.parse('{"' + decodeURI(params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
     // pParams.key = key;

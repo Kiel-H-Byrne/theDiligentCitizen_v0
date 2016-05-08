@@ -26,7 +26,8 @@ Template.legiScanSearch.events({
     Session.set('query', query);
     Queries.insert({
       'query' : query,
-      'searchDate' : new Date()
+      'searchDate' : new Date(),
+      'userId' : Meteor.user()._id
     });
 
     analytics.track("Legi Search", {

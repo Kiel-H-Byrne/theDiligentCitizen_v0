@@ -28,13 +28,13 @@ Template.elections.helpers({
 		console.log(num + "election events");
 		return Elections.find();
 	},
-	voterinfo: function(add, id) {
+	voterinfo: function(id) {
 /* 
 * Searches with an address for voter information. Each election event has an ID, which can also be used to search.
 */
 		var method = "voterinfo";
 		var params = {};
-		params.fields = "elections";
+		// params.fields = "elections";
 		params.address = Session.get('normAdd');
 		params.electionId = id;
 		var urlParams = jQuery.param(params);
@@ -48,21 +48,43 @@ Template.elections.helpers({
 		}
 	}, 
 	divMatch: function(id) {
-		var divs = Session.get('div');
-		var users = Meteor.users.find({
+		let userDivs = Meteor.users.find({
 			_id : Meteor.user()._id,
 			// "profile.divs" : id
-		}).fetch();
-		var divz = users[0].profile.divs;
-		console.log(divz);
-		console.log(id); 
-		var match = jQuery.inArray(id,divz);
+		}).fetch()[0].profile.divs;
+		let entered = Session.get('newZip');
+		let match = -1;
+		if (typeof entered !== 'undefined') {
+			let params = {};
+			params.address = entered;
+		    params.fields = "divisions";
+		    //console.log("the params {} is", params);
+		    var urlParams = jQuery.param(params);
+		    //console.log(urlParams);
+		    let method = "representatives";
+		    let res = ReactiveMethod.call('googleCivic', method, urlParams);
+		    if (res) {
+			    let searchDivs = _.toArray(Object.keys(res.divisions));
+			    // console.log(searchDivs);
+				match = jQuery.inArray(id,searchDivs);
+				// console.log('comparing to search divisions: '+match);
+				}
+		} else if (userDivs) {
+			match = jQuery.inArray(id,userDivs);
+			// console.log('comparing to user divisions: '+match);
+		}
+		else {
+			match = -1;
+			// console.log ("nothing to compare with");
+		}
+
 		if (match !== -1 ) {
-			console.log('MATCH!!');
+			console.log('MATCH!!', this);
 			return true;	
 		}
 		
 	}
+	
 });
 
 

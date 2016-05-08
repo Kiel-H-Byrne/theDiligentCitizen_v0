@@ -27,4 +27,5 @@
 // 	});
 // }
 
- Queries = new Mongo.Collection('queries');
+Queries = new Mongo.Collection('queries');
+Errors = new Mongo.Collection('errors');

@@ -239,3 +239,16 @@ Template.MainMenu.onRendered(function() {
     .dropdown()
   ;
 });
+
+
+Meteor.methods({
+  throwError : function(message) {
+    console.log('throwerror method');
+    Errors.insert({message: message});
+  }
+})
+
+
+throwError = function(message) {
+  Errors.insert({message: message});
+};

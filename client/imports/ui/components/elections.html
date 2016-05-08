@@ -1,28 +1,33 @@
 <template name="elections">
+	<div class="ui container">
+		<h2 class="ui block compact header">Upcoming Elections:</h2>
 		{{#with events}}
-<div class="ui container">
-	<h2 class="ui block compact header">Upcoming Elections:</h2>
-	<div class="ui compact piled segments">
-		{{#each elections}}
-			{{#if divMatch ocdDivisionId }}
-			<div class="ui segment">
-				<div class="block header">Your Local Polling Place:</div>
-				<div class="content">
-					<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
-					<span class="ui">{{name}}</span> 
+		<div class="ui compact piled segments">
+			{{#each elections}}
+				{{#if divMatch ocdDivisionId }}
+				<div class="ui raised segment">
+					<div class="content">
+						<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
+						<span class="ui">{{name}}</span> 
+					</div>
+					<div class="block header">Your Local Polling Place:</div>
+					{{#with voterinfo id}}
+						<div class="content">
+							
+						</div>
+					{{/with}}
 				</div>
-			</div>
-			{{else}}
-			<div class="ui segment">
-				<div class="content">
-					<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
-					<span class="ui">{{name}}</span> 
+				{{else}}
+				<div class="ui segment">
+					<div class="content">
+						<a class="ui large purple ribbon label" title="Mark Your Calendar!">{{electionDay}}</a>
+						<span class="ui">{{name}}</span> 
+					</div>
 				</div>
-			</div>
-			{{/if}}
-		{{/each}}
+				{{/if}}
+			{{/each}}
+		</div>
+		{{/with}}
 	</div>
-</div>
-	{{/with}}
 </template>
 

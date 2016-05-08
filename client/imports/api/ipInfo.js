@@ -47,36 +47,23 @@ Template.ipInfo.events({
 		var entered = tpl.find('input#self-state').value;
 		console.log(entered);
 		if (entered.length === 5  && $.isNumeric(entered) ) {
-			var newZip = entered;
-			Meteor.users.update({
-				_id : Meteor.user()._id
-			}, { 
-				$set: {
-					"profile.postal" : entered
-				} 
-			});
-
+			//user has entered their zipcode
+	
 			Session.set('newZip', entered);
 			console.log("they put "+entered);
+			//convert zipcode to state.
 			var res = Meteor.call('zipCode', entered, function(e,r) {
 				if (e) {
 					console.log(e);
 				} else {
 					console.log(r.state);
 					Session.set('newState', r.state);
-					Meteor.users.update({
-						_id : Meteor.user()._id
-					}, { 
-						$set: {
-							"profile.state" : r.state
-						} 
-					});
 					return r;
 				}
 			});
 		}
 		else {
-			console.log("Did not enter a valid zip!");
+			throwError("Did not enter a valid zipcode!");
 		}
 	    
 	
