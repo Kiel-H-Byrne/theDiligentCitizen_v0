@@ -34,7 +34,7 @@ METHODS:
 		var params = {};
 		// params.state = abbr_State(ipInfo.region, 'abbrev');
 		params.state = "US";
-		params.topic = 'obama-job-approval'
+		params.topic = 'obama-job-approval';
 		// params.topic = 'favorable-ratings'
 		// params.topic = '2016-senate-gop-primary, 2016-senate-dem-primary, 2016-senate, 2016-president-gop-primary, 2016-president-dem-primary, 2016-president, 2016-house, 2016-governor-dem-primary, 2016-governor'
 		urlParams = jQuery.param(params);
@@ -42,6 +42,32 @@ METHODS:
 		console.log(res);
 		return res;
 	},
+	charts3: function() {
+		var method = 'charts';
+		var params = {};
+		// params.state = abbr_State(ipInfo.region, 'abbrev');
+		params.state = "US";
+		params.topic = '2016-house';
+		// params.topic = 'favorable-ratings'
+		// params.topic = '2016-senate-gop-primary, 2016-senate-dem-primary, 2016-senate, 2016-president-gop-primary, 2016-president-dem-primary, 2016-president, 2016-house, 2016-governor-dem-primary, 2016-governor'
+		urlParams = jQuery.param(params);
+		var res =  ReactiveMethod.call('huffPollster', method, urlParams);
+		console.log(res);
+		return res;
+	},
+	charts4: function() {
+		var method = 'charts';
+		var params = {};
+		// params.state = abbr_State(ipInfo.region, 'abbrev');
+		params.state = "US";
+		params.topic = '2016-senate-dem-primary';
+		// params.topic = 'favorable-ratings'
+		// params.topic = '2016-senate-gop-primary, 2016-senate-dem-primary, 2016-senate, 2016-president-gop-primary, 2016-president-dem-primary, 2016-president, 2016-house, 2016-governor-dem-primary, 2016-governor'
+		urlParams = jQuery.param(params);
+		var res =  ReactiveMethod.call('huffPollster', method, urlParams);
+		console.log(res);
+		return res;
+	},		
 	topChart: function() {
 	//console.log(this);
 	

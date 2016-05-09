@@ -16,6 +16,7 @@
 *    ]
 */
 
+
 Template.wordCloud.helpers({
   loader: function() {
     if (Session.get('cloudArr')) {

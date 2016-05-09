@@ -1,5 +1,6 @@
 $.getJSON("http://ipinfo.io", function(data){
-//	console.log("--setting initial ipInfo--");
+	console.log("--setting initial ipInfo--");
+	console.log(data);
 	Session.set('ipInfo', data);
 	Meteor.users.update({
 		_id : Meteor.user()._id
@@ -7,7 +8,13 @@ $.getJSON("http://ipinfo.io", function(data){
 		$set: {
 			profile : data
 	} });
-
+	//get state abbreviation. set it to state
+	Meteor.users.update({
+		_id : Meteor.user()._id
+	}, { 
+		$set: {
+			"profile.state" : abbr_State(data.region, 'abbrev')
+	} });
 });
 
 analytics.track( 'ipInfo data', {
@@ -41,6 +48,7 @@ Template.ipInfo.helpers({
 
 Template.ipInfo.events({
 	//when form is submitted, change the 'found' state to the one entered.
+	//should accept zipcode and full address.
 	'submit form': function (evt, tpl) {
 		event.preventDefault();
 		//if entered is a string, set value to state
@@ -62,9 +70,12 @@ Template.ipInfo.events({
 					return r;
 				}
 			});
-		}
-		else {
-			throwError("Did not enter a valid zipcode!");
+		} else if (entered.length > 5) {
+			//if they enter an address, store as search address, verify as user's address.
+			Session.set('newAddress', entered);
+			throwError("I can't search addresses right now...");
+		} else {
+			throwError("Did not enter a valid zipcode or address!");
 		}
 	    
 	

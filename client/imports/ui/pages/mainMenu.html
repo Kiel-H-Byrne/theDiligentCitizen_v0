@@ -1,27 +1,38 @@
 <template name="MainMenu">
-
-    <div id="main-menu" class="ui fixed pointing menu">
-        <div class="item">
-            <a href="/" >
-                <img class="logo" src="img/tdc.png" >
-            </a>
-        </div>
-        <div class="ui container">
-            <!-- <a class="header item" href="/"> Home </a> -->
-            <a class="header item" href="/bills"> Search Laws </a>
-            <a class="header item" href="/representatives"> Representatives </a>
-            <div class="ui pointing dropdown item">
-                <a class="header item"> More.... </a>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a class="header item" href="/public-opinion-polls">Presidential Public Opinion</a>
-                    <a class="header item" href="/party">Local Fundraising Events</a>
-                    <a class="header item" href="/elections">Upcoming Elections</a>
-                </div>
-            </div>
-            <div class=" item">
-            {{> register}}
-            </div>
-        </div>
+    {{>login}}
+    <div id="main-menu" class="ui fixed fluid labeled icon seven item stackable menu">
+        <a class="item" href="/" >
+            <img class="logo" src="img/tdc.png" >
+            {{!-- {{> register}} --}}
+            
+        </a>
+        <!-- <a class="header item" href="/"> Home </a> -->
+        <a class="item" href="/bills">
+            {{!-- <i class="search icon"></i>  --}}
+            <i class="unhide icon"></i> 
+            Search Laws 
+        </a>
+        <a class="item" href="/representatives">
+            <i class="legal icon"></i> 
+            Elected Officials 
+        </a>
+        {{!-- <div class="ui pointing dropdown item"> --}}
+            {{!-- <a class="header item"> Local  </a> --}}
+            {{!-- <i class="dropdown icon"></i> --}}
+            {{!-- <div class="menu"> --}}
+                <a class="item" href="/public-opinion-polls">
+                    <i class="pie chart icon"></i>
+                    Charts
+                </a>
+                <a class="item" href="/party">
+                    <i class="cocktail icon"></i> 
+                    Fundraisers
+                </a>
+                <a class="item" href="/elections">
+                    <i class="checkmark box icon"></i> 
+                    Upcoming Elections
+                </a>
+            {{!-- </div> --}}
+        {{!-- </div> --}}
     </div>
 </template>
