@@ -29,7 +29,23 @@
 				</div>
 			</div>
 			{{/if}}
-		{{/each}}			
+		{{/each}}		
+
+		{{#each charts4}}
+			{{#if estimates}}
+			<div class="column">			
+				<div class="chart ui card">
+					<div class="ui content">
+						{{> highchartsHelper chartId=this.slug chartWidth="100%" charHeight="100%" chartObject=topChart}}
+					</div>
+					<div class="ui extra content centered sub header">
+						<h5>Updated on {{date}}</h5>
+					</div>					
+				</div>
+			</div>
+			{{/if}}
+		{{/each}}	
+		
 	</div>
 </div>
 </template>

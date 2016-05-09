@@ -1,20 +1,28 @@
 $.getJSON("http://ipinfo.io", function(data){
 	console.log("--setting initial ipInfo--");
-	console.log(data);
+	// console.log(data);
 	Session.set('ipInfo', data);
-	Meteor.users.update({
-		_id : Meteor.user()._id
-	}, { 
-		$set: {
-			profile : data
-	} });
-	//get state abbreviation. set it to state
-	Meteor.users.update({
-		_id : Meteor.user()._id
-	}, { 
-		$set: {
-			"profile.state" : abbr_State(data.region, 'abbrev')
-	} });
+
+	Info = new Mongo.Collection(null);
+
+	if (Meteor.user()) {
+		Meteor.users.update({ 
+			_id : Meteor.user()._id
+			}, { 
+			$set: { 
+				profile : data 
+			} });
+		//get state abbreviation. set it to state
+		Meteor.users.update({
+			_id : Meteor.user()._id
+		}, { 
+			$set: {
+				"profile.state" : abbr_State(data.region, 'abbrev')
+		} });
+	}
+	Info.insert( {'profile' : data} );
+	Info.insert( {'newState' : abbr_State(data.region, 'abbrev')} );
+
 });
 
 analytics.track( 'ipInfo data', {
@@ -58,6 +66,7 @@ Template.ipInfo.events({
 			//user has entered their zipcode
 	
 			Session.set('newZip', entered);
+			Info.insert({'newZip' : entered});
 			// console.log("they put "+entered);
 			//convert zipcode to state.
 			var res = Meteor.call('zipCode', entered, function(e,r) {
@@ -66,7 +75,10 @@ Template.ipInfo.events({
 				} else {
 					console.log(r);
 					Session.set('newState', r.state);
-					Session.set('newLoc', r.lat +',' +r.lng)
+					Session.set('newLoc', r.lat +',' +r.lng);
+
+					Info.insert({'newState': r.state});
+					Info.insert({'newLoc': r.lat+','+r.lng });
 					return r;
 				}
 			});

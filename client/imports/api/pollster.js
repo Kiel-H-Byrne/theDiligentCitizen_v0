@@ -59,7 +59,17 @@ METHODS:
 		var method = 'charts';
 		var params = {};
 		// params.state = abbr_State(ipInfo.region, 'abbrev');
-		params.state = "US";
+		// params.state = "US";
+		if (Session.get('newState')) {
+			params.state = Session.get('newState');
+			console.log(params.state);
+		} else {
+			params.state = Meteor.users.find({
+				_id : Meteor.user()._id
+				}).fetch().profile.state;
+			console.log(params.state);
+		}
+		console.log(params.state);
 		params.topic = '2016-senate-dem-primary';
 		// params.topic = 'favorable-ratings'
 		// params.topic = '2016-senate-gop-primary, 2016-senate-dem-primary, 2016-senate, 2016-president-gop-primary, 2016-president-dem-primary, 2016-president, 2016-house, 2016-governor-dem-primary, 2016-governor'
